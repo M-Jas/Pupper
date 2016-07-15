@@ -12,6 +12,9 @@
 #import <FSCalendar/FSCalendar.h>
 
 @interface BookingViewController : UIViewController<FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) NSMutableArray *servicesOnSelectedDate;
+
+@end
 //<JTCalendarDelegate>
 //
 //@property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
@@ -21,10 +24,3 @@
 //@property (strong, nonatomic) JTCalendarManager *calendarManager;
 //
 //@property (nonatomic, readonly) UIView *circleView;
-@property (strong, nonatomic) NSMutableArray *servicesOnSelectedDate;
-
-
-
-
-
-@end

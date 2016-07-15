@@ -15,68 +15,79 @@
 @interface BookingViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
-@property (weak , nonatomic) FSCalendar *calendar;
+@property (weak, nonatomic) IBOutlet UITableView *upcomingServicesTableView;
+
+@property (strong, nonatomic) NSDate *selectedDate;
+
+@property (strong , nonatomic) FSCalendar *calendar;
+
+@property (strong, nonatomic) NSString *dateString;
+
 @end
 
 @implementation BookingViewController 
-//    NSDate *dateSelected;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    FSCalendar *calendar = [[FSCalendar alloc]initWithFrame:CGRectMake(0, 0, 320, 300)];
-//    
-//    calendar.dataSource = self;
-//    calendar.delegate = self;
-//    [self.view addSubview:calendar];
-//    self.calendar = calendar;
-    
-//    _calendarManager = [JTCalendarManager new];
-//    _calendarManager.delegate = self;
-//    
-//    _calendarManager.settings.pageViewHaveWeekDaysView = NO; // You don't want WeekDaysView in the contentView
-//    _calendarManager.settings.pageViewNumberOfWeeks = 0; // Automatic number of weeks
-//    
-//    _weekDayView.manager = _calendarManager; // You set the manager for WeekDaysView
-//    [_weekDayView reload]; // You load WeekDaysView manually
-//    
-//    [_calendarManager setMenuView:_calendarMenuView];
-//    [_calendarManager setContentView:_calendarContentView];
-//    [_calendarManager setDate:[NSDate date]];
-//    
-//    _calendarMenuView.scrollView.scrollEnabled = NO;
-
-    
-//    
-//    SWRevealViewController *revealViewController = self.revealViewController;
-//    if ( revealViewController )
-//    {
-//        [self.sidebarButton setTarget: self.revealViewController];
-//        [self.sidebarButton setAction: @selector( revealToggle: )];
-//        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-//    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 1;
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_servicesOnSelectedDate count];
 }
 
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
+
+    NSLog(@"%@", _dateString);
+    
+    NSString *dateToDisplay = [_servicesOnSelectedDate objectAtIndex:indexPath.row];
+    NSLog(@"%@", dateToDisplay);
+    
+    cell.textLabel.text = dateToDisplay;
+    
+    return cell;
+    
+}
+
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
+{
+    _selectedDate = [[NSDate alloc]init];
+    _selectedDate = date;
+    
+    _servicesOnSelectedDate = [[NSMutableArray alloc] initWithObjects:_selectedDate, nil];
+    
+    _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
+    
+    
+    NSLog(@"%@", _dateString);
+    NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
+
+    [_upcomingServicesTableView reloadData];
+    
+}
+
+
+
+
+
+@end
+
 // calendar:prepareDayView: used to customize the design of the day view for a specific date. This method is called each time a new date is set in a dayView or each time the current page change.
 //- (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView {
-//    
+//
 //    dayView.hidden = NO;
-//   
+//
 //    if([dayView isFromAnotherMonth]) {
 //        dayView.hidden = YES;
 //    }
@@ -86,7 +97,7 @@
 //        dayView.circleView.backgroundColor = [UIColor blueColor];
 //        dayView.dotView.backgroundColor = [UIColor whiteColor];
 //        dayView.textLabel.textColor = [UIColor whiteColor];
-//    
+//
 //    }
 //    //Selected Date
 //    else if (dateSelected && [_calendarManager.dateHelper date:dateSelected isTheSameDayThan:dayView.date]) {
@@ -108,12 +119,12 @@
 //    else{
 //        dayView.dotView.hidden = YES;
 //    }
-    
+
 //}
 //
 //- (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView {
 //    dateSelected = dayView.date;
-//    
+//
 //    //Animation for Circles
 //    dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
 //    [UIView transitionWithView:dayView
@@ -133,13 +144,6 @@
 //}
 
 
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
-{
-    
-    NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
-    NSLog(@"selected date: %@", date);
-//    [self filterEventsByDate:date];
-}
 
 
 //- (NSDateFormatter *)dateFormatter
@@ -154,6 +158,30 @@
 //}
 
 
+//    _calendarManager = [JTCalendarManager new];
+//    _calendarManager.delegate = self;
+//
+//    _calendarManager.settings.pageViewHaveWeekDaysView = NO; // You don't want WeekDaysView in the contentView
+//    _calendarManager.settings.pageViewNumberOfWeeks = 0; // Automatic number of weeks
+//
+//    _weekDayView.manager = _calendarManager; // You set the manager for WeekDaysView
+//    [_weekDayView reload]; // You load WeekDaysView manually
+//
+//    [_calendarManager setMenuView:_calendarMenuView];
+//    [_calendarManager setContentView:_calendarContentView];
+//    [_calendarManager setDate:[NSDate date]];
+//
+//    _calendarMenuView.scrollView.scrollEnabled = NO;
 
 
-@end
+//
+//    SWRevealViewController *revealViewController = self.revealViewController;
+//    if ( revealViewController )
+//    {
+//        [self.sidebarButton setTarget: self.revealViewController];
+//        [self.sidebarButton setAction: @selector( revealToggle: )];
+//        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+//    }
+
+
+
