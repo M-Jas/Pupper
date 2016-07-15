@@ -44,7 +44,7 @@
 		43B17D801D380FBE0096556F /* wishlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D3B1D380FBE0096556F /* wishlist.png */; };
 		43B17D881D3813260096556F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D841D3813260096556F /* InfoPlist.strings */; };
 		43B17D8C1D38148F0096556F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D8A1D38148F0096556F /* Main.storyboard */; };
-		DC1B1B2D33D61B0AA3589849 /* libPods-Pupper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0386C230EED8B99EADD8781 /* libPods-Pupper.a */; };
+		CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,8 +98,8 @@
 		43B17D3B1D380FBE0096556F /* wishlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wishlist.png; sourceTree = "<group>"; };
 		43B17D851D3813260096556F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		43B17D8B1D38148F0096556F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Main.storyboard; sourceTree = "<group>"; };
-		D0386C230EED8B99EADD8781 /* libPods-Pupper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pupper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8725641B0B5C6E4B82A7552 /* Pods-Pupper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pupper/Pods-Pupper.debug.xcconfig"; sourceTree = "<group>"; };
+		F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1B1B2D33D61B0AA3589849 /* libPods-Pupper.a in Frameworks */,
+				CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +264,7 @@
 		4826AE84F8494DB016E37813 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D0386C230EED8B99EADD8781 /* libPods-Pupper.a */,
+				F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
