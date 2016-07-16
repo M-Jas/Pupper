@@ -38,6 +38,8 @@
     
     [super viewDidLoad];
     
+    _servicesOnSelectedDate = [[NSMutableArray alloc] init];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,30 +61,49 @@
 
     NSLog(@"%@", _dateString);
     
-    NSString *dateToDisplay = [_servicesOnSelectedDate objectAtIndex:indexPath.row];
-    NSLog(@"%@", dateToDisplay);
+//    NSString *dateToDisplay = [_servicesOnSelectedDate objectAtIndex:indexPath.row];
+//    NSLog(@"%@", dateToDisplay);
     
-    NSArray *array = [[NSArray alloc] initWithObjects: _dateString, nil];
-    cell.textLabel.text = _dateString;
-//    cell.textLabel.text = dateToDisplay;
+    NSString *testString = [_servicesOnSelectedDate objectAtIndex:indexPath.row];
+    
+//    cell.textLabel.text = _dateString;
+    cell.textLabel.text = testString;
     
     return cell;
     
 }
 
+
+//Display Delete method for TableView*******************************************************
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+//Delete method for Tableview used and Tablevie is adjusted with remaining objects in the array********************************************************
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //Need to add the array here to keep it from Crashing
+        [_servicesOnSelectedDate removeObjectAtIndex: indexPath.row];
+        [_upcomingServicesTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
+    }
+}
+
+
+// clicking on a date adds a string of "yyyy/MM/dd" into an array which is called to populate the tableview
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
 {
     _selectedDate = [[NSDate alloc]init];
     _selectedDate = date;
     
-    _servicesOnSelectedDate = [[NSMutableArray alloc] initWithObjects:_selectedDate, nil];
-    
     _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
+    
+    [_servicesOnSelectedDate addObject:_dateString];
     
     
     NSLog(@"%@", _dateString);
     NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
 
+    //This is needed to populated the data after calendar date is selected
     [_upcomingServicesTableView reloadData];
     
 }
