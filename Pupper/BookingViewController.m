@@ -62,7 +62,9 @@
     NSString *dateToDisplay = [_servicesOnSelectedDate objectAtIndex:indexPath.row];
     NSLog(@"%@", dateToDisplay);
     
-    cell.textLabel.text = dateToDisplay;
+    NSArray *array = [[NSArray alloc] initWithObjects: _dateString, nil];
+    cell.textLabel.text = _dateString;
+//    cell.textLabel.text = dateToDisplay;
     
     return cell;
     
@@ -84,10 +86,6 @@
     [_upcomingServicesTableView reloadData];
     
 }
-
-
-
-
 
 @end
 

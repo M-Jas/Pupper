@@ -39,7 +39,6 @@
 		43B17D7B1D380FBE0096556F /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17D351D380FBE0096556F /* SWRevealViewController.m */; };
 		43B17D7C1D380FBE0096556F /* tag_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D361D380FBE0096556F /* tag_photo.jpg */; };
 		43B17D7D1D380FBE0096556F /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D371D380FBE0096556F /* tag.png */; };
-		43B17D7E1D380FBE0096556F /* UpcomingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17D391D380FBE0096556F /* UpcomingViewController.m */; };
 		43B17D7F1D380FBE0096556F /* wishlist_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D3A1D380FBE0096556F /* wishlist_photo.jpg */; };
 		43B17D801D380FBE0096556F /* wishlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D3B1D380FBE0096556F /* wishlist.png */; };
 		43B17D881D3813260096556F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D841D3813260096556F /* InfoPlist.strings */; };
@@ -92,8 +91,6 @@
 		43B17D351D380FBE0096556F /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = Pupper/SWRevealViewController.m; sourceTree = SOURCE_ROOT; };
 		43B17D361D380FBE0096556F /* tag_photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tag_photo.jpg; sourceTree = "<group>"; };
 		43B17D371D380FBE0096556F /* tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tag.png; sourceTree = "<group>"; };
-		43B17D381D380FBE0096556F /* UpcomingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingViewController.h; sourceTree = "<group>"; };
-		43B17D391D380FBE0096556F /* UpcomingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingViewController.m; sourceTree = "<group>"; };
 		43B17D3A1D380FBE0096556F /* wishlist_photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wishlist_photo.jpg; sourceTree = "<group>"; };
 		43B17D3B1D380FBE0096556F /* wishlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wishlist.png; sourceTree = "<group>"; };
 		43B17D851D3813260096556F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -225,6 +222,8 @@
 		43B17DB01D38195A0096556F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				43B17D311D380FBE0096556F /* SidebarViewController.h */,
+				43B17D321D380FBE0096556F /* SidebarViewController.m */,
 				43B17CEC1D380FBE0096556F /* MainViewController.h */,
 				43B17CED1D380FBE0096556F /* MainViewController.m */,
 				43B17CD91D380FBE0096556F /* BookingViewController.h */,
@@ -234,10 +233,6 @@
 				43B17CFA1D380FBE0096556F /* PricingViewController.h */,
 				43B17CFB1D380FBE0096556F /* PricingViewController.m */,
 				43B17D301D380FBE0096556F /* SidebarDemo-Prefix.pch */,
-				43B17D311D380FBE0096556F /* SidebarViewController.h */,
-				43B17D321D380FBE0096556F /* SidebarViewController.m */,
-				43B17D381D380FBE0096556F /* UpcomingViewController.h */,
-				43B17D391D380FBE0096556F /* UpcomingViewController.m */,
 				43B17C7B1D380F230096556F /* ProfileViewController.h */,
 				43B17C7C1D380F230096556F /* ProfileViewController.m */,
 			);
@@ -419,7 +414,6 @@
 				43B17C661D380EA70096556F /* main.m in Sources */,
 				43B17D3F1D380FBE0096556F /* BookingViewController.m in Sources */,
 				43B17D4C1D380FBE0096556F /* MainViewController.m in Sources */,
-				43B17D7E1D380FBE0096556F /* UpcomingViewController.m in Sources */,
 				43B17D531D380FBE0096556F /* PaymentViewController.m in Sources */,
 				43B17D3C1D380FBE0096556F /* AppDelegate.m in Sources */,
 				43B17D7B1D380FBE0096556F /* SWRevealViewController.m in Sources */,
