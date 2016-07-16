@@ -44,9 +44,20 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+// Method to set all textfield to be disabled and save button hidden
+- (void)profileEditing {
+    _puppyNameTextfield.userInteractionEnabled = NO;
+    _puppyAgeTextfield.userInteractionEnabled = NO;
+    _puppyBreedTextfield.userInteractionEnabled = NO;
+    _userPhoneNumberTextfield.userInteractionEnabled = NO;
+    _addressTextfield.userInteractionEnabled = NO;
+    _vetPhoneNumberTextfield.userInteractionEnabled = NO;
+    _puppyBio.userInteractionEnabled = NO;
+    
+    _saveButton.hidden = YES;
+}
 
 
 // Button will activate all textfield and display save button
@@ -63,24 +74,8 @@
 
 }
 
-// Method to set all textfield to be disabled and save button hidden
-- (void)profileEditing {
-    _puppyNameTextfield.userInteractionEnabled = NO;
-    _puppyAgeTextfield.userInteractionEnabled = NO;
-    _puppyBreedTextfield.userInteractionEnabled = NO;
-    _userPhoneNumberTextfield.userInteractionEnabled = NO;
-    _addressTextfield.userInteractionEnabled = NO;
-    _vetPhoneNumberTextfield.userInteractionEnabled = NO;
-    _puppyBio.userInteractionEnabled = NO;
-    
-    _saveButton.hidden = YES;
-    
-    
-}
-
-
 - (IBAction)saveProfileButtonPressed:(id)sender {
-    [self profileEditing];    
+    [self profileEditing];
 }
 
 
