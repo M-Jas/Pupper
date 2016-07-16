@@ -17,9 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="littlePaw.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nmf-QN-ivy">
-                                <rect key="frame" x="40" y="184" width="240" height="128"/>
-                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Main User Dog Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9u-kK-HIU">
                                 <rect key="frame" x="31" y="99" width="259" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="30"/>
@@ -27,7 +24,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kl2-rX-IQw">
-                                <rect key="frame" x="92" y="382" width="123" height="30"/>
+                                <rect key="frame" x="86" y="334" width="148" height="30"/>
                                 <state key="normal" title="Book your Pupper"/>
                                 <connections>
                                     <action selector="bookServiceButtonPressed:" destination="2" eventType="touchUpInside" id="9uY-uq-iyY"/>
@@ -40,6 +37,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="littlePaw.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nmf-QN-ivy">
+                                <rect key="frame" x="40" y="151" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -69,7 +69,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bMy-Ps-zOL" id="e9g-66-wN6">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neq-3o-bxe">
@@ -89,7 +89,7 @@
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XKr-6x-CbJ" id="SGb-Yh-ajl">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNL-Fv-aEA">
@@ -109,7 +109,7 @@
                                 <rect key="frame" x="0.0" y="110" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yQX-6e-TEU" id="kul-sl-VXe">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Pricing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u26-RB-7pc">
@@ -129,7 +129,7 @@
                                 <rect key="frame" x="0.0" y="154" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mkP-ER-bze" id="yZY-nQ-81o">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Home/Main" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOP-br-X22">
@@ -149,7 +149,7 @@
                                 <rect key="frame" x="0.0" y="198" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q3z-xA-Gqn" id="HBe-pS-cof">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Logout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHD-gG-dDe">
@@ -271,6 +271,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGi-3G-dTf">
+                                <rect key="frame" x="137" y="530" width="46" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveProfileButtonPressed:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="oMH-Zl-Roj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -278,10 +285,22 @@
                         <barButtonItem key="leftBarButtonItem" image="littlePaw.png" id="WcW-vY-tms">
                             <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="fOY-gI-7zg"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="fOY-gI-7zg">
+                            <connections>
+                                <action selector="editProfileButtonPressed:" destination="0F6-E6-5Jb" id="crd-3K-G69"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addressTextfield" destination="EYn-dn-A9i" id="Gbu-TO-fro"/>
+                        <outlet property="puppyAgeTextfield" destination="bh4-bG-aeR" id="1dg-Y0-9jI"/>
+                        <outlet property="puppyBio" destination="3F3-rG-Z1N" id="Qn8-FR-WFP"/>
+                        <outlet property="puppyBreedTextfield" destination="1V2-s6-8QO" id="2Du-c3-sra"/>
+                        <outlet property="puppyNameTextfield" destination="CcY-gE-pMr" id="7Rj-sL-5EI"/>
+                        <outlet property="saveButton" destination="sGi-3G-dTf" id="8O6-QC-k0I"/>
                         <outlet property="sidebarButton" destination="WcW-vY-tms" id="msA-VS-T50"/>
+                        <outlet property="userPhoneNumberTextfield" destination="MJV-kC-6iF" id="scY-hR-17j"/>
+                        <outlet property="vetPhoneNumberTextfield" destination="DEN-l6-ZgQ" id="Xxv-M3-pAD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKi-Bd-Vhy" sceneMemberID="firstResponder"/>
@@ -473,7 +492,7 @@
                                         <rect key="frame" x="0.0" y="28" width="285" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IWt-y6-HFL" id="wLg-PT-Djs">
-                                            <rect key="frame" x="0.0" y="0.0" width="285" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="285" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -495,13 +514,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSX-BA-qGc" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21" y="1689"/>
+            <point key="canvasLocation" x="459" y="939"/>
         </scene>
     </scenes>
     <resources>
         <image name="littlePaw.png" width="38" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0uC-ol-D2x"/>
+        <segue reference="U19-Yq-gT4"/>
     </inferredMetricsTieBreakers>
 </document>
