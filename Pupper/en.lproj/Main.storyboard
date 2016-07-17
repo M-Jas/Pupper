@@ -23,23 +23,35 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="littlePaw.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nmf-QN-ivy">
+                                <rect key="frame" x="40" y="151" width="240" height="128"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DEm-hp-goC">
+                                <rect key="frame" x="0.0" y="354" width="320" height="214"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="U73-ZC-97W">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U73-ZC-97W" id="XMK-kj-Hgq">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="64I-Em-0yf"/>
+                                    <outlet property="delegate" destination="2" id="fA0-UT-rfK"/>
+                                </connections>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kl2-rX-IQw">
-                                <rect key="frame" x="86" y="334" width="148" height="30"/>
+                                <rect key="frame" x="86" y="307" width="148" height="30"/>
                                 <state key="normal" title="Book your Pupper"/>
                                 <connections>
                                     <action selector="bookServiceButtonPressed:" destination="2" eventType="touchUpInside" id="9uY-uq-iyY"/>
                                     <segue destination="8is-vx-TQ4" kind="push" id="v04-XG-bC1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display Upcoming walks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLg-qk-aLY">
-                                <rect key="frame" x="67" y="467" width="186" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="littlePaw.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nmf-QN-ivy">
-                                <rect key="frame" x="40" y="151" width="240" height="128"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -49,12 +61,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mainDisplayUpcomingServices" destination="DEm-hp-goC" id="P8X-2R-8QV"/>
                         <outlet property="sidebarButton" destination="4DU-rm-gHC" id="gCT-AB-0W6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21" y="939"/>
+            <point key="canvasLocation" x="-49" y="939"/>
         </scene>
         <!--Sidebar-->
         <scene sceneID="8EI-Ei-zax">
@@ -518,7 +531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSX-BA-qGc" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="459" y="939"/>
+            <point key="canvasLocation" x="398" y="939"/>
         </scene>
     </scenes>
     <resources>
