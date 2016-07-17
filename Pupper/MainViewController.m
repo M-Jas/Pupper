@@ -80,6 +80,8 @@ NSMutableArray *upcomingServicesArray;
     BookingViewController *vc = [unwindSegue sourceViewController];
     upcomingServicesArray = vc.servicesOnSelectedDate;
     
+    NSLog(@"The date you selected %@", upcomingServicesArray);
+    
 }
 
 - (IBAction)bookServiceButtonPressed:(id)sender {
