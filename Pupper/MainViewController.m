@@ -35,15 +35,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 - (IBAction)bookServiceButtonPressed:(id)sender {
 //    [self presentViewController: animated:YES completion:nil];
-    
-}
-
-- (IBAction)upcomingServicesButtonPressed:(id)sender {
     
 }
 

@@ -8,4 +8,7 @@ target 'Pupper' do
   # Pods for Pupper
   pod 'JTCalendar', '~> 2.0'
 
+  use_frameworks!
+	pod 'FSCalendar'
+
 end

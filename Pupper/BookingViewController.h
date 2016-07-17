@@ -9,15 +9,18 @@
 #import <UIKit/UIKit.h>
 
 #import <JTCalendar/JTCalendar.h>
+#import <FSCalendar/FSCalendar.h>
 
-@interface BookingViewController : UIViewController<JTCalendarDelegate>
-
-@property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
-@property (weak, nonatomic) IBOutlet JTVerticalCalendarView *calendarContentView;
-@property (weak, nonatomic) IBOutlet JTCalendarWeekDayView *weekDayView;
-
-@property (strong, nonatomic) JTCalendarManager *calendarManager;
-
-@property (nonatomic, readonly) UIView *circleView;
+@interface BookingViewController : UIViewController<FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) NSMutableArray *servicesOnSelectedDate;
 
 @end
+//<JTCalendarDelegate>
+//
+//@property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
+//@property (weak, nonatomic) IBOutlet JTVerticalCalendarView *calendarContentView;
+//@property (weak, nonatomic) IBOutlet JTCalendarWeekDayView *weekDayView;
+//
+//@property (strong, nonatomic) JTCalendarManager *calendarManager;
+//
+//@property (nonatomic, readonly) UIView *circleView;

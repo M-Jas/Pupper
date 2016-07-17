@@ -13,14 +13,26 @@
 @interface ProfileViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
+@property (weak, nonatomic) IBOutlet UITextField *puppyNameTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *puppyAgeTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *puppyBreedTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *userPhoneNumberTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *vetPhoneNumberTextfield;
+@property (weak, nonatomic) IBOutlet UITextView *puppyBio;
 
 @end
+
 
 @implementation ProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    [self profileEditing];
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
@@ -32,17 +44,39 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// Method to set all textfield to be disabled and save button hidden
+- (void)profileEditing {
+    _puppyNameTextfield.userInteractionEnabled = NO;
+    _puppyAgeTextfield.userInteractionEnabled = NO;
+    _puppyBreedTextfield.userInteractionEnabled = NO;
+    _userPhoneNumberTextfield.userInteractionEnabled = NO;
+    _addressTextfield.userInteractionEnabled = NO;
+    _vetPhoneNumberTextfield.userInteractionEnabled = NO;
+    _puppyBio.userInteractionEnabled = NO;
+    
+    _saveButton.hidden = YES;
 }
-*/
+
+
+// Button will activate all textfield and display save button
+- (IBAction)editProfileButtonPressed:(id)sender {
+    _puppyNameTextfield.userInteractionEnabled = YES;
+    _puppyAgeTextfield.userInteractionEnabled = YES;
+    _puppyBreedTextfield.userInteractionEnabled = YES;
+    _userPhoneNumberTextfield.userInteractionEnabled = YES;
+    _addressTextfield.userInteractionEnabled = YES;
+    _vetPhoneNumberTextfield.userInteractionEnabled = YES;
+    _puppyBio.userInteractionEnabled = YES;
+    
+    _saveButton.hidden = NO;
+
+}
+
+- (IBAction)saveProfileButtonPressed:(id)sender {
+    [self profileEditing];
+}
+
 
 @end
