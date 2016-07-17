@@ -99,14 +99,36 @@
     
     [_servicesOnSelectedDate addObject:_dateString];
     
-    
-    NSLog(@"%@", _dateString);
     NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Service Options"
+                                                                   message:@"Please select a service for Puppy"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
+                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                              NSLog(@"You pressed walk");
+                                                          }]; // 2
+    UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
+                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                              NSLog(@"You pressed feed");
+                                                          }];
+    
 
+    [alert addAction:firstAction]; // 4
+    [alert addAction:secondAction];
+    
+    [self presentViewController:alert animated:YES completion:nil]; // 6
+    
     //This is needed to populated the data after calendar date is selected
     [_upcomingServicesTableView reloadData];
     
 }
+
+- (IBAction)actionSheetButtonPressed:(id)sender {
+    
+}
+
+
 
 @end
 
