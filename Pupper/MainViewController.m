@@ -24,6 +24,8 @@ NSMutableArray *upcomingServicesArray;
 {
     [super viewDidLoad];
     
+    [self testingTVMethod];
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
@@ -49,7 +51,7 @@ NSMutableArray *upcomingServicesArray;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
-    [upcomingServicesArray addObject:@"Johny 5"];
+    
     
     NSString *testString = [upcomingServicesArray objectAtIndex:indexPath.row];
  
@@ -82,7 +84,12 @@ NSMutableArray *upcomingServicesArray;
 
 - (IBAction)bookServiceButtonPressed:(id)sender {
 //    [self presentViewController: animated:YES completion:nil];
+}
+
+- (NSMutableArray *)testingTVMethod {
+    upcomingServicesArray = [[NSMutableArray alloc] initWithObjects:@"Johnny 5", @"Zero Cool", nil];
     
+    return upcomingServicesArray;
 }
 
 @end
