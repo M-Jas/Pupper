@@ -9,6 +9,8 @@
 
 #import "BookingViewController.h"
 #import "SWRevealViewController.h"
+#import "Service.h"
+#import "User.h"
 
 
 
@@ -16,17 +18,13 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITableView *upcomingServicesTableView;
 
-@property (strong, nonatomic) NSDate *selectedDate;
 @property (strong , nonatomic) FSCalendar *calendar;
 @property (strong, nonatomic) NSString *dateString;
 
 @end
 
-NSDictionary *selectedServiceDict;
+//NSDictionary *selectedServiceDict;
 
-//Set these to pass down the controller, but model will be used
-NSString *walk;
-NSString *feeding;
 
 @implementation BookingViewController
 
@@ -41,10 +39,9 @@ NSString *feeding;
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
+    _servicesOnSelectedDate = [[NSMutableArray alloc]init];
+    [self createUser];
     [super viewDidLoad];
-    
-    _servicesOnSelectedDate = [[NSMutableArray alloc] init];
-    selectedServiceDict = [[NSDictionary alloc] init];
     
 }
 
@@ -56,20 +53,10 @@ NSString *feeding;
 // clicking on a date adds a string of "yyyy/MM/dd" into an array which is called to populate the tableview
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
 {
-    _selectedDate = [[NSDate alloc]init];
-    _selectedDate = date;
-    
     _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
-    
-    [_servicesOnSelectedDate addObject:_dateString];
-    
-    NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
     
 
     [self serviceAlert];
-    
-    //This is needed to populated the data after calendar date is selected
-    [_upcomingServicesTableView reloadData];
     
 }
 
@@ -77,30 +64,40 @@ NSString *feeding;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Service Options"
                                                                    message:@"Please select a service for Puppy"
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
+   UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                              NSLog(@"You pressed walk");
-                                                            [_servicesOnSelectedDate addObject:@"Walk"];
+                                                              
+//                                                            [_servicesOnSelectedDate addObject:@"Walk"];
+                                                              _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00]];
+                                                             
+//                                                              [_servicesOnSelectedDate addObject:_service];
+                                                              [_user.userServicesArray addObject:_service];
+                                                              NSLog(@"the user array : %@", _user.userServicesArray);
+                                                              for (Service *s in _user.userServicesArray){
+                                                                  NSLog(@"&&&&&& %@", s.dateOfService);
+                                                              }
+                                                                  [_upcomingServicesTableView reloadData];
                                                           }];
     
     UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                               selectedServiceDict = @{
-                                                                                       @"date": _dateString,
-                                                                                       @"service": @"Feeding"
-                                                                                       };
-                                                               NSLog(@"You pressed %@ and selcted %@", [selectedServiceDict objectForKey:@"date"], [selectedServiceDict objectForKey:@"service"]);
+                                                           
+                                                               _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00]];
+                                                             
                                                            }];
 
     [alert addAction:firstAction];
-    
     [alert addAction:secondAction];
     
-    [self presentViewController:alert animated:YES completion:nil]; // 6
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    
 }
 
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_servicesOnSelectedDate count];
+    return [_user.userServicesArray count];
 }
 
 
@@ -108,12 +105,11 @@ NSString *feeding;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
 
     
-    NSString *testString = [_servicesOnSelectedDate objectAtIndex: indexPath.row];
-
-   // GOAL: want to populate the table view with info from the alert bing a dict but info will not produce?????????????????????????????????
-    NSLog(@"You pressed %@ and selcted %@", [selectedServiceDict objectForKey:@"date"], [selectedServiceDict objectForKey:@"service"]);
+    Service *testObject = [_user.userServicesArray objectAtIndex: indexPath.row];
+    NSString *testDate = testObject.dateOfService;
     
-    cell.textLabel.text = testString;
+     NSLog(@"FROM TABLEVIEW service type:%@ date:%@ cost:%@", _service.selectedService, _service.dateOfService, _service.priceOfService);
+    cell.textLabel.text = testDate;
     
     return cell;
     
@@ -129,112 +125,15 @@ NSString *feeding;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //Need to add the array here to keep it from Crashing
-        [_servicesOnSelectedDate removeObjectAtIndex: indexPath.row];
+        [_user.userServicesArray removeObjectAtIndex: indexPath.row];
         [_upcomingServicesTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     }
 }
 
+
+- (void)createUser{
+    _user = [[User alloc]init];
+    _user.userServicesArray = [[NSMutableArray alloc]init];
+}
+
 @end
-
-// calendar:prepareDayView: used to customize the design of the day view for a specific date. This method is called each time a new date is set in a dayView or each time the current page change.
-//- (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView {
-//
-//    dayView.hidden = NO;
-//
-//    if([dayView isFromAnotherMonth]) {
-//        dayView.hidden = YES;
-//    }
-//    //Today
-//    else if ([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]) {
-//        dayView.circleView.hidden = NO;
-//        dayView.circleView.backgroundColor = [UIColor blueColor];
-//        dayView.dotView.backgroundColor = [UIColor whiteColor];
-//        dayView.textLabel.textColor = [UIColor whiteColor];
-//
-//    }
-//    //Selected Date
-//    else if (dateSelected && [_calendarManager.dateHelper date:dateSelected isTheSameDayThan:dayView.date]) {
-//        dayView.circleView.hidden = NO;
-//        dayView.circleView.backgroundColor = [UIColor redColor];
-//        dayView.dotView.backgroundColor = [UIColor whiteColor];
-//        dayView.textLabel.textColor = [UIColor whiteColor];
-//    }
-//    //Another Day
-//    else {
-//        dayView.circleView.hidden = YES;
-//        dayView.dotView.backgroundColor = [UIColor redColor];
-//        dayView.textLabel.textColor = [UIColor blackColor];
-//    }
-// ask john on this
-//    if([self haveEventForDay:dayView.date]){
-//        dayView.dotView.hidden = NO;
-//    }
-//    else{
-//        dayView.dotView.hidden = YES;
-//    }
-
-//}
-//
-//- (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView {
-//    dateSelected = dayView.date;
-//
-//    //Animation for Circles
-//    dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
-//    [UIView transitionWithView:dayView
-//                      duration:.3
-//                       options:0
-//                    animations:^{
-//                        dayView.circleView.transform = CGAffineTransformIdentity;
-//                        [_calendarManager reload];
-//                    } completion:nil];
-//    if(![_calendarManager.dateHelper date:_calendarContentView.date isTheSameMonthThan:dayView.date]){
-//        if([_calendarContentView.date compare:dayView.date] == NSOrderedAscending){
-//            [_calendarContentView loadNextPageWithAnimation];
-//        } else {
-//            [_calendarContentView loadPreviousPageWithAnimation];
-//        }
-//    }
-//}
-
-
-
-
-//- (NSDateFormatter *)dateFormatter
-//{
-//    static NSDateFormatter *dateFormatter;
-//    if(!dateFormatter){
-//        dateFormatter = [NSDateFormatter new];
-//        dateFormatter.dateFormat = @"dd-MM-yyyy";
-//    }
-//    
-//    return dateFormatter;
-//}
-
-
-//    _calendarManager = [JTCalendarManager new];
-//    _calendarManager.delegate = self;
-//
-//    _calendarManager.settings.pageViewHaveWeekDaysView = NO; // You don't want WeekDaysView in the contentView
-//    _calendarManager.settings.pageViewNumberOfWeeks = 0; // Automatic number of weeks
-//
-//    _weekDayView.manager = _calendarManager; // You set the manager for WeekDaysView
-//    [_weekDayView reload]; // You load WeekDaysView manually
-//
-//    [_calendarManager setMenuView:_calendarMenuView];
-//    [_calendarManager setContentView:_calendarContentView];
-//    [_calendarManager setDate:[NSDate date]];
-//
-//    _calendarMenuView.scrollView.scrollEnabled = NO;
-
-
-//
-//    SWRevealViewController *revealViewController = self.revealViewController;
-//    if ( revealViewController )
-//    {
-//        [self.sidebarButton setTarget: self.revealViewController];
-//        [self.sidebarButton setAction: @selector( revealToggle: )];
-//        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-//    }
-
-
-
