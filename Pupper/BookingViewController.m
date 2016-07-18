@@ -23,7 +23,6 @@
 
 @end
 
-//NSDictionary *selectedServiceDict;
 
 
 @implementation BookingViewController
@@ -39,7 +38,6 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-    _servicesOnSelectedDate = [[NSMutableArray alloc]init];
     [self createUser];
     [super viewDidLoad];
     
@@ -55,7 +53,6 @@
 {
     _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
     
-
     [self serviceAlert];
     
 }
@@ -66,24 +63,21 @@
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                              
-//                                                            [_servicesOnSelectedDate addObject:@"Walk"];
+
                                                               _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00]];
-                                                             
-//                                                              [_servicesOnSelectedDate addObject:_service];
+
                                                               [_user.userServicesArray addObject:_service];
-                                                              NSLog(@"the user array : %@", _user.userServicesArray);
-                                                              for (Service *s in _user.userServicesArray){
-                                                                  NSLog(@"&&&&&& %@", s.dateOfService);
-                                                              }
-                                                                  [_upcomingServicesTableView reloadData];
+                                                              
+                                                              [_upcomingServicesTableView reloadData];
                                                           }];
     
     UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                            
                                                                _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00]];
-                                                             
+                                                               [_user.userServicesArray addObject:_service];
+                                                               
+                                                               [_upcomingServicesTableView reloadData];
                                                            }];
 
     [alert addAction:firstAction];
@@ -103,13 +97,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
-
     
-    Service *testObject = [_user.userServicesArray objectAtIndex: indexPath.row];
-    NSString *testDate = testObject.dateOfService;
+    Service *newService = [_user.userServicesArray objectAtIndex: indexPath.row];
+    NSString *newDate = newService.dateOfService;
+    NSString *newSelectedService = newService.selectedService;
     
-     NSLog(@"FROM TABLEVIEW service type:%@ date:%@ cost:%@", _service.selectedService, _service.dateOfService, _service.priceOfService);
-    cell.textLabel.text = testDate;
+    cell.textLabel.text = newDate;
+    cell.detailTextLabel.text = newSelectedService;
     
     return cell;
     
