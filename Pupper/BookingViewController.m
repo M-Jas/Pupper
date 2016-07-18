@@ -14,18 +14,23 @@
 
 @interface BookingViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-
 @property (weak, nonatomic) IBOutlet UITableView *upcomingServicesTableView;
 
 @property (strong, nonatomic) NSDate *selectedDate;
-
 @property (strong , nonatomic) FSCalendar *calendar;
-
 @property (strong, nonatomic) NSString *dateString;
 
 @end
 
-@implementation BookingViewController 
+NSDictionary *selectedServiceDict;
+
+//Set these to pass down the controller, but model will be used
+NSString *walk;
+NSString *feeding;
+
+@implementation BookingViewController
+
+
 
 - (void)viewDidLoad {
     SWRevealViewController *revealViewController = self.revealViewController;
@@ -39,6 +44,7 @@
     [super viewDidLoad];
     
     _servicesOnSelectedDate = [[NSMutableArray alloc] init];
+    selectedServiceDict = [[NSDictionary alloc] init];
     
 }
 
@@ -47,9 +53,51 @@
 
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return 1;
-//}
+// clicking on a date adds a string of "yyyy/MM/dd" into an array which is called to populate the tableview
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
+{
+    _selectedDate = [[NSDate alloc]init];
+    _selectedDate = date;
+    
+    _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
+    
+    [_servicesOnSelectedDate addObject:_dateString];
+    
+    NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
+    
+
+    [self serviceAlert];
+    
+    //This is needed to populated the data after calendar date is selected
+    [_upcomingServicesTableView reloadData];
+    
+}
+
+- (void)serviceAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Service Options"
+                                                                   message:@"Please select a service for Puppy"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
+                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                              NSLog(@"You pressed walk");
+                                                            [_servicesOnSelectedDate addObject:@"Walk"];
+                                                          }];
+    
+    UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
+                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                               selectedServiceDict = @{
+                                                                                       @"date": _dateString,
+                                                                                       @"service": @"Feeding"
+                                                                                       };
+                                                               NSLog(@"You pressed %@ and selcted %@", [selectedServiceDict objectForKey:@"date"], [selectedServiceDict objectForKey:@"service"]);
+                                                           }];
+
+    [alert addAction:firstAction];
+    
+    [alert addAction:secondAction];
+    
+    [self presentViewController:alert animated:YES completion:nil]; // 6
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_servicesOnSelectedDate count];
@@ -59,14 +107,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
 
-    NSLog(@"%@", _dateString);
     
-//    NSString *dateToDisplay = [_servicesOnSelectedDate objectAtIndex:indexPath.row];
-//    NSLog(@"%@", dateToDisplay);
+    NSString *testString = [_servicesOnSelectedDate objectAtIndex: indexPath.row];
+
+   // GOAL: want to populate the table view with info from the alert bing a dict but info will not produce?????????????????????????????????
+    NSLog(@"You pressed %@ and selcted %@", [selectedServiceDict objectForKey:@"date"], [selectedServiceDict objectForKey:@"service"]);
     
-    NSString *testString = [_servicesOnSelectedDate objectAtIndex:indexPath.row];
-    
-//    cell.textLabel.text = _dateString;
     cell.textLabel.text = testString;
     
     return cell;
@@ -87,48 +133,6 @@
         [_upcomingServicesTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     }
 }
-
-
-// clicking on a date adds a string of "yyyy/MM/dd" into an array which is called to populate the tableview
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
-{
-    _selectedDate = [[NSDate alloc]init];
-    _selectedDate = date;
-    
-    _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
-    
-    [_servicesOnSelectedDate addObject:_dateString];
-    
-    NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Service Options"
-                                                                   message:@"Please select a service for Puppy"
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
-                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                              NSLog(@"You pressed walk");
-                                                          }]; // 2
-    UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
-                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                              NSLog(@"You pressed feed");
-                                                          }];
-    
-
-    [alert addAction:firstAction]; // 4
-    [alert addAction:secondAction];
-    
-    [self presentViewController:alert animated:YES completion:nil]; // 6
-    
-    //This is needed to populated the data after calendar date is selected
-    [_upcomingServicesTableView reloadData];
-    
-}
-
-- (IBAction)actionSheetButtonPressed:(id)sender {
-    
-}
-
-
 
 @end
 
