@@ -78,7 +78,7 @@ NSMutableArray *upcomingServicesArray;
 
 - (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
     BookingViewController *vc = [unwindSegue sourceViewController];
-    upcomingServicesArray = vc.servicesOnSelectedDate;
+//    upcomingServicesArray = vc.servicesOnSelectedDate;
     
     NSLog(@"The date you selected %@", upcomingServicesArray);
     

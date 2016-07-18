@@ -10,17 +10,14 @@
 
 #import <JTCalendar/JTCalendar.h>
 #import <FSCalendar/FSCalendar.h>
+#import "Service.h"
+#import "User.h"
 
-@interface BookingViewController : UIViewController<FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface BookingViewController : UIViewController<FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 @property (strong, nonatomic) NSMutableArray *servicesOnSelectedDate;
 
+@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) Service *service;
+
+
 @end
-//<JTCalendarDelegate>
-//
-//@property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
-//@property (weak, nonatomic) IBOutlet JTVerticalCalendarView *calendarContentView;
-//@property (weak, nonatomic) IBOutlet JTCalendarWeekDayView *weekDayView;
-//
-//@property (strong, nonatomic) JTCalendarManager *calendarManager;
-//
-//@property (nonatomic, readonly) UIView *circleView;

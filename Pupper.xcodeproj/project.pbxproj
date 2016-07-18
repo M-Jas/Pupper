@@ -43,6 +43,9 @@
 		43B17D801D380FBE0096556F /* wishlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D3B1D380FBE0096556F /* wishlist.png */; };
 		43B17D881D3813260096556F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D841D3813260096556F /* InfoPlist.strings */; };
 		43B17D8C1D38148F0096556F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B17D8A1D38148F0096556F /* Main.storyboard */; };
+		43B17DB41D3D2D660096556F /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB31D3D2D660096556F /* Dog.m */; };
+		43B17DB71D3D2D740096556F /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB61D3D2D740096556F /* Service.m */; };
+		43B17DBA1D3D2D810096556F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB91D3D2D810096556F /* User.m */; };
 		CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +98,12 @@
 		43B17D3B1D380FBE0096556F /* wishlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wishlist.png; sourceTree = "<group>"; };
 		43B17D851D3813260096556F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		43B17D8B1D38148F0096556F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Main.storyboard; sourceTree = "<group>"; };
+		43B17DB21D3D2D660096556F /* Dog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
+		43B17DB31D3D2D660096556F /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
+		43B17DB51D3D2D740096556F /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
+		43B17DB61D3D2D740096556F /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
+		43B17DB81D3D2D810096556F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		43B17DB91D3D2D810096556F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E8725641B0B5C6E4B82A7552 /* Pods-Pupper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pupper/Pods-Pupper.debug.xcconfig"; sourceTree = "<group>"; };
 		F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -144,6 +153,7 @@
 				43B17CD31D380FBE0096556F /* AppDelegate.h */,
 				43B17CD41D380FBE0096556F /* AppDelegate.m */,
 				43B17D8A1D38148F0096556F /* Main.storyboard */,
+				43B17DBB1D3D2DD70096556F /* Models */,
 				43B17DB01D38195A0096556F /* Controllers */,
 				43B17D331D380FBE0096556F /* SWRevealViewController */,
 				43B17CE91D380FBE0096556F /* GHSidebarNav */,
@@ -254,6 +264,19 @@
 				43B17D3B1D380FBE0096556F /* wishlist.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		43B17DBB1D3D2DD70096556F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				43B17DB21D3D2D660096556F /* Dog.h */,
+				43B17DB31D3D2D660096556F /* Dog.m */,
+				43B17DB51D3D2D740096556F /* Service.h */,
+				43B17DB61D3D2D740096556F /* Service.m */,
+				43B17DB81D3D2D810096556F /* User.h */,
+				43B17DB91D3D2D810096556F /* User.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		4826AE84F8494DB016E37813 /* Frameworks */ = {
@@ -411,10 +434,13 @@
 			files = (
 				43B17C7D1D380F230096556F /* ProfileViewController.m in Sources */,
 				43B17D7A1D380FBE0096556F /* SidebarViewController.m in Sources */,
+				43B17DB41D3D2D660096556F /* Dog.m in Sources */,
 				43B17C661D380EA70096556F /* main.m in Sources */,
 				43B17D3F1D380FBE0096556F /* BookingViewController.m in Sources */,
 				43B17D4C1D380FBE0096556F /* MainViewController.m in Sources */,
+				43B17DB71D3D2D740096556F /* Service.m in Sources */,
 				43B17D531D380FBE0096556F /* PaymentViewController.m in Sources */,
+				43B17DBA1D3D2D810096556F /* User.m in Sources */,
 				43B17D3C1D380FBE0096556F /* AppDelegate.m in Sources */,
 				43B17D7B1D380FBE0096556F /* SWRevealViewController.m in Sources */,
 				43B17D561D380FBE0096556F /* PricingViewController.m in Sources */,
