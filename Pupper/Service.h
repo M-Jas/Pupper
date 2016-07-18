@@ -12,8 +12,9 @@
 
 @property (strong, nonatomic) NSString *selectedService;
 @property (strong, nonatomic) NSNumber *priceOfService;
+@property (strong, nonatomic) NSString *dateOfService;
 
-- (instancetype)initWithService:(NSString *)service priceOfService:(NSNumber *)servicePrice;
+- (instancetype)initWithService:(NSString *)service dateOfService:(NSString *)date priceOfService:(NSNumber *)servicePrice;
 
 
 @end
