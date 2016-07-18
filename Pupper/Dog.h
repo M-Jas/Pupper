@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSString *dogBio;
 
 
-- (id)initWithDogName:(NSString *)name breed:(NSString *)breed age:(NSString*)age address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio;
+- (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio;
 
 
 @end

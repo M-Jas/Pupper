@@ -21,7 +21,7 @@
 @property (strong, nonatomic) Service *service;
 
 
-- (id)initWithEmail:(NSString *)email phoneNumber:(NSString *)phone;
+- (instancetype)initWithEmail:(NSString *)email phoneNumber:(NSString *)phone;
 
 
 @end

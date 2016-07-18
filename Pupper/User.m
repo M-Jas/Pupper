@@ -10,4 +10,14 @@
 
 @implementation User
 
+
+- (instancetype)initWithEmail:(NSString *)email phoneNumber:(NSString *)phone {
+    self = [super init];
+    if (self) {
+        _userEmail = email;
+        _userPhoneNumber = phone;
+    }
+    return self;
+}
+
 @end

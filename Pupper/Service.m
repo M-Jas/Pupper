@@ -10,4 +10,13 @@
 
 @implementation Service
 
+- (instancetype)initWithService:(NSString *)service priceOfService:(NSNumber *)servicePrice {
+    self = [super init];
+    if (self) {
+        _selectedService = service;
+        _priceOfService = servicePrice;
+    }
+    return self;
+}
+
 @end

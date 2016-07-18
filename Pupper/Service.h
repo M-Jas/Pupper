@@ -11,9 +11,9 @@
 @interface Service : NSObject
 
 @property (strong, nonatomic) NSString *selectedService;
-@property (strong, nonatomic) NSNumber *price;
+@property (strong, nonatomic) NSNumber *priceOfService;
 
-- (id)initWithService:(NSString *)service priceOfService:(NSNumber *)servicePrice;
+- (instancetype)initWithService:(NSString *)service priceOfService:(NSNumber *)servicePrice;
 
 
 @end
