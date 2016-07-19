@@ -10,5 +10,9 @@ target 'Pupper' do
 
   use_frameworks!
 	pod 'FSCalendar'
+	pod 'Firebase'
+	pod 'Firebase/Auth'	
+	pod 'Firebase/Storage'
+	pod 'Firebase/Database'
 
 end

@@ -7,10 +7,14 @@
 //
 
 
+@import FirebaseDatabase;
+@import FirebaseStorage;
+@import FirebaseDatabase;
 #import "BookingViewController.h"
 #import "SWRevealViewController.h"
 #import "Service.h"
 #import "User.h"
+#import "Firebase.h"
 
 
 
@@ -23,7 +27,7 @@
 
 @end
 
-
+Firebase *firebase;
 
 @implementation BookingViewController
 
@@ -67,6 +71,7 @@
                                                               _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00]];
 
                                                               [_user.userServicesArray addObject:_service];
+                                                              [self addServiceToDB:_service];
                                                               
                                                               [_upcomingServicesTableView reloadData];
                                                           }];
@@ -129,5 +134,23 @@
     _user = [[User alloc]init];
     _user.userServicesArray = [[NSMutableArray alloc]init];
 }
+
+- (void)addServiceToDB:(Service *)service {
+    
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    
+    FIRDatabaseReference *serviceRef = [[firebaseRef child:@"services"] childByAutoId];
+    
+    NSDictionary *serviceDict = @{
+                                  @"selectedService": service.selectedService,
+                                  @"dateOfService": service.dateOfService,
+                                  @"costOfService": service.priceOfService
+                                  };
+    
+    [serviceRef setValue:serviceDict];
+}
+
+
+
 
 @end
