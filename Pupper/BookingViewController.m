@@ -70,9 +70,11 @@ Firebase *firebase;
 
                                                               _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00]];
 
-                                                              [_user.userServicesArray addObject:_service];
+                                                              //Add service obj to users array for services
+                                                              [_user.userServicesArray addObject:_service];                                                        
+                                                              //Add service obj to FireBase
                                                               [self addServiceToDB:_service];
-                                                              
+                                                              //Reload table after click
                                                               [_upcomingServicesTableView reloadData];
                                                           }];
     
@@ -80,8 +82,11 @@ Firebase *firebase;
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                            
                                                                _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00]];
+                                                               //Add service obj to users array for services
                                                                [_user.userServicesArray addObject:_service];
-                                                               
+                                                               //Add service obj to FireBase
+                                                               [self addServiceToDB:_service];
+                                                               //Reload table after click
                                                                [_upcomingServicesTableView reloadData];
                                                            }];
 
