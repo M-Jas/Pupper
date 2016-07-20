@@ -6,9 +6,14 @@
 //  Copyright © 2016 Appcoda. All rights reserved.
 //
 
+@import FirebaseDatabase;
+@import FirebaseStorage;
+@import FirebaseDatabase;
+
 #import "ProfileViewController.h"
 #import "SWRevealViewController.h"
 #import "MainViewController.h"
+#import "Dog.h"
 
 @interface ProfileViewController ()
 
@@ -25,6 +30,7 @@
 
 @end
 
+Dog *newDog;
 
 @implementation ProfileViewController
 
@@ -74,8 +80,53 @@
 
 }
 
+
+
 - (IBAction)saveProfileButtonPressed:(id)sender {
     [self profileEditing];
+    NSString *name = _puppyNameTextfield.text;
+    NSString *age = _puppyAgeTextfield.text;
+    NSString *breed =_puppyBreedTextfield.text;
+    //Might not need this to tie the dog to a user
+    NSString *userPhoneNum =_userPhoneNumberTextfield.text;
+    NSString *address = _addressTextfield.text;
+    NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
+    NSString *bio = _puppyBio.text;
+    
+    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio];
+    
+    
+    [self addDogToDB:newDog];
+}
+
+
+- (void)addDogToDB:(Dog *)dog {
+    
+    
+//    NSString *name = _puppyNameTextfield.text;
+//    NSString *age = _puppyAgeTextfield.text;
+//    NSString *breed =_puppyBreedTextfield.text;
+//    //Might not need this to tie the dog to a user
+//    NSString *userPhoneNum =_userPhoneNumberTextfield.text;
+//    NSString *address = _addressTextfield.text;
+//    NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
+//    NSString *bio = _puppyBio.text;
+//    
+//    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio];
+    
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    FIRDatabaseReference *dogRef = [[firebaseRef child:@"dog"] childByAutoId];
+    
+    //Need to add user and user phone number
+    NSDictionary *dogDict = @{
+                              @"name": dog.dogName,
+                              @"age": dog.dogAge,
+                              @"breed": dog.dogBreed,
+                              @"address": dog.dogAddress,
+                              @"vet": dog.vetPhoneNumber,
+                              @"bio": dog.dogBio
+                              };
+    [dogRef setValue:dogDict];
 }
 
 

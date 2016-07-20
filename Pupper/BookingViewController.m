@@ -141,11 +141,13 @@ Firebase *firebase;
 }
 
 - (void)addServiceToDB:(Service *)service {
-    
+    //Create reference to the firebase database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
-    
+    //Use the reference from above to add a child to that db as a "group"
     FIRDatabaseReference *serviceRef = [[firebaseRef child:@"services"] childByAutoId];
     
+    //The dict is going to be the way to structure the database
+    //Need to add in the user id once that is created to tie relationship
     NSDictionary *serviceDict = @{
                                   @"selectedService": service.selectedService,
                                   @"dateOfService": service.dateOfService,
