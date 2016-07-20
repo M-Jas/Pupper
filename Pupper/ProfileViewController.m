@@ -101,22 +101,14 @@ Dog *newDog;
 
 
 - (void)addDogToDB:(Dog *)dog {
-    
-    
-//    NSString *name = _puppyNameTextfield.text;
-//    NSString *age = _puppyAgeTextfield.text;
-//    NSString *breed =_puppyBreedTextfield.text;
-//    //Might not need this to tie the dog to a user
-//    NSString *userPhoneNum =_userPhoneNumberTextfield.text;
-//    NSString *address = _addressTextfield.text;
-//    NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
-//    NSString *bio = _puppyBio.text;
-//    
-//    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio];
-    
+    //Create reference to the firebase database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
-    FIRDatabaseReference *dogRef = [[firebaseRef child:@"dog"] childByAutoId];
     
+    //Use the reference from above to add a child to that db as a "group"
+    FIRDatabaseReference *dogRef = [[firebaseRef child:@"dogs"] childByAutoId];
+    
+    //The dict is going to be the way to structure the database
+    //Need to add in the user id once that is created to tie relationship
     //Need to add user and user phone number
     NSDictionary *dogDict = @{
                               @"name": dog.dogName,
