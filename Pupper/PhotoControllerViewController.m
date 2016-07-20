@@ -15,6 +15,17 @@
 @implementation PhotoControllerViewController
 
 - (void)viewDidLoad {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        
+    }
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
