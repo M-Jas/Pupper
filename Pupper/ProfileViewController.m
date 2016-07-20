@@ -123,4 +123,16 @@ Dog *newDog;
 }
 
 
+//-(void)presentCamera {
+//   UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
+//    [imagePicker setDelegate:self];
+//    [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//    //    NSArray *mediaTypes = [[NSArray alloc]initWithObjects:(NSString *)kUTTypeMovie, nil];
+//    //    _imagePicker.mediaTypes = mediaTypes;
+//    [self presentViewController:imagePicker animated:true completion:nil];
+//}
+
+- (IBAction)takePhotoButtonPressed:(id)sender {
+}
+
 @end

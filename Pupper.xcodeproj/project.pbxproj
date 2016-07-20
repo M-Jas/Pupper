@@ -48,6 +48,7 @@
 		43B17DBA1D3D2D810096556F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB91D3D2D810096556F /* User.m */; };
 		43B17DBF1D3E77F10096556F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */; };
 		43B17DC21D3E7C7A0096556F /* Firebase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DC11D3E7C7A0096556F /* Firebase.m */; };
+		43B17DC61D3F19860096556F /* PhotoControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DC51D3F19860096556F /* PhotoControllerViewController.m */; };
 		CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,8 @@
 		43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43B17DC01D3E7C7A0096556F /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		43B17DC11D3E7C7A0096556F /* Firebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Firebase.m; sourceTree = "<group>"; };
+		43B17DC41D3F19860096556F /* PhotoControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoControllerViewController.h; sourceTree = "<group>"; };
+		43B17DC51D3F19860096556F /* PhotoControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoControllerViewController.m; sourceTree = "<group>"; };
 		E8725641B0B5C6E4B82A7552 /* Pods-Pupper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pupper/Pods-Pupper.debug.xcconfig"; sourceTree = "<group>"; };
 		F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -160,6 +163,8 @@
 				43B17DC01D3E7C7A0096556F /* Firebase.h */,
 				43B17DC11D3E7C7A0096556F /* Firebase.m */,
 				43B17D8A1D38148F0096556F /* Main.storyboard */,
+				43B17DC41D3F19860096556F /* PhotoControllerViewController.h */,
+				43B17DC51D3F19860096556F /* PhotoControllerViewController.m */,
 				43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */,
 				43B17DBB1D3D2DD70096556F /* Models */,
 				43B17DB01D38195A0096556F /* Controllers */,
@@ -452,6 +457,7 @@
 				43B17DBA1D3D2D810096556F /* User.m in Sources */,
 				43B17DC21D3E7C7A0096556F /* Firebase.m in Sources */,
 				43B17D3C1D380FBE0096556F /* AppDelegate.m in Sources */,
+				43B17DC61D3F19860096556F /* PhotoControllerViewController.m in Sources */,
 				43B17D7B1D380FBE0096556F /* SWRevealViewController.m in Sources */,
 				43B17D561D380FBE0096556F /* PricingViewController.m in Sources */,
 			);
