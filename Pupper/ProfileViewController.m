@@ -39,6 +39,7 @@ Dog *newDog;
  
     [self profileEditing];
     
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
