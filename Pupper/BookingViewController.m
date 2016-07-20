@@ -7,10 +7,14 @@
 //
 
 
+@import FirebaseDatabase;
+@import FirebaseStorage;
+@import FirebaseDatabase;
 #import "BookingViewController.h"
 #import "SWRevealViewController.h"
 #import "Service.h"
 #import "User.h"
+#import "Firebase.h"
 
 
 
@@ -23,7 +27,7 @@
 
 @end
 
-
+Firebase *firebase;
 
 @implementation BookingViewController
 
@@ -66,8 +70,11 @@
 
                                                               _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00]];
 
-                                                              [_user.userServicesArray addObject:_service];
-                                                              
+                                                              //Add service obj to users array for services
+                                                              [_user.userServicesArray addObject:_service];                                                        
+                                                              //Add service obj to FireBase
+                                                              [self addServiceToDB:_service];
+                                                              //Reload table after click
                                                               [_upcomingServicesTableView reloadData];
                                                           }];
     
@@ -75,8 +82,11 @@
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                            
                                                                _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00]];
+                                                               //Add service obj to users array for services
                                                                [_user.userServicesArray addObject:_service];
-                                                               
+                                                               //Add service obj to FireBase
+                                                               [self addServiceToDB:_service];
+                                                               //Reload table after click
                                                                [_upcomingServicesTableView reloadData];
                                                            }];
 
@@ -129,5 +139,25 @@
     _user = [[User alloc]init];
     _user.userServicesArray = [[NSMutableArray alloc]init];
 }
+
+- (void)addServiceToDB:(Service *)service {
+    //Create reference to the firebase database
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    //Use the reference from above to add a child to that db as a "group"
+    FIRDatabaseReference *serviceRef = [[firebaseRef child:@"services"] childByAutoId];
+    
+    //The dict is going to be the way to structure the database
+    //Need to add in the user id once that is created to tie relationship
+    NSDictionary *serviceDict = @{
+                                  @"selectedService": service.selectedService,
+                                  @"dateOfService": service.dateOfService,
+                                  @"costOfService": service.priceOfService
+                                  };
+    
+    [serviceRef setValue:serviceDict];
+}
+
+
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+@import Firebase;
 
 @implementation AppDelegate
 
@@ -26,6 +27,7 @@
                                                            shadow, NSShadowAttributeName,
                                                            [UIFont fontWithName:@"Helvetica-Light" size:21.0], NSFontAttributeName, nil]];
     
+    [FIRApp configure];
     return YES;
 }
 							
