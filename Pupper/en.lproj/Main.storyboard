@@ -20,10 +20,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="Nmf-QN-ivy">
-                                <rect key="frame" x="40" y="151" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="DEm-hp-goC">
                                 <rect key="frame" x="0.0" y="354" width="320" height="214"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -52,6 +48,10 @@
                                     <segue destination="8is-vx-TQ4" kind="push" id="v04-XG-bC1"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="Nmf-QN-ivy">
+                                <rect key="frame" x="40" y="151" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -62,6 +62,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mainDisplayUpcomingServices" destination="DEm-hp-goC" id="P8X-2R-8QV"/>
+                        <outlet property="mainImage" destination="Nmf-QN-ivy" id="6L4-o2-oPx"/>
                         <outlet property="sidebarButton" destination="4DU-rm-gHC" id="gCT-AB-0W6"/>
                     </connections>
                 </viewController>

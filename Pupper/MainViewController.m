@@ -9,23 +9,55 @@
 #import "MainViewController.h"
 #import "SWRevealViewController.h"
 #import "BookingViewController.h"
+#import "Cloudinary/Cloudinary.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainDisplayUpcomingServices;
 
+@property (strong, nonatomic) IBOutlet UIImageView *mainImage;
+@property (strong, nonatomic) UIImage *sample;
 
 @end
+
+
 
 @implementation MainViewController
 
 NSMutableArray *upcomingServicesArray;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
+NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+
+NSString *clientId = configuration[@"Cloudinary"][@"ClientID"];
+NSString *clientSecret = configuration[@"Cloudinary"][@"ClientSecret"];
+    
+    
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    [cloudinary.config setValue:clientId forKey:@"api_key"];
+    [cloudinary.config setValue:clientSecret forKey:@"api_secret"];
+
     [super viewDidLoad];
     
     [self testingTVMethod];
+
+    NSString *urlCloud = [cloudinary url:@"sample.png"];
+    NSLog(@"this should be the url: %@", urlCloud);
     
+    NSURL *url = [NSURL URLWithString:urlCloud];
+    NSLog(@"this should be the new URL: %@", url);
+   
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    NSLog(@"this should be the data: %@", data);
+//
+    UIImage *image = [UIImage imageWithData:data];
+    NSLog(@"this should be the image: %@", image);
+    
+    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+
+    _mainImage.image = tmpImage;
+  
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {

@@ -49,6 +49,7 @@
 		43B17DBF1D3E77F10096556F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */; };
 		43B17DC21D3E7C7A0096556F /* Firebase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DC11D3E7C7A0096556F /* Firebase.m */; };
 		43B17DC61D3F19860096556F /* PhotoControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DC51D3F19860096556F /* PhotoControllerViewController.m */; };
+		43B17DD91D47C8640096556F /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B17DD81D47C8640096556F /* libCloudinary.a */; };
 		CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,13 @@
 		43B17DC11D3E7C7A0096556F /* Firebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Firebase.m; sourceTree = "<group>"; };
 		43B17DC41D3F19860096556F /* PhotoControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoControllerViewController.h; sourceTree = "<group>"; };
 		43B17DC51D3F19860096556F /* PhotoControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoControllerViewController.m; sourceTree = "<group>"; };
+		43B17DD81D47C8640096556F /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
+		43B17DDB1D47C86F0096556F /* CLCloudinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCloudinary.h; sourceTree = "<group>"; };
+		43B17DDC1D47C86F0096556F /* CLEagerTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLEagerTransformation.h; sourceTree = "<group>"; };
+		43B17DDD1D47C86F0096556F /* CLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLLayer.h; sourceTree = "<group>"; };
+		43B17DDE1D47C86F0096556F /* Cloudinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloudinary.h; sourceTree = "<group>"; };
+		43B17DDF1D47C86F0096556F /* CLTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTransformation.h; sourceTree = "<group>"; };
+		43B17DE01D47C86F0096556F /* CLUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUploader.h; sourceTree = "<group>"; };
 		E8725641B0B5C6E4B82A7552 /* Pods-Pupper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pupper/Pods-Pupper.debug.xcconfig"; sourceTree = "<group>"; };
 		F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */,
+				43B17DD91D47C8640096556F /* libCloudinary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,13 +167,11 @@
 		43B17C631D380EA70096556F /* Pupper */ = {
 			isa = PBXGroup;
 			children = (
+				43B17D8A1D38148F0096556F /* Main.storyboard */,
 				43B17CD31D380FBE0096556F /* AppDelegate.h */,
 				43B17CD41D380FBE0096556F /* AppDelegate.m */,
-				43B17DC01D3E7C7A0096556F /* Firebase.h */,
-				43B17DC11D3E7C7A0096556F /* Firebase.m */,
-				43B17D8A1D38148F0096556F /* Main.storyboard */,
-				43B17DC41D3F19860096556F /* PhotoControllerViewController.h */,
-				43B17DC51D3F19860096556F /* PhotoControllerViewController.m */,
+				43B17DDA1D47C86F0096556F /* Cloudinary */,
+				43B17DD01D47C2360096556F /* Firebase */,
 				43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */,
 				43B17DBB1D3D2DD70096556F /* Models */,
 				43B17DB01D38195A0096556F /* Controllers */,
@@ -258,6 +265,8 @@
 				43B17D301D380FBE0096556F /* SidebarDemo-Prefix.pch */,
 				43B17C7B1D380F230096556F /* ProfileViewController.h */,
 				43B17C7C1D380F230096556F /* ProfileViewController.m */,
+				43B17DC41D3F19860096556F /* PhotoControllerViewController.h */,
+				43B17DC51D3F19860096556F /* PhotoControllerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -292,9 +301,32 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		43B17DD01D47C2360096556F /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				43B17DC01D3E7C7A0096556F /* Firebase.h */,
+				43B17DC11D3E7C7A0096556F /* Firebase.m */,
+			);
+			name = Firebase;
+			sourceTree = "<group>";
+		};
+		43B17DDA1D47C86F0096556F /* Cloudinary */ = {
+			isa = PBXGroup;
+			children = (
+				43B17DDB1D47C86F0096556F /* CLCloudinary.h */,
+				43B17DDC1D47C86F0096556F /* CLEagerTransformation.h */,
+				43B17DDD1D47C86F0096556F /* CLLayer.h */,
+				43B17DDE1D47C86F0096556F /* Cloudinary.h */,
+				43B17DDF1D47C86F0096556F /* CLTransformation.h */,
+				43B17DE01D47C86F0096556F /* CLUploader.h */,
+			);
+			path = Cloudinary;
+			sourceTree = "<group>";
+		};
 		4826AE84F8494DB016E37813 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43B17DD81D47C8640096556F /* libCloudinary.a */,
 				F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */,
 			);
 			name = Frameworks;
@@ -594,6 +626,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pupper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.Pupper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -609,6 +645,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pupper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.Pupper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
