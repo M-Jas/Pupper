@@ -41,7 +41,7 @@ PODS:
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
-  - JTCalendar (2.1.7)
+  - JTCalendar (2.1.8)
 
 DEPENDENCIES:
   - Firebase
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   GoogleParsingUtilities: 30b3896f9ee167dc78747f013d3de157ced1cadf
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  JTCalendar: bc7f3086a4df02aa2e02ac4d505ef888cc2283a0
+  JTCalendar: 6504f490e3efe3b3c94879a0579966d3b50f844d
 
 PODFILE CHECKSUM: 6e816203a580d179370cae8aff4cb296d3dbcabd
 
