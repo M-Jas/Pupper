@@ -61,6 +61,9 @@
                                 <rect key="frame" x="220" y="302" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Signup"/>
+                                <connections>
+                                    <action selector="signupNewUserPress:" destination="2" eventType="touchUpInside" id="Bo8-23-Rux"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

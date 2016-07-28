@@ -127,4 +127,42 @@ NSMutableArray *upcomingServicesArray;
     return upcomingServicesArray;
 }
 
+//Create new user and Sign in features****************************************************************
+- (IBAction)signupNewUserPress:(id)sender {
+    [self createUserAlert];
+}
+
+- (void) createUserAlert {
+    NSLog(@"Working");
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Welcome to Pupper"
+                                  message:@"Please Enter The Following Information"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* create = [UIAlertAction actionWithTitle:@"Create" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       //Do Some action here
+                                                       
+                                                   }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:create];
+    [alert addAction:cancel];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Email";
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Password";
+        textField.secureTextEntry = YES;
+    }];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
 @end
