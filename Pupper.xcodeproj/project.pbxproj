@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		43B17C661D380EA70096556F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C651D380EA70096556F /* main.m */; };
-		43B17C711D380EA70096556F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B17C701D380EA70096556F /* Assets.xcassets */; };
 		43B17C741D380EA70096556F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B17C721D380EA70096556F /* LaunchScreen.storyboard */; };
 		43B17C7D1D380F230096556F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C7C1D380F230096556F /* ProfileViewController.m */; };
 		43B17D3C1D380FBE0096556F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17CD41D380FBE0096556F /* AppDelegate.m */; };
@@ -48,7 +47,6 @@
 		43B17DBA1D3D2D810096556F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB91D3D2D810096556F /* User.m */; };
 		43B17DBF1D3E77F10096556F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */; };
 		43B17DC21D3E7C7A0096556F /* Firebase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DC11D3E7C7A0096556F /* Firebase.m */; };
-		43B17DC61D3F19860096556F /* PhotoControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DC51D3F19860096556F /* PhotoControllerViewController.m */; };
 		43B17DD91D47C8640096556F /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B17DD81D47C8640096556F /* libCloudinary.a */; };
 		CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */; };
 /* End PBXBuildFile section */
@@ -111,8 +109,6 @@
 		43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43B17DC01D3E7C7A0096556F /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		43B17DC11D3E7C7A0096556F /* Firebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Firebase.m; sourceTree = "<group>"; };
-		43B17DC41D3F19860096556F /* PhotoControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoControllerViewController.h; sourceTree = "<group>"; };
-		43B17DC51D3F19860096556F /* PhotoControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoControllerViewController.m; sourceTree = "<group>"; };
 		43B17DD81D47C8640096556F /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
 		43B17DDB1D47C86F0096556F /* CLCloudinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCloudinary.h; sourceTree = "<group>"; };
 		43B17DDC1D47C86F0096556F /* CLEagerTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLEagerTransformation.h; sourceTree = "<group>"; };
@@ -265,8 +261,6 @@
 				43B17D301D380FBE0096556F /* SidebarDemo-Prefix.pch */,
 				43B17C7B1D380F230096556F /* ProfileViewController.h */,
 				43B17C7C1D380F230096556F /* ProfileViewController.m */,
-				43B17DC41D3F19860096556F /* PhotoControllerViewController.h */,
-				43B17DC51D3F19860096556F /* PhotoControllerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -366,7 +360,7 @@
 				TargetAttributes = {
 					43B17C601D380EA70096556F = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9FYN4E4B36;
+						DevelopmentTeam = 62MF99N46N;
 					};
 				};
 			};
@@ -419,7 +413,6 @@
 				43B17D3E1D380FBE0096556F /* LaunchScreen.storyboard in Resources */,
 				43B17D411D380FBE0096556F /* bookmark.png in Resources */,
 				43B17D3D1D380FBE0096556F /* Assets.xcassets in Resources */,
-				43B17C711D380EA70096556F /* Assets.xcassets in Resources */,
 				43B17DBF1D3E77F10096556F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,7 +483,6 @@
 				43B17DBA1D3D2D810096556F /* User.m in Sources */,
 				43B17DC21D3E7C7A0096556F /* Firebase.m in Sources */,
 				43B17D3C1D380FBE0096556F /* AppDelegate.m in Sources */,
-				43B17DC61D3F19860096556F /* PhotoControllerViewController.m in Sources */,
 				43B17D7B1D380FBE0096556F /* SWRevealViewController.m in Sources */,
 				43B17D561D380FBE0096556F /* PricingViewController.m in Sources */,
 			);
@@ -630,7 +622,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.Pupper;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-MJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -649,7 +641,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.Pupper;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-MJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

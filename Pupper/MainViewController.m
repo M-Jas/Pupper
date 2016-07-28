@@ -26,37 +26,12 @@
 NSMutableArray *upcomingServicesArray;
 
 - (void)viewDidLoad {
-NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
-NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-
-NSString *clientId = configuration[@"Cloudinary"][@"ClientID"];
-NSString *clientSecret = configuration[@"Cloudinary"][@"ClientSecret"];
-    
-    
-    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
-    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
-    [cloudinary.config setValue:clientId forKey:@"api_key"];
-    [cloudinary.config setValue:clientSecret forKey:@"api_secret"];
 
     [super viewDidLoad];
     
     [self testingTVMethod];
-
-    NSString *urlCloud = [cloudinary url:@"sample.png"];
-    NSLog(@"this should be the url: %@", urlCloud);
+    [self cloudinarySetUp];
     
-    NSURL *url = [NSURL URLWithString:urlCloud];
-    NSLog(@"this should be the new URL: %@", url);
-   
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSLog(@"this should be the data: %@", data);
-//
-    UIImage *image = [UIImage imageWithData:data];
-    NSLog(@"this should be the image: %@", image);
-    
-    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-
-    _mainImage.image = tmpImage;
   
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
@@ -76,15 +51,42 @@ NSString *clientSecret = configuration[@"Cloudinary"][@"ClientSecret"];
 
 }
 
+// Cloudinary setup to pull images from the DB*****************************************************************************************
+-   (void)cloudinarySetUp {
+    //Setup
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
+    NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString *clientId = configuration[@"Cloudinary"][@"ClientID"];
+    NSString *clientSecret = configuration[@"Cloudinary"][@"ClientSecret"];
+    
+    // Create Cloudinary Object
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    
+    // Set cloudinary obj with plist
+    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    [cloudinary.config setValue:clientId forKey:@"api_key"];
+    [cloudinary.config setValue:clientSecret forKey:@"api_secret"];
+    
+    // String of the image to be shown from db with Clodinary method
+    NSString *urlCloud = [cloudinary url:@"sample.png"];
+    // Create NSURL
+    NSURL *url = [NSURL URLWithString:urlCloud];
+    // Set date with the URL
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    // Turn the data into an image
+    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+    // Set main imageView to picture from the database
+    _mainImage.image = tmpImage;
 
+}
+
+// Tableview size and setup to display information*******************************************************************
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [upcomingServicesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
-    
-    
     NSString *testString = [upcomingServicesArray objectAtIndex:indexPath.row];
  
     cell.textLabel.text = testString;
@@ -110,8 +112,7 @@ NSString *clientSecret = configuration[@"Cloudinary"][@"ClientSecret"];
 
 - (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
     BookingViewController *vc = [unwindSegue sourceViewController];
-//    upcomingServicesArray = vc.servicesOnSelectedDate;
-    
+//    upcomingServicesArray = vc.servicesOnSelectedDate;    
     NSLog(@"The date you selected %@", upcomingServicesArray);
     
 }

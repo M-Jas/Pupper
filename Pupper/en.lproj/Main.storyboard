@@ -295,21 +295,30 @@
                                     <action selector="saveProfileButtonPressed:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="oMH-Zl-Roj"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="YtA-7t-Keo">
+                                <rect key="frame" x="20" y="105" width="149" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AjZ-en-5Tf">
+                                <rect key="frame" x="222" y="159" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Upload Photo">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadPhotoButtonPress:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="yc8-2h-C3I"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rkU-Lk-6d7">
-                                <rect key="frame" x="239" y="105" width="77" height="30"/>
+                                <rect key="frame" x="231" y="105" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Take Photo">
                                     <color key="titleColor" red="0.96078431369999995" green="0.20392156859999999" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="takePhotoButtonPressed:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="2vf-6d-xns"/>
-                                    <segue destination="N9h-z8-QoN" kind="push" identifier="photoSegue" id="dGI-lD-6OY"/>
+                                    <action selector="takePhotoButtonPress:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="NsW-gc-DuF"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="YtA-7t-Keo">
-                                <rect key="frame" x="20" y="105" width="149" height="116"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -325,12 +334,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressTextfield" destination="EYn-dn-A9i" id="Gbu-TO-fro"/>
+                        <outlet property="dogProfileImage" destination="YtA-7t-Keo" id="emK-ZW-GxB"/>
                         <outlet property="puppyAgeTextfield" destination="bh4-bG-aeR" id="1dg-Y0-9jI"/>
                         <outlet property="puppyBio" destination="3F3-rG-Z1N" id="Qn8-FR-WFP"/>
                         <outlet property="puppyBreedTextfield" destination="1V2-s6-8QO" id="2Du-c3-sra"/>
                         <outlet property="puppyNameTextfield" destination="CcY-gE-pMr" id="7Rj-sL-5EI"/>
                         <outlet property="saveButton" destination="sGi-3G-dTf" id="8O6-QC-k0I"/>
                         <outlet property="sidebarButton" destination="WcW-vY-tms" id="msA-VS-T50"/>
+                        <outlet property="takePhotoButton" destination="rkU-Lk-6d7" id="bQs-bI-Lpf"/>
+                        <outlet property="uploadPhotoButton" destination="AjZ-en-5Tf" id="sOW-RX-P13"/>
                         <outlet property="userPhoneNumberTextfield" destination="MJV-kC-6iF" id="scY-hR-17j"/>
                         <outlet property="vetPhoneNumberTextfield" destination="DEN-l6-ZgQ" id="Xxv-M3-pAD"/>
                     </connections>
@@ -338,46 +350,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKi-Bd-Vhy" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="618" y="-1539"/>
-        </scene>
-        <!--Photo Controller View Controller-->
-        <scene sceneID="nWf-Xk-KIm">
-            <objects>
-                <viewController id="N9h-z8-QoN" customClass="PhotoControllerViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Abg-Wa-u3b">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="RkR-ca-SQK">
-                                <rect key="frame" x="0.0" y="64" width="320" height="400"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6FI-kM-8CZ">
-                                <rect key="frame" x="122" y="472" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take Photo"/>
-                                <connections>
-                                    <action selector="takePhotoButton:" destination="N9h-z8-QoN" eventType="touchUpInside" id="4b2-dA-lpq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PJL-Cu-SS8">
-                                <rect key="frame" x="113" y="518" width="94" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Upload Photo"/>
-                                <connections>
-                                    <action selector="uploadButton:" destination="N9h-z8-QoN" eventType="touchUpInside" id="t7w-L8-TO5"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Azo-Gx-oVc"/>
-                    <connections>
-                        <outlet property="photoUIVIew" destination="RkR-ca-SQK" id="8m0-pi-bfX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ypS-ke-x9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1032" y="-1539"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xKS-LA-fP8">
