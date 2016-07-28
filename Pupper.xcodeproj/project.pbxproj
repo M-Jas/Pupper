@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430B70E21D4A8DA400C53A1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 430B70E11D4A8DA400C53A1A /* GoogleService-Info.plist */; };
 		43B17C661D380EA70096556F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C651D380EA70096556F /* main.m */; };
 		43B17C741D380EA70096556F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B17C721D380EA70096556F /* LaunchScreen.storyboard */; };
 		43B17C7D1D380F230096556F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C7C1D380F230096556F /* ProfileViewController.m */; };
@@ -45,7 +46,6 @@
 		43B17DB41D3D2D660096556F /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB31D3D2D660096556F /* Dog.m */; };
 		43B17DB71D3D2D740096556F /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB61D3D2D740096556F /* Service.m */; };
 		43B17DBA1D3D2D810096556F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DB91D3D2D810096556F /* User.m */; };
-		43B17DBF1D3E77F10096556F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */; };
 		43B17DC21D3E7C7A0096556F /* Firebase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17DC11D3E7C7A0096556F /* Firebase.m */; };
 		43B17DD91D47C8640096556F /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B17DD81D47C8640096556F /* libCloudinary.a */; };
 		CA8FD38305C0F5270B506973 /* Pods_Pupper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8C8A3DFF1FE8A5E900C21 /* Pods_Pupper.framework */; };
@@ -53,9 +53,9 @@
 
 /* Begin PBXFileReference section */
 		37D98483449EEA9326723716 /* Pods-Pupper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pupper/Pods-Pupper.release.xcconfig"; sourceTree = "<group>"; };
+		430B70E11D4A8DA400C53A1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43B17C611D380EA70096556F /* Pupper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B17C651D380EA70096556F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		43B17C701D380EA70096556F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43B17C731D380EA70096556F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43B17C751D380EA70096556F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43B17C7B1D380F230096556F /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -106,7 +106,6 @@
 		43B17DB61D3D2D740096556F /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
 		43B17DB81D3D2D810096556F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		43B17DB91D3D2D810096556F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43B17DC01D3E7C7A0096556F /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		43B17DC11D3E7C7A0096556F /* Firebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Firebase.m; sourceTree = "<group>"; };
 		43B17DD81D47C8640096556F /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
@@ -168,7 +167,6 @@
 				43B17CD41D380FBE0096556F /* AppDelegate.m */,
 				43B17DDA1D47C86F0096556F /* Cloudinary */,
 				43B17DD01D47C2360096556F /* Firebase */,
-				43B17DBE1D3E77F10096556F /* GoogleService-Info.plist */,
 				43B17DBB1D3D2DD70096556F /* Models */,
 				43B17DB01D38195A0096556F /* Controllers */,
 				43B17D331D380FBE0096556F /* SWRevealViewController */,
@@ -181,12 +179,13 @@
 		43B17C641D380EA70096556F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				430B70E11D4A8DA400C53A1A /* GoogleService-Info.plist */,
 				43B17D2F1D380FBE0096556F /* SidebarDemo-Info.plist */,
-				43B17D831D3813260096556F /* en.lproj */,
-				43B17C701D380EA70096556F /* Assets.xcassets */,
-				43B17C721D380EA70096556F /* LaunchScreen.storyboard */,
 				43B17C751D380EA70096556F /* Info.plist */,
+				43B17C721D380EA70096556F /* LaunchScreen.storyboard */,
+				43B17CD51D380FBE0096556F /* Assets.xcassets */,
 				43B17C651D380EA70096556F /* main.m */,
+				43B17D831D3813260096556F /* en.lproj */,
 				43B17DB11D3819960096556F /* Images */,
 				43B17CD51D380FBE0096556F /* Assets.xcassets */,
 			);
@@ -398,6 +397,7 @@
 				43B17D441D380FBE0096556F /* comments_photo.jpg in Resources */,
 				43B17D481D380FBE0096556F /* Default@2x.png in Resources */,
 				43B17D4B1D380FBE0096556F /* littlePaw.png in Resources */,
+				430B70E21D4A8DA400C53A1A /* GoogleService-Info.plist in Resources */,
 				43B17D541D380FBE0096556F /* photo.png in Resources */,
 				43B17D511D380FBE0096556F /* nav_bg.png in Resources */,
 				43B17D521D380FBE0096556F /* news.png in Resources */,
@@ -413,7 +413,6 @@
 				43B17D3E1D380FBE0096556F /* LaunchScreen.storyboard in Resources */,
 				43B17D411D380FBE0096556F /* bookmark.png in Resources */,
 				43B17D3D1D380FBE0096556F /* Assets.xcassets in Resources */,
-				43B17DBF1D3E77F10096556F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,7 +621,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-MJ";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-Cap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -641,7 +640,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-MJ";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-Cap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
