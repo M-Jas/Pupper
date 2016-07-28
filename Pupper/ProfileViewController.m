@@ -195,19 +195,16 @@ Dog *newDog;
 }
 
 - (void) sendImageToCloudinary {
-    
     // Creation of Cloudinary Object
-    
     CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    //Safe mobile uploading
     [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
     // Create uploding method to cloudinary
     CLUploader* uploader = [[CLUploader alloc] init:cloudinary delegate:self];
-    // Path that is made to the image
-    NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"png"];
-    
+    // Turn the photo into nsdata to return to the db
     NSData *imageData = UIImagePNGRepresentation(_dogProfileImage.image);
     
-//    CLUploader* mobileUploader = [[CLUploader alloc] init:cloudinary delegate:self];
+    // Upload method to db using the unsigned image preset rm17j02k. The options are how I can change the image as it is sent
     [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{}];
     
 }
