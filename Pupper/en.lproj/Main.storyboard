@@ -56,6 +56,9 @@
                                 <rect key="frame" x="62" y="302" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInUserPress:" destination="2" eventType="touchUpInside" id="477-5S-jFb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="W9Y-Ff-Szs">
                                 <rect key="frame" x="220" y="302" width="48" height="30"/>

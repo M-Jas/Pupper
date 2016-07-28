@@ -132,6 +132,10 @@ NSMutableArray *upcomingServicesArray;
     [self createUserAlert];
 }
 
+- (IBAction)signInUserPress:(id)sender {
+    [self signInUserAlert];
+}
+
 - (void) createUserAlert {
     NSLog(@"Working");
     UIAlertController * alert=   [UIAlertController
@@ -163,6 +167,39 @@ NSMutableArray *upcomingServicesArray;
     
     [self presentViewController:alert animated:YES completion:nil];
 
+}
+
+- (void) signInUserAlert {
+    NSLog(@"Working");
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Welcome to Back"
+                                  message:@"Please Enter Your Credentials"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* signIn = [UIAlertAction actionWithTitle:@"signIn" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       //Do Some action here
+                                                       
+                                                   }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:signIn];
+    [alert addAction:cancel];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Email";
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Password";
+        textField.secureTextEntry = YES;
+    }];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 @end
