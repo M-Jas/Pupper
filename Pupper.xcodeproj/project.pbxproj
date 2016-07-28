@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		43B17C661D380EA70096556F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C651D380EA70096556F /* main.m */; };
-		43B17C711D380EA70096556F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B17C701D380EA70096556F /* Assets.xcassets */; };
 		43B17C741D380EA70096556F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B17C721D380EA70096556F /* LaunchScreen.storyboard */; };
 		43B17C7D1D380F230096556F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C7C1D380F230096556F /* ProfileViewController.m */; };
 		43B17D3C1D380FBE0096556F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17CD41D380FBE0096556F /* AppDelegate.m */; };
@@ -419,7 +418,6 @@
 				43B17D3E1D380FBE0096556F /* LaunchScreen.storyboard in Resources */,
 				43B17D411D380FBE0096556F /* bookmark.png in Resources */,
 				43B17D3D1D380FBE0096556F /* Assets.xcassets in Resources */,
-				43B17C711D380EA70096556F /* Assets.xcassets in Resources */,
 				43B17DBF1D3E77F10096556F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

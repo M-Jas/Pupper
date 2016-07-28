@@ -27,6 +27,7 @@
         
     }
     [super viewDidLoad];
+    [self.view layoutIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +42,10 @@
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self presentViewController:picker animated:YES completion:NULL];
+    
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    }
 }
 
 - (IBAction)uploadButton:(id)sender {
