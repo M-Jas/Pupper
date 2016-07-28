@@ -51,6 +51,7 @@ NSMutableArray *upcomingServicesArray;
 
 }
 
+// Cloudinary setup to pull images from the DB*****************************************************************************************
 -   (void)cloudinarySetUp {
     //Setup
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
@@ -79,14 +80,13 @@ NSMutableArray *upcomingServicesArray;
 
 }
 
+// Tableview size and setup to display information*******************************************************************
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [upcomingServicesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
-    
-    
     NSString *testString = [upcomingServicesArray objectAtIndex:indexPath.row];
  
     cell.textLabel.text = testString;
@@ -112,8 +112,7 @@ NSMutableArray *upcomingServicesArray;
 
 - (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
     BookingViewController *vc = [unwindSegue sourceViewController];
-//    upcomingServicesArray = vc.servicesOnSelectedDate;
-    
+//    upcomingServicesArray = vc.servicesOnSelectedDate;    
     NSLog(@"The date you selected %@", upcomingServicesArray);
     
 }
