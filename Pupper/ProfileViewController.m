@@ -19,6 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) IBOutlet UIButton *takePhotoButton;
+@property (strong, nonatomic) IBOutlet UIButton *uploadPhotoButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *puppyNameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *puppyAgeTextfield;
@@ -54,7 +56,7 @@ Dog *newDog;
         }
         [super viewDidLoad];
  
-    [self profileEditing];
+    [self profileEditingNotSelected];
     
     
     SWRevealViewController *revealViewController = self.revealViewController;
@@ -71,7 +73,8 @@ Dog *newDog;
 }
 
 // Method to set all textfield to be disabled and save button hidden
-- (void)profileEditing {
+- (void)profileEditingNotSelected {
+    
     _puppyNameTextfield.userInteractionEnabled = NO;
     _puppyAgeTextfield.userInteractionEnabled = NO;
     _puppyBreedTextfield.userInteractionEnabled = NO;
@@ -81,6 +84,9 @@ Dog *newDog;
     _puppyBio.userInteractionEnabled = NO;
     
     _saveButton.hidden = YES;
+    _takePhotoButton.hidden = YES;
+    _uploadPhotoButton.hidden = YES;
+    
 }
 
 
@@ -95,13 +101,15 @@ Dog *newDog;
     _puppyBio.userInteractionEnabled = YES;
     
     _saveButton.hidden = NO;
+    _takePhotoButton.hidden = NO;
+    _uploadPhotoButton.hidden = NO;
 
 }
 
 
 
 - (IBAction)saveProfileButtonPressed:(id)sender {
-    [self profileEditing];
+    [self profileEditingNotSelected];
     NSString *name = _puppyNameTextfield.text;
     NSString *age = _puppyAgeTextfield.text;
     NSString *breed =_puppyBreedTextfield.text;
