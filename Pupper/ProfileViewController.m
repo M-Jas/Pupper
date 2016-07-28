@@ -14,8 +14,9 @@
 #import "SWRevealViewController.h"
 #import "MainViewController.h"
 #import "Dog.h"
+#import "Cloudinary/Cloudinary.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <CLUploaderDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
@@ -42,7 +43,7 @@ Dog *newDog;
     
     
     [super viewDidLoad];
-
+        // Alert is camera is not aviliable on device!!!!!!CHANGE THIS LATER
         if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             
             UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -72,9 +73,8 @@ Dog *newDog;
     [super didReceiveMemoryWarning];
 }
 
-// Method to set all textfield to be disabled and save button hidden
+// Method to set all textfield to be disabled and save button hidden***************************************************************
 - (void)profileEditingNotSelected {
-    
     _puppyNameTextfield.userInteractionEnabled = NO;
     _puppyAgeTextfield.userInteractionEnabled = NO;
     _puppyBreedTextfield.userInteractionEnabled = NO;
@@ -89,8 +89,7 @@ Dog *newDog;
     
 }
 
-
-// Button will activate all textfield and display save button
+// Button will activate all textfield and display save button**********************************************************************
 - (IBAction)editProfileButtonPressed:(id)sender {
     _puppyNameTextfield.userInteractionEnabled = YES;
     _puppyAgeTextfield.userInteractionEnabled = YES;
@@ -106,8 +105,7 @@ Dog *newDog;
 
 }
 
-
-
+// Saving all the new information added by the user******************************************************************************
 - (IBAction)saveProfileButtonPressed:(id)sender {
     [self profileEditingNotSelected];
     NSString *name = _puppyNameTextfield.text;
@@ -121,9 +119,11 @@ Dog *newDog;
     
     newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio];
     
-    
     [self addDogToDB:newDog];
+    [self sendImageToCloudinary];
 }
+
+// Camera Actions***************************************************************************************************************
 - (IBAction)takePhotoButtonPress:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
@@ -143,19 +143,18 @@ Dog *newDog;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     _dogProfileImage.image = chosenImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
+
+
+// Send new Dog Info to FireBase***************************************************************************************************
 
 - (void)addDogToDB:(Dog *)dog {
     //Create reference to the firebase database
@@ -177,18 +176,39 @@ Dog *newDog;
                               };
     [dogRef setValue:dogDict];
 }
+//SENDING IMAGE TO CLOUDINARY DB********************************************************************************************************
 
-
-//-(void)presentCamera {
-//   UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
-//    [imagePicker setDelegate:self];
-//    [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-//    //    NSArray *mediaTypes = [[NSArray alloc]initWithObjects:(NSString *)kUTTypeMovie, nil];
-//    //    _imagePicker.mediaTypes = mediaTypes;
-//    [self presentViewController:imagePicker animated:true completion:nil];
-//}
-
-- (IBAction)takePhotoButtonPressed:(id)sender {
+// CLUploaderDelegate protocol for receiving successful
+- (void) uploaderSuccess:(NSDictionary*)result context:(id)context {
+    NSString* publicId = [result valueForKey:@"public_id"];
+    NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
 }
 
+// CLUploaderDelegate protocol for receiving unsuccessful
+- (void) uploaderError:(NSString*)result code:(int)code context:(id)context {
+    NSLog(@"Upload error: %@, %d", result, code);
+}
+
+// CLUploaderDelegate protocol for receiving progress of upLoad
+- (void) uploaderProgress:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite context:(id)context {
+    NSLog(@"Upload progress: %ld/%ld (+%ld)", (long)totalBytesWritten, (long)totalBytesExpectedToWrite, (long)bytesWritten);
+}
+
+- (void) sendImageToCloudinary {
+    
+    // Creation of Cloudinary Object
+    
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    // Create uploding method to cloudinary
+    CLUploader* uploader = [[CLUploader alloc] init:cloudinary delegate:self];
+    // Path that is made to the image
+    NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"png"];
+    
+    NSData *imageData = UIImagePNGRepresentation(_dogProfileImage.image);
+    
+//    CLUploader* mobileUploader = [[CLUploader alloc] init:cloudinary delegate:self];
+    [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{}];
+    
+}
 @end

@@ -360,7 +360,7 @@
 				TargetAttributes = {
 					43B17C601D380EA70096556F = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9FYN4E4B36;
+						DevelopmentTeam = 62MF99N46N;
 					};
 				};
 			};
@@ -622,7 +622,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.Pupper;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-MJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -641,7 +641,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.Pupper;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.detroitlabs.Pupper-MJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
