@@ -11,11 +11,11 @@
 @implementation User
 
 
-- (instancetype)initWithEmail:(NSString *)email phoneNumber:(NSString *)phone {
+- (instancetype)initWithEmail:(NSString *)email userPassword:(NSString *)password {
     self = [super init];
     if (self) {
         _userEmail = email;
-        _userPhoneNumber = phone;
+        _userPassword = password;
     }
     return self;
 }

@@ -22,7 +22,7 @@
 @property (strong, nonatomic) UIImage *sample;
 
 @end
-
+User *newUser;
 
 
 @implementation MainViewController
@@ -161,13 +161,12 @@ NSMutableArray *upcomingServicesArray;
     
     UIAlertAction* create = [UIAlertAction actionWithTitle:@"Create" style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * action) {
-                                                       //Do Some action here
-                                                       //Create a new user object if all the info works
-                                                       //Use that info to send to firebase
                                                        NSString *email = [[[alert textFields]firstObject]text];
                                                        NSString *password = [[[alert textFields]firstObject]text];
-                                                       NSLog(@"email: %@", email);
-                                                       NSLog(@"pass: %@", password);
+                                                       //Create a new user object if all the info works
+                                                       newUser = [[User alloc] initWithEmail:email userPassword:password];
+                                                     
+                                                       //Send user firebase auth
                                                        [self createNewUser:email password:password];
                                                        
                                                        
@@ -204,6 +203,13 @@ NSMutableArray *upcomingServicesArray;
                                                    handler:^(UIAlertAction * action) {
                                                        //Do Some action here
                                                        //confrim if info provided by the user is correct and log them in
+                                                       
+                                                       [[FIRAuth auth] signInWithEmail:[[[alert textFields]firstObject]text]
+                                                                              password:[[[alert textFields]firstObject]text]
+                                                                            completion:^(FIRUser *user, NSError *error) {
+                                                                                NSLog(@"%@, %@" ,user.email, error);
+                                                                            
+                                                                            }];
                                                        
                                                    }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
