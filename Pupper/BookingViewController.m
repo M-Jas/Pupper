@@ -68,7 +68,7 @@ Firebase *firebase;
    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
 
-                                                              _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00]];
+                                                              _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00] userID:[FIRAuth auth].currentUser.uid];
 
                                                               //Add service obj to users array for services
                                                               [_user.userServicesArray addObject:_service];                                                        
@@ -81,7 +81,7 @@ Firebase *firebase;
     UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                            
-                                                               _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00]];
+                                                               _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00] userID:[FIRAuth auth].currentUser.uid];
                                                                //Add service obj to users array for services
                                                                [_user.userServicesArray addObject:_service];
                                                                //Add service obj to FireBase
@@ -151,7 +151,8 @@ Firebase *firebase;
     NSDictionary *serviceDict = @{
                                   @"selectedService": service.selectedService,
                                   @"dateOfService": service.dateOfService,
-                                  @"costOfService": service.priceOfService
+                                  @"costOfService": service.priceOfService,
+                                  @"userID": service.currentUserID
                                   };
     
     [serviceRef setValue:serviceDict];

@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Firebase.h"
+
+@import Firebase;
 
 @interface Service : NSObject
 
 @property (strong, nonatomic) NSString *selectedService;
 @property (strong, nonatomic) NSNumber *priceOfService;
 @property (strong, nonatomic) NSString *dateOfService;
+@property (strong, nonatomic) NSString *currentUserID;
 
-- (instancetype)initWithService:(NSString *)service dateOfService:(NSString *)date priceOfService:(NSNumber *)servicePrice;
-
+- (instancetype)initWithService:(NSString *)service dateOfService:(NSString *)date priceOfService:(NSNumber *)servicePrice userID:(NSString *)userId;
 
 @end
