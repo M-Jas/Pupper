@@ -33,6 +33,8 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *dogProfileImage;
 
+@property (strong, nonatomic) UIImagePickerController *testpicker;
+
 @end
 
 Dog *newDog;
@@ -41,8 +43,6 @@ Dog *newDog;
 
 - (void)viewDidLoad {
     
-    
-    [super viewDidLoad];
         // Alert is camera is not aviliable on device!!!!!!CHANGE THIS LATER
         if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             
@@ -125,32 +125,35 @@ Dog *newDog;
 
 // Camera Actions***************************************************************************************************************
 - (IBAction)takePhotoButtonPress:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+    _testpicker = [[UIImagePickerController alloc] init];
+    _testpicker.delegate = self;
+    _testpicker.allowsEditing = YES;
+    _testpicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self presentViewController:_testpicker animated:YES completion:NULL];
 }
 
 - (IBAction)uploadPhotoButtonPress:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    UIImagePickerController *picker
+    _testpicker = [[UIImagePickerController alloc] init];
+    _testpicker.delegate = self;
+    _testpicker.allowsEditing = YES;
+    _testpicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self presentViewController:_testpicker animated:YES completion:NULL];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     _dogProfileImage.image = chosenImage;
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [_testpicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [_testpicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 

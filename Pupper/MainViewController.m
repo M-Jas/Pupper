@@ -10,6 +10,10 @@
 #import "SWRevealViewController.h"
 #import "BookingViewController.h"
 #import "Cloudinary/Cloudinary.h"
+#import "Firebase.h"
+#import "User.h"
+@import Firebase;
+
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainDisplayUpcomingServices;
@@ -136,9 +140,21 @@ NSMutableArray *upcomingServicesArray;
     [self signInUserAlert];
 }
 
+-(void)createNewUser:(NSString*)email password:(NSString*)password {
+    [[FIRAuth auth]
+     createUserWithEmail:email
+     password: password
+     completion:^(FIRUser *_Nullable user,
+                  NSError *_Nullable error) {
+         NSLog(@"%@, %@" ,user.email, error);
+//                  [self createUserAlert];
+     }];
+}
+
+
+
 - (void) createUserAlert {
-    NSLog(@"Working");
-    UIAlertController * alert=   [UIAlertController
+    UIAlertController * alert =   [UIAlertController
                                   alertControllerWithTitle:@"Welcome to Pupper"
                                   message:@"Please Enter The Following Information"
                                   preferredStyle:UIAlertControllerStyleAlert];
@@ -146,6 +162,14 @@ NSMutableArray *upcomingServicesArray;
     UIAlertAction* create = [UIAlertAction actionWithTitle:@"Create" style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * action) {
                                                        //Do Some action here
+                                                       //Create a new user object if all the info works
+                                                       //Use that info to send to firebase
+                                                       NSString *email = [[[alert textFields]firstObject]text];
+                                                       NSString *password = [[[alert textFields]firstObject]text];
+                                                       NSLog(@"email: %@", email);
+                                                       NSLog(@"pass: %@", password);
+                                                       [self createNewUser:email password:password];
+                                                       
                                                        
                                                    }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -171,7 +195,7 @@ NSMutableArray *upcomingServicesArray;
 
 - (void) signInUserAlert {
     NSLog(@"Working");
-    UIAlertController * alert=   [UIAlertController
+    UIAlertController * alert =   [UIAlertController
                                   alertControllerWithTitle:@"Welcome to Back"
                                   message:@"Please Enter Your Credentials"
                                   preferredStyle:UIAlertControllerStyleAlert];
@@ -179,6 +203,7 @@ NSMutableArray *upcomingServicesArray;
     UIAlertAction* signIn = [UIAlertAction actionWithTitle:@"signIn" style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * action) {
                                                        //Do Some action here
+                                                       //confrim if info provided by the user is correct and log them in
                                                        
                                                    }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -201,5 +226,7 @@ NSMutableArray *upcomingServicesArray;
     [self presentViewController:alert animated:YES completion:nil];
     
 }
+
+
 
 @end
