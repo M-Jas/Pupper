@@ -22,7 +22,7 @@
 @property (strong, nonatomic) UIImage *sample;
 
 @end
-User *newUser;
+User *loggedInUser;
 
 
 @implementation MainViewController
@@ -108,7 +108,6 @@ NSMutableArray *upcomingServicesArray;
 //Delete method for Tableview used and Tablevie is adjusted with remaining objects in the array********************************************************
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //Need to add the array here to keep it from Crashing
         [upcomingServicesArray removeObjectAtIndex: indexPath.row];
         [_mainDisplayUpcomingServices deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     }
@@ -140,18 +139,22 @@ NSMutableArray *upcomingServicesArray;
     [self signInUserAlert];
 }
 
--(void)createNewUser:(NSString*)email password:(NSString*)password {
+-(void)createNewUser:(NSString *)email password:(NSString *)password {
     [[FIRAuth auth]
      createUserWithEmail:email
      password: password
      completion:^(FIRUser *_Nullable user,
                   NSError *_Nullable error) {
-         NSLog(@"%@, %@" ,user.email, error);
-//                  [self createUserAlert];
      }];
 }
 
-
+- (void) signInUser:(NSString *)email password:(NSString *)password {
+    [[FIRAuth auth] signInWithEmail:email
+                           password:password
+                         completion:^(FIRUser *user, NSError *error) {
+                             NSLog(@"%@, %@" ,user.description, error);
+                         }];
+}
 
 - (void) createUserAlert {
     UIAlertController * alert =   [UIAlertController
@@ -164,7 +167,7 @@ NSMutableArray *upcomingServicesArray;
                                                        NSString *email = [[[alert textFields]firstObject]text];
                                                        NSString *password = [[[alert textFields]firstObject]text];
                                                        //Create a new user object if all the info works
-                                                       newUser = [[User alloc] initWithEmail:email userPassword:password];
+                                                       loggedInUser = [[User alloc] initWithEmail:email userPassword:password];
                                                      
                                                        //Send user firebase auth
                                                        [self createNewUser:email password:password];
@@ -201,15 +204,14 @@ NSMutableArray *upcomingServicesArray;
     
     UIAlertAction* signIn = [UIAlertAction actionWithTitle:@"signIn" style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * action) {
-                                                       //Do Some action here
                                                        //confrim if info provided by the user is correct and log them in
+                                                       NSString *email = [[[alert textFields]firstObject]text];
+                                                       NSString *password = [[[alert textFields]firstObject]text];
+                                                       //Create a new user object if all the info works
+                                                       loggedInUser = [[User alloc] initWithEmail:email userPassword:password];
+                                                       NSLog(@"pass: %@", loggedInUser.userPassword);
                                                        
-                                                       [[FIRAuth auth] signInWithEmail:[[[alert textFields]firstObject]text]
-                                                                              password:[[[alert textFields]firstObject]text]
-                                                                            completion:^(FIRUser *user, NSError *error) {
-                                                                                NSLog(@"%@, %@" ,user.email, error);
-                                                                            
-                                                                            }];
+                                                       [self signInUser:email password:password];
                                                        
                                                    }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
