@@ -42,7 +42,7 @@ Firebase *firebase;
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-    [self createUser];
+//    [self createUser];
     [super viewDidLoad];
     
 }
@@ -71,7 +71,8 @@ Firebase *firebase;
                                                               _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00] userID:[FIRAuth auth].currentUser.uid];
 
                                                               //Add service obj to users array for services
-                                                              [_user.userServicesArray addObject:_service];                                                        
+                                                              [_currentUser.userServicesArray addObject:_service];
+                                                              NSLog(@"Walking array: %@", _currentUser.userServicesArray);
                                                               //Add service obj to FireBase
                                                               [self addServiceToDB:_service];
                                                               //Reload table after click
@@ -83,7 +84,7 @@ Firebase *firebase;
                                                            
                                                                _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00] userID:[FIRAuth auth].currentUser.uid];
                                                                //Add service obj to users array for services
-                                                               [_user.userServicesArray addObject:_service];
+                                                               [_currentUser.userServicesArray addObject:_service];
                                                                //Add service obj to FireBase
                                                                [self addServiceToDB:_service];
                                                                //Reload table after click
@@ -95,25 +96,25 @@ Firebase *firebase;
     
     [self presentViewController:alert animated:YES completion:nil];
     
-    
-    
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_user.userServicesArray count];
+    return [_currentUser.userServicesArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
     
-    Service *newService = [_user.userServicesArray objectAtIndex: indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
+    Service *newService = [_currentUser.userServicesArray objectAtIndex: indexPath.row];
     NSString *newDate = newService.dateOfService;
     NSString *newSelectedService = newService.selectedService;
     
     cell.textLabel.text = newDate;
+    
     cell.detailTextLabel.text = newSelectedService;
+    NSLog(@"details: %@", cell.detailTextLabel.text);
     
     return cell;
     
@@ -129,16 +130,15 @@ Firebase *firebase;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //Need to add the array here to keep it from Crashing
-        [_user.userServicesArray removeObjectAtIndex: indexPath.row];
+        [_currentUser.userServicesArray removeObjectAtIndex: indexPath.row];
         [_upcomingServicesTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     }
 }
 
 
-- (void)createUser{
-    _user = [[User alloc]init];
-    _user.userServicesArray = [[NSMutableArray alloc]init];
-}
+//- (void)createUser{
+//    _currentUser = [[User alloc]init];
+//}
 
 - (void)addServiceToDB:(Service *)service {
     //Create reference to the firebase database

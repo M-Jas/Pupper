@@ -16,6 +16,7 @@
     if (self) {
         _userEmail = email;
         _userPassword = password;
+        _userServicesArray = [[NSMutableArray alloc]init];
     }
     return self;
 }

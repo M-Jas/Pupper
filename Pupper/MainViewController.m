@@ -22,7 +22,7 @@
 @property (strong, nonatomic) UIImage *sample;
 
 @end
-User *loggedInUser;
+
 
 
 @implementation MainViewController
@@ -113,16 +113,26 @@ NSMutableArray *upcomingServicesArray;
     }
 }
 
-- (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
-    BookingViewController *vc = [unwindSegue sourceViewController];
-//    upcomingServicesArray = vc.servicesOnSelectedDate;    
-    NSLog(@"The date you selected %@", upcomingServicesArray);
-    
-}
+//- (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
+//    BookingViewController *vc = [unwindSegue sourceViewController];
+////    upcomingServicesArray = vc.servicesOnSelectedDate;    
+//    NSLog(@"The date you selected %@", upcomingServicesArray);
+//    
+//}
 
 - (IBAction)bookServiceButtonPressed:(id)sender {
-//    [self presentViewController: animated:YES completion:nil];
+
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    BookingViewController *vc = [segue destinationViewController];
+    //vc.userServicesArray = _currentUser.userServicesArray;
+    vc.currentUser = _currentUser;
+    NSLog(@"%@", vc.currentUser);
+//    NSLog(@"%@", vc.userServicesArray);
+}
+
+
 
 - (NSMutableArray *)testingTVMethod {
     upcomingServicesArray = [[NSMutableArray alloc] initWithObjects:@"Johnny 5", @"Zero Cool", nil];
@@ -167,7 +177,7 @@ NSMutableArray *upcomingServicesArray;
                                                        NSString *email = [[[alert textFields]firstObject]text];
                                                        NSString *password = [[[alert textFields]firstObject]text];
                                                        //Create a new user object if all the info works
-                                                       loggedInUser = [[User alloc] initWithEmail:email userPassword:password];
+                                                       _currentUser = [[User alloc] initWithEmail:email userPassword:password];
                                                      
                                                        //Send user firebase auth
                                                        [self createNewUser:email password:password];
@@ -208,8 +218,10 @@ NSMutableArray *upcomingServicesArray;
                                                        NSString *email = [[[alert textFields]firstObject]text];
                                                        NSString *password = [[[alert textFields]firstObject]text];
                                                        //Create a new user object if all the info works
-                                                       loggedInUser = [[User alloc] initWithEmail:email userPassword:password];
-                                                       NSLog(@"pass: %@", loggedInUser.userPassword);
+                                                       _currentUser = [[User alloc] initWithEmail:email userPassword:password];
+                                                       
+                                                       
+                                                     
                                                        
                                                        [self signInUser:email password:password];
                                                        
