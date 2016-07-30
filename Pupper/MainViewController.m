@@ -178,7 +178,6 @@ NSMutableArray *upcomingServicesArray;
                                                        NSString *password = [[[alert textFields]firstObject]text];
                                                        //Create a new user object if all the info works
                                                        _currentUser = [[User alloc] initWithEmail:email userPassword:password];
-                                                     
                                                        //Send user firebase auth
                                                        [self createNewUser:email password:password];
                                                        
@@ -220,12 +219,10 @@ NSMutableArray *upcomingServicesArray;
                                                        //Create a new user object if all the info works
                                                        _currentUser = [[User alloc] initWithEmail:email userPassword:password];
                                                        
-                                                       
-                                                     
-                                                       
                                                        [self signInUser:email password:password];
                                                        
                                                    }];
+    
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * action) {
                                                        [alert dismissViewControllerAnimated:YES completion:nil];

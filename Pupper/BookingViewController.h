@@ -17,7 +17,6 @@
 @property (strong, nonatomic) NSMutableArray *servicesOnSelectedDate;
 
 @property (strong, nonatomic) User *currentUser;
-//@property (strong, nonatomic) NSMutableArray *userServicesArray;
 @property (strong, nonatomic) Service *service;
 
 

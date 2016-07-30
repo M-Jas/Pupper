@@ -43,7 +43,17 @@ Firebase *firebase;
 //    }
 //    
 //    [self createUser];
+    
+   
+    
+//    if (user != nil) {
+//        [_currentUser.userServicesArray addObject:(_service ==  )
+//    } else {
+//        // No user is signed in.
+//    }
+    
     [super viewDidLoad];
+    [self retriveServicesFromFBDB];
     
 }
 
@@ -112,9 +122,8 @@ Firebase *firebase;
     NSString *newSelectedService = newService.selectedService;
     
     cell.textLabel.text = newDate;
-    
     cell.detailTextLabel.text = newSelectedService;
-    NSLog(@"details: %@", cell.detailTextLabel.text);
+//    NSLog(@"details: %@", cell.detailTextLabel.text);
     
     return cell;
     
@@ -158,7 +167,21 @@ Firebase *firebase;
     [serviceRef setValue:serviceDict];
 }
 
-
+- (void)retriveServicesFromFBDB {
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    //Use the reference from above to add a child to that db as a "group"
+    FIRDatabaseReference *serviceRef = [firebaseRef child:@"services"];
+    
+//    FIRUser *user = [FIRAuth auth].currentUser;
+//    NSLog(@"current user: %@", user);
+//    NSLog(@"FB ref: %@", serviceRef);
+    
+    [serviceRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * snapshot) {
+        NSLog(@"value coming from my db: %@", snapshot.value);
+    }];
+      
+    
+}
 
 
 @end
