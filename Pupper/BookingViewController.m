@@ -32,19 +32,7 @@ Firebase *firebase;
 @implementation BookingViewController
 
 
-
 - (void)viewDidLoad {
-//    SWRevealViewController *revealViewController = self.revealViewController;
-//    if ( revealViewController )
-//    {
-//        [self.sidebarButton setTarget: self.revealViewController];
-//        [self.sidebarButton setAction: @selector( revealToggle: )];
-//        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-//    }
-//    
-//    [self createUser];
-    
-   
     
 //    if (user != nil) {
 //        [_currentUser.userServicesArray addObject:(_service ==  )
@@ -145,10 +133,6 @@ Firebase *firebase;
 }
 
 
-//- (void)createUser{
-//    _currentUser = [[User alloc]init];
-//}
-
 - (void)addServiceToDB:(Service *)service {
     //Create reference to the firebase database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
@@ -169,17 +153,27 @@ Firebase *firebase;
 
 - (void)retriveServicesFromFBDB {
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
-    //Use the reference from above to add a child to that db as a "group"
+    // Use the reference from above to get the child from the db as a "group"
     FIRDatabaseReference *serviceRef = [firebaseRef child:@"services"];
     
-//    FIRUser *user = [FIRAuth auth].currentUser;
-//    NSLog(@"current user: %@", user);
-//    NSLog(@"FB ref: %@", serviceRef);
-    
-    [serviceRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * snapshot) {
+    // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
+    [serviceRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
         NSLog(@"value coming from my db: %@", snapshot.value);
-    }];
       
+        Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
+        
+        
+        //[_currentUser.userServicesArray addObject:snapshot.value];
+        
+        [_currentUser.userServicesArray addObject:dbServices];
+        NSLog(@" servicearray: %@", _currentUser.userServicesArray);
+        
+        for(Service *s in _currentUser.userServicesArray) {
+            NSLog(@" service from DB %@", s.dateOfService);
+        }
+        
+        [_upcomingServicesTableView reloadData];
+    }];
     
 }
 
