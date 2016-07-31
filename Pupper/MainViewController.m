@@ -126,10 +126,10 @@ NSMutableArray *upcomingServicesArray;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     BookingViewController *vc = [segue destinationViewController];
-    //vc.userServicesArray = _currentUser.userServicesArray;
+
     vc.currentUser = _currentUser;
     NSLog(@"%@", vc.currentUser);
-//    NSLog(@"%@", vc.userServicesArray);
+
 }
 
 
@@ -180,9 +180,8 @@ NSMutableArray *upcomingServicesArray;
                                                        _currentUser = [[User alloc] initWithEmail:email userPassword:password];
                                                        //Send user firebase auth
                                                        [self createNewUser:email password:password];
-                                                       
-                                                       
                                                    }];
+    
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * action) {
                                                        [alert dismissViewControllerAnimated:YES completion:nil];

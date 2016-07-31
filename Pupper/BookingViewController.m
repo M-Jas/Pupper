@@ -64,11 +64,10 @@ Firebase *firebase;
 
                                                               //Add service obj to users array for services
                                                               [_currentUser.userServicesArray addObject:_service];
-                                                              NSLog(@"Walking array: %@", _currentUser.userServicesArray);
                                                               //Add service obj to FireBase
                                                               [self addServiceToDB:_service];
                                                               //Reload table after click
-                                                              [_upcomingServicesTableView reloadData];
+//                                                              [_upcomingServicesTableView reloadData];
                                                           }];
     
     UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
@@ -80,11 +79,17 @@ Firebase *firebase;
                                                                //Add service obj to FireBase
                                                                [self addServiceToDB:_service];
                                                                //Reload table after click
-                                                               [_upcomingServicesTableView reloadData];
+//                                                               [_upcomingServicesTableView reloadData];
                                                            }];
-
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
     [alert addAction:firstAction];
     [alert addAction:secondAction];
+    [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
     
@@ -148,15 +153,13 @@ Firebase *firebase;
 - (void)retriveServicesFromFBDB {
     // Ref to the main Database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
-    // Use the reference from above to get the child from the db as a "group"
-//    FIRDatabaseReference *serviceRef = [firebaseRef child:@"services"];
+
     // Query is going to the service child and looking over the user IDs to find the current users services
     FIRDatabaseQuery *query = [[[firebaseRef child:@"services"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
     
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
-        NSLog(@"value coming from my db: %@", snapshot.value);
-      
+        // Use snapshot to create a new service"
         Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
         // Add services from db to user array to display on pageload
         [_currentUser.userServicesArray addObject:dbServices];
