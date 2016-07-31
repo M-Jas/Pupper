@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Firebase.h"
 
 @interface Dog : NSObject
 
@@ -17,8 +18,10 @@
 @property (strong, nonatomic) NSString *vetPhoneNumber;
 @property (strong, nonatomic) NSString *dogBio;
 
+@property (strong, nonatomic) NSString *currentUserID;
 
-- (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio;
+
+- (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio userID:(NSString *)userId;
 
 
 @end
