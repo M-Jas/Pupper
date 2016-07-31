@@ -34,12 +34,6 @@ Firebase *firebase;
 
 - (void)viewDidLoad {
     
-//    if (user != nil) {
-//        [_currentUser.userServicesArray addObject:(_service ==  )
-//    } else {
-//        // No user is signed in.
-//    }
-    
     [super viewDidLoad];
     [self retriveServicesFromFBDB];
     
@@ -152,21 +146,20 @@ Firebase *firebase;
 }
 
 - (void)retriveServicesFromFBDB {
+    // Ref to the main Database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
     // Use the reference from above to get the child from the db as a "group"
-    FIRDatabaseReference *serviceRef = [firebaseRef child:@"services"];
+//    FIRDatabaseReference *serviceRef = [firebaseRef child:@"services"];
+    // Query is going to the service child and looking over the user IDs to find the current users services
+    FIRDatabaseQuery *query = [[[firebaseRef child:@"services"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
     
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
-    [serviceRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
+    [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
         NSLog(@"value coming from my db: %@", snapshot.value);
       
         Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
-        
-        
-        //[_currentUser.userServicesArray addObject:snapshot.value];
-        
+        // Add services from db to user array to display on pageload
         [_currentUser.userServicesArray addObject:dbServices];
-        NSLog(@" servicearray: %@", _currentUser.userServicesArray);
         
         for(Service *s in _currentUser.userServicesArray) {
             NSLog(@" service from DB %@", s.dateOfService);
