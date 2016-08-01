@@ -35,7 +35,7 @@ Firebase *firebase;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self retriveServicesFromFBDB];
+    [self retrieveServicesFromFBDB];
     
 }
 
@@ -63,7 +63,8 @@ Firebase *firebase;
                                                               _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00] userID:[FIRAuth auth].currentUser.uid];
 
                                                               //Add service obj to users array for services
-                                                              [_currentUser.userServicesArray addObject:_service];
+                                                              //*****SO if I add this here I'm double doing it to the user array????????????????
+//                                                              [_currentUser.userServicesArray addObject:_service];
                                                               //Add service obj to FireBase
                                                               [self addServiceToDB:_service];
                                                               //Reload table after click
@@ -75,7 +76,7 @@ Firebase *firebase;
                                                            
                                                                _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00] userID:[FIRAuth auth].currentUser.uid];
                                                                //Add service obj to users array for services
-                                                               [_currentUser.userServicesArray addObject:_service];
+//                                                               [_currentUser.userServicesArray addObject:_service];
                                                                //Add service obj to FireBase
                                                                [self addServiceToDB:_service];
                                                                //Reload table after click
@@ -150,7 +151,8 @@ Firebase *firebase;
     [serviceRef setValue:serviceDict];
 }
 
-- (void)retriveServicesFromFBDB {
+- (void)retrieveServicesFromFBDB {
+    [_currentUser.userServicesArray removeAllObjects];
     // Ref to the main Database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
 
@@ -169,6 +171,7 @@ Firebase *firebase;
         }
         
         [_upcomingServicesTableView reloadData];
+        
     }];
     
 }
