@@ -35,6 +35,9 @@
 
 @property (strong, nonatomic) UIImagePickerController *picker;
 
+@property (strong, nonatomic) NSString *dogPhotoURL;
+
+
 @end
 
 Dog *newDog;
@@ -47,7 +50,8 @@ Dog *newDog;
  
     [self profileEditingNotSelected];
     _currentUser = [[User alloc]init];
-    
+  
+
     [self retriveServicesFromFBDB];
     
     SWRevealViewController *revealViewController = self.revealViewController;
@@ -114,10 +118,11 @@ Dog *newDog;
     NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
     NSString *bio = _puppyBio.text;
     
-    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid];
+    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid dogPhotoURL: _dogPhotoURL];
+//    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid];
     
     [self addDogToDB:newDog];
-    [self sendImageToCloudinary];
+//    [self sendImageToCloudinary];
 }
 
 // Camera Actions***************************************************************************************************************
@@ -140,6 +145,7 @@ Dog *newDog;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     _dogProfileImage.image = chosenImage;
+    [self sendImageToCloudinary];
     
     [_picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -185,23 +191,27 @@ Dog *newDog;
                               @"address": dog.dogAddress,
                               @"vet": dog.vetPhoneNumber,
                               @"bio": dog.dogBio,
-                              @"userID": dog.currentUserID
+                              @"userID": dog.currentUserID,
+                              @"photoURL": dog.urlPath
                               };
     [dogRef setValue:dogDict];
 }
 
 // Pull dog info from Firebase*******************************************************************************************************
 - (void)retriveServicesFromFBDB {
+    NSLog(@"Are you working firebase");
     // Ref to the main Database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
     
     // Query is going to the service child and looking over the user IDs to find the current users services
     FIRDatabaseQuery *query = [[[firebaseRef child:@"dogs"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
     
+    
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
         // Use snapshot to create a new service"
-        Dog *currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"]];
+        Dog *currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"] dogPhotoURL:snapshot.value[@"photoURL"]];
+//        Dog *currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"]];
         NSLog(@"my dog: %@", currentUserDog.dogName);
         
         _puppyNameTextfield.text = currentUserDog.dogName;
@@ -212,8 +222,11 @@ Dog *newDog;
         _addressTextfield.text = currentUserDog.dogAddress;
         _vetPhoneNumberTextfield.text = currentUserDog.vetPhoneNumber;
         _puppyBio.text = currentUserDog.dogBio;
+        _dogPhotoURL = currentUserDog.urlPath;
         
+        NSLog(@"URL&&&&&&&&&&&& : %@", _dogPhotoURL);
         
+        [self imageFromCloudinary];
         // Add services from db to user array to display on pageload
 //        [_currentUser.userDogsArray addObject:currentUserDog];
 //        NSLog(@"user dog array: %@", _currentUser.userDogsArray);
@@ -228,6 +241,9 @@ Dog *newDog;
 // CLUploaderDelegate protocol for receiving successful
 - (void) uploaderSuccess:(NSDictionary*)result context:(id)context {
     NSString* publicId = [result valueForKey:@"public_id"];
+    NSLog(@"****Public ID %@.png", publicId);
+    _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
+    NSLog(@"String with png: %@", _dogPhotoURL);
     NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
 }
 
@@ -251,8 +267,30 @@ Dog *newDog;
     // Turn the photo into nsdata to return to the db
     NSData *imageData = UIImagePNGRepresentation(_dogProfileImage.image);
     
+    
     // Upload method to db using the unsigned image preset rm17j02k. The options are how I can change the image as it is sent
     [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{}];
     
+}
+
+- (void)imageFromCloudinary {
+    NSLog(@"Hit this&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    // Create Cloudinary Object
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    
+    // Set cloudinary obj with plist
+    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    
+    // String of the image to be shown from db with Clodinary method
+    NSString *urlCloud = [cloudinary url:_dogPhotoURL];
+    // Create NSURL
+    NSURL *url = [NSURL URLWithString:urlCloud];
+    // Set date with the URL
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    // Turn the data into an image
+    UIImage *dogImage = [[UIImage alloc] initWithData:data];
+    
+    _dogProfileImage.image = dogImage;
+
 }
 @end
