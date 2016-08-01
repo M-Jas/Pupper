@@ -116,8 +116,8 @@ NSString *snapshotKey;
     
     Dog *newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid dogPhotoURL: _dogPhotoURL];
     
+    //Check to see if the current user has a dog in the database, if so used the update and edit methods
     if (currentUserDog.currentUserID != nil){
-        NSLog(@"hit the edit meth!!!!!!!!!!!!!!!!!!!!!");
         [self editDogProfile:[self updateDog:currentUserDog]];
     } else {
         [self addDogToDB:newDog];
@@ -223,7 +223,6 @@ NSString *snapshotKey;
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
         // Use snapshot to create a new service"
-        snapshotKey = snapshot.key;
         currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"] dogPhotoURL:snapshot.value[@"photoURL"]];
         
         // Set fields with dog info from db
@@ -236,11 +235,10 @@ NSString *snapshotKey;
         _puppyBio.text = currentUserDog.dogBio;
         _dogPhotoURL = currentUserDog.urlPath;
         
+        // Send the key to edit method to ref
+        snapshotKey = snapshot.key;
         // Request photo from the cloud
         [self imageFromCloudinary];
-        // Add services from db to user array to display on pageload
-//        [_currentUser.userDogsArray addObject:currentUserDog];
-//        NSLog(@"user dog array: %@", _currentUser.userDogsArray);
         
     }];
     
