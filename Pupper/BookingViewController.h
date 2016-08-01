@@ -16,7 +16,7 @@
 @interface BookingViewController : UIViewController<FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 @property (strong, nonatomic) NSMutableArray *servicesOnSelectedDate;
 
-@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) Service *service;
 
 

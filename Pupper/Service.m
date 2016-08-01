@@ -10,12 +10,13 @@
 
 @implementation Service
 
-- (instancetype)initWithService:(NSString *)service dateOfService:(NSString *)date priceOfService:(NSNumber *)servicePrice {
+- (instancetype)initWithService:(NSString *)service dateOfService:(NSString *)date priceOfService:(NSNumber *)servicePrice userID:(NSString *)userId{
     self = [super init];
     if (self) {
         _selectedService = service;
         _dateOfService = date;
         _priceOfService = servicePrice;
+        _currentUserID = userId;
     }
     return self;
 }

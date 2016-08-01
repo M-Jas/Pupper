@@ -10,6 +10,10 @@
 #import "SWRevealViewController.h"
 #import "BookingViewController.h"
 #import "Cloudinary/Cloudinary.h"
+#import "Firebase.h"
+#import "User.h"
+@import Firebase;
+
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainDisplayUpcomingServices;
@@ -104,27 +108,141 @@ NSMutableArray *upcomingServicesArray;
 //Delete method for Tableview used and Tablevie is adjusted with remaining objects in the array********************************************************
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //Need to add the array here to keep it from Crashing
         [upcomingServicesArray removeObjectAtIndex: indexPath.row];
         [_mainDisplayUpcomingServices deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     }
 }
 
-- (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
-    BookingViewController *vc = [unwindSegue sourceViewController];
-//    upcomingServicesArray = vc.servicesOnSelectedDate;    
-    NSLog(@"The date you selected %@", upcomingServicesArray);
-    
-}
+//- (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
+//    BookingViewController *vc = [unwindSegue sourceViewController];
+////    upcomingServicesArray = vc.servicesOnSelectedDate;    
+//    NSLog(@"The date you selected %@", upcomingServicesArray);
+//    
+//}
 
 - (IBAction)bookServiceButtonPressed:(id)sender {
-//    [self presentViewController: animated:YES completion:nil];
+
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    BookingViewController *vc = [segue destinationViewController];
+
+    vc.currentUser = _currentUser;
+    NSLog(@"%@", vc.currentUser);
+
+}
+
+
 
 - (NSMutableArray *)testingTVMethod {
     upcomingServicesArray = [[NSMutableArray alloc] initWithObjects:@"Johnny 5", @"Zero Cool", nil];
     
     return upcomingServicesArray;
 }
+
+//Create new user and Sign in features****************************************************************
+- (IBAction)signupNewUserPress:(id)sender {
+    [self createUserAlert];
+}
+
+- (IBAction)signInUserPress:(id)sender {
+    [self signInUserAlert];
+}
+
+-(void)createNewUser:(NSString *)email password:(NSString *)password {
+    [[FIRAuth auth]
+     createUserWithEmail:email
+     password: password
+     completion:^(FIRUser *_Nullable user,
+                  NSError *_Nullable error) {
+     }];
+}
+
+- (void) signInUser:(NSString *)email password:(NSString *)password {
+    [[FIRAuth auth] signInWithEmail:email
+                           password:password
+                         completion:^(FIRUser *user, NSError *error) {
+                             NSLog(@"%@, %@" ,user.description, error);
+                         }];
+}
+
+- (void) createUserAlert {
+    UIAlertController * alert =   [UIAlertController
+                                  alertControllerWithTitle:@"Welcome to Pupper"
+                                  message:@"Please Enter The Following Information"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* create = [UIAlertAction actionWithTitle:@"Create" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       NSString *email = [[[alert textFields]firstObject]text];
+                                                       NSString *password = [[[alert textFields]firstObject]text];
+                                                       //Create a new user object if all the info works
+                                                       _currentUser = [[User alloc] initWithEmail:email userPassword:password];
+                                                       //Send user firebase auth
+                                                       [self createNewUser:email password:password];
+                                                   }];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:create];
+    [alert addAction:cancel];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Email";
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Password";
+        textField.secureTextEntry = YES;
+    }];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+- (void) signInUserAlert {
+    NSLog(@"Working");
+    UIAlertController * alert =   [UIAlertController
+                                  alertControllerWithTitle:@"Welcome to Back"
+                                  message:@"Please Enter Your Credentials"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* signIn = [UIAlertAction actionWithTitle:@"signIn" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       //confrim if info provided by the user is correct and log them in
+                                                       NSString *email = [[[alert textFields]firstObject]text];
+                                                       NSString *password = [[[alert textFields]firstObject]text];
+                                                       //Create a new user object if all the info works
+                                                       _currentUser = [[User alloc] initWithEmail:email userPassword:password];
+                                                       
+                                                       [self signInUser:email password:password];
+                                                       
+                                                   }];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:signIn];
+    [alert addAction:cancel];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Email";
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Password";
+        textField.secureTextEntry = YES;
+    }];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+
 
 @end

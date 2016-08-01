@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) NSString *userEmail;
 @property (strong, nonatomic) NSString *userPhoneNumber;
+@property (strong, nonatomic) NSString *userPassword;
 @property (strong, nonatomic) NSMutableArray *userDogsArray;
 @property (strong, nonatomic) NSMutableArray *userServicesArray;
 
@@ -21,7 +22,7 @@
 @property (strong, nonatomic) Service *service;
 
 
-- (instancetype)initWithEmail:(NSString *)email phoneNumber:(NSString *)phone;
+- (instancetype)initWithEmail:(NSString *)email userPassword:(NSString *)password;
 
 
 @end

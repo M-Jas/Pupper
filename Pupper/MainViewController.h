@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface MainViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-
+@property (strong, nonatomic) User *currentUser;
 @end

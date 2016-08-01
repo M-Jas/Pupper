@@ -33,6 +33,8 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *dogProfileImage;
 
+@property (strong, nonatomic) UIImagePickerController *testpicker;
+
 @end
 
 Dog *newDog;
@@ -41,8 +43,6 @@ Dog *newDog;
 
 - (void)viewDidLoad {
     
-    
-    [super viewDidLoad];
         // Alert is camera is not aviliable on device!!!!!!CHANGE THIS LATER
         if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             
@@ -58,7 +58,9 @@ Dog *newDog;
         [super viewDidLoad];
  
     [self profileEditingNotSelected];
+    _currentUser = [[User alloc]init];
     
+    [self retriveServicesFromFBDB];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
@@ -117,7 +119,7 @@ Dog *newDog;
     NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
     NSString *bio = _puppyBio.text;
     
-    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio];
+    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid];
     
     [self addDogToDB:newDog];
     [self sendImageToCloudinary];
@@ -125,32 +127,35 @@ Dog *newDog;
 
 // Camera Actions***************************************************************************************************************
 - (IBAction)takePhotoButtonPress:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+    _testpicker = [[UIImagePickerController alloc] init];
+    _testpicker.delegate = self;
+    _testpicker.allowsEditing = YES;
+    _testpicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self presentViewController:_testpicker animated:YES completion:NULL];
 }
 
 - (IBAction)uploadPhotoButtonPress:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    UIImagePickerController *picker
+    _testpicker = [[UIImagePickerController alloc] init];
+    _testpicker.delegate = self;
+    _testpicker.allowsEditing = YES;
+    _testpicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self presentViewController:_testpicker animated:YES completion:NULL];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     _dogProfileImage.image = chosenImage;
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [_testpicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [_testpicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
@@ -172,11 +177,46 @@ Dog *newDog;
                               @"breed": dog.dogBreed,
                               @"address": dog.dogAddress,
                               @"vet": dog.vetPhoneNumber,
-                              @"bio": dog.dogBio
+                              @"bio": dog.dogBio,
+                              @"userID": dog.currentUserID
                               };
     [dogRef setValue:dogDict];
 }
-//SENDING IMAGE TO CLOUDINARY DB********************************************************************************************************
+
+// Pull dog info from Firebase*******************************************************************************************************
+- (void)retriveServicesFromFBDB {
+    // Ref to the main Database
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    
+    // Query is going to the service child and looking over the user IDs to find the current users services
+    FIRDatabaseQuery *query = [[[firebaseRef child:@"dogs"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
+    
+    // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
+    [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
+        // Use snapshot to create a new service"
+        Dog *currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"]];
+        NSLog(@"my dog: %@", currentUserDog.dogName);
+        
+        _puppyNameTextfield.text = currentUserDog.dogName;
+        _puppyAgeTextfield.text = currentUserDog.dogAge;
+        _puppyBreedTextfield.text = currentUserDog.dogBreed;
+        //Might not need this to tie the dog to a user
+        
+        _addressTextfield.text = currentUserDog.dogAddress;
+        _vetPhoneNumberTextfield.text = currentUserDog.vetPhoneNumber;
+        _puppyBio.text = currentUserDog.dogBio;
+        
+        
+        // Add services from db to user array to display on pageload
+//        [_currentUser.userDogsArray addObject:currentUserDog];
+//        NSLog(@"user dog array: %@", _currentUser.userDogsArray);
+        
+    }];
+    
+}
+
+
+//SENDING IMAGE TO CLOUDINARY DB*****************************************************************************************************
 
 // CLUploaderDelegate protocol for receiving successful
 - (void) uploaderSuccess:(NSDictionary*)result context:(id)context {

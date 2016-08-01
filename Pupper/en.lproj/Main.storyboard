@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main User Dog Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X9u-kK-HIU">
-                                <rect key="frame" x="31" y="99" width="259" height="36"/>
+                                <rect key="frame" x="31" y="69" width="259" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kl2-rX-IQw">
-                                <rect key="frame" x="86" y="307" width="148" height="30"/>
+                                <rect key="frame" x="86" y="242" width="148" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Book your Pupper"/>
                                 <connections>
@@ -49,9 +49,25 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="Nmf-QN-ivy">
-                                <rect key="frame" x="40" y="151" width="240" height="128"/>
+                                <rect key="frame" x="40" y="106" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g95-Os-wcT">
+                                <rect key="frame" x="62" y="302" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInUserPress:" destination="2" eventType="touchUpInside" id="477-5S-jFb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="W9Y-Ff-Szs">
+                                <rect key="frame" x="220" y="302" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Signup"/>
+                                <connections>
+                                    <action selector="signupNewUserPress:" destination="2" eventType="touchUpInside" id="Bo8-23-Rux"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -548,13 +564,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nxr-Nq-fqR">
-                        <barButtonItem key="leftBarButtonItem" image="littlePaw.png" id="Zye-JX-gkg">
-                            <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vaN-zW-ZlP"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="sidebarButton" destination="Zye-JX-gkg" id="Mpd-id-k7a"/>
                         <outlet property="upcomingServicesTableView" destination="oH6-7G-GBC" id="bC2-1S-AgK"/>
                     </connections>
                 </viewController>

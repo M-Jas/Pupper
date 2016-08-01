@@ -32,18 +32,10 @@ Firebase *firebase;
 @implementation BookingViewController
 
 
-
 - (void)viewDidLoad {
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
     
-    [self createUser];
     [super viewDidLoad];
+    [self retrieveServicesFromFBDB];
     
 }
 
@@ -68,52 +60,58 @@ Firebase *firebase;
    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Walk"
                                                           style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
 
-                                                              _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00]];
+                                                              _service = [[Service alloc]initWithService:@"Walk" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:10.00] userID:[FIRAuth auth].currentUser.uid];
 
                                                               //Add service obj to users array for services
-                                                              [_user.userServicesArray addObject:_service];                                                        
+                                                              //*****SO if I add this here I'm double doing it to the user array????????????????
+//                                                              [_currentUser.userServicesArray addObject:_service];
                                                               //Add service obj to FireBase
                                                               [self addServiceToDB:_service];
                                                               //Reload table after click
-                                                              [_upcomingServicesTableView reloadData];
+//                                                              [_upcomingServicesTableView reloadData];
                                                           }];
     
     UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"Feeding"
                                                            style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                            
-                                                               _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00]];
+                                                               _service = [[Service alloc]initWithService:@"Feeding" dateOfService:_dateString priceOfService:[NSNumber numberWithDouble:5.00] userID:[FIRAuth auth].currentUser.uid];
                                                                //Add service obj to users array for services
-                                                               [_user.userServicesArray addObject:_service];
+//                                                               [_currentUser.userServicesArray addObject:_service];
                                                                //Add service obj to FireBase
                                                                [self addServiceToDB:_service];
                                                                //Reload table after click
-                                                               [_upcomingServicesTableView reloadData];
+//                                                               [_upcomingServicesTableView reloadData];
                                                            }];
-
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
     [alert addAction:firstAction];
     [alert addAction:secondAction];
+    [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
-    
-    
     
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_user.userServicesArray count];
+    return [_currentUser.userServicesArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
     
-    Service *newService = [_user.userServicesArray objectAtIndex: indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
+    Service *newService = [_currentUser.userServicesArray objectAtIndex: indexPath.row];
     NSString *newDate = newService.dateOfService;
     NSString *newSelectedService = newService.selectedService;
     
     cell.textLabel.text = newDate;
     cell.detailTextLabel.text = newSelectedService;
+//    NSLog(@"details: %@", cell.detailTextLabel.text);
     
     return cell;
     
@@ -129,16 +127,11 @@ Firebase *firebase;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //Need to add the array here to keep it from Crashing
-        [_user.userServicesArray removeObjectAtIndex: indexPath.row];
+        [_currentUser.userServicesArray removeObjectAtIndex: indexPath.row];
         [_upcomingServicesTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     }
 }
 
-
-- (void)createUser{
-    _user = [[User alloc]init];
-    _user.userServicesArray = [[NSMutableArray alloc]init];
-}
 
 - (void)addServiceToDB:(Service *)service {
     //Create reference to the firebase database
@@ -151,13 +144,37 @@ Firebase *firebase;
     NSDictionary *serviceDict = @{
                                   @"selectedService": service.selectedService,
                                   @"dateOfService": service.dateOfService,
-                                  @"costOfService": service.priceOfService
+                                  @"costOfService": service.priceOfService,
+                                  @"userID": service.currentUserID
                                   };
     
     [serviceRef setValue:serviceDict];
 }
 
+- (void)retrieveServicesFromFBDB {
+    [_currentUser.userServicesArray removeAllObjects];
+    // Ref to the main Database
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
 
+    // Query is going to the service child and looking over the user IDs to find the current users services
+    FIRDatabaseQuery *query = [[[firebaseRef child:@"services"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
+    
+    // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
+    [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
+        // Use snapshot to create a new service"
+        Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
+        // Add services from db to user array to display on pageload
+        [_currentUser.userServicesArray addObject:dbServices];
+        
+        for(Service *s in _currentUser.userServicesArray) {
+            NSLog(@" service from DB %@", s.dateOfService);
+        }
+        
+        [_upcomingServicesTableView reloadData];
+        
+    }];
+    
+}
 
 
 @end
