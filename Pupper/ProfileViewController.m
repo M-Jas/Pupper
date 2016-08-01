@@ -49,18 +49,12 @@ Dog *newDog;
     [super viewDidLoad];
  
     [self profileEditingNotSelected];
+    [self drawerMethod];
+    
     _currentUser = [[User alloc]init];
   
-
     [self retriveServicesFromFBDB];
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,8 +96,6 @@ Dog *newDog;
     }
     
     _picker = [[UIImagePickerController alloc] init];
-    
-
 }
 
 // Saving all the new information added by the user******************************************************************************
@@ -119,10 +111,8 @@ Dog *newDog;
     NSString *bio = _puppyBio.text;
     
     newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid dogPhotoURL: _dogPhotoURL];
-//    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid];
     
     [self addDogToDB:newDog];
-//    [self sendImageToCloudinary];
 }
 
 // Camera Actions***************************************************************************************************************
@@ -211,21 +201,18 @@ Dog *newDog;
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
         // Use snapshot to create a new service"
         Dog *currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"] dogPhotoURL:snapshot.value[@"photoURL"]];
-//        Dog *currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"]];
-        NSLog(@"my dog: %@", currentUserDog.dogName);
         
+        // Set fields with dog info from db
         _puppyNameTextfield.text = currentUserDog.dogName;
         _puppyAgeTextfield.text = currentUserDog.dogAge;
         _puppyBreedTextfield.text = currentUserDog.dogBreed;
-        //Might not need this to tie the dog to a user
         
         _addressTextfield.text = currentUserDog.dogAddress;
         _vetPhoneNumberTextfield.text = currentUserDog.vetPhoneNumber;
         _puppyBio.text = currentUserDog.dogBio;
         _dogPhotoURL = currentUserDog.urlPath;
         
-        NSLog(@"URL&&&&&&&&&&&& : %@", _dogPhotoURL);
-        
+        // Request photo from the cloud
         [self imageFromCloudinary];
         // Add services from db to user array to display on pageload
 //        [_currentUser.userDogsArray addObject:currentUserDog];
@@ -241,10 +228,9 @@ Dog *newDog;
 // CLUploaderDelegate protocol for receiving successful
 - (void) uploaderSuccess:(NSDictionary*)result context:(id)context {
     NSString* publicId = [result valueForKey:@"public_id"];
-    NSLog(@"****Public ID %@.png", publicId);
-    _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
-    NSLog(@"String with png: %@", _dogPhotoURL);
     NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
+    
+    _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
 }
 
 // CLUploaderDelegate protocol for receiving unsuccessful
@@ -267,7 +253,6 @@ Dog *newDog;
     // Turn the photo into nsdata to return to the db
     NSData *imageData = UIImagePNGRepresentation(_dogProfileImage.image);
     
-    
     // Upload method to db using the unsigned image preset rm17j02k. The options are how I can change the image as it is sent
     [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{}];
     
@@ -289,8 +274,19 @@ Dog *newDog;
     NSData *data = [NSData dataWithContentsOfURL:url];
     // Turn the data into an image
     UIImage *dogImage = [[UIImage alloc] initWithData:data];
-    
+    // Set dog profile pick from db photo
     _dogProfileImage.image = dogImage;
 
 }
+
+- (void)drawerMethod{
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if ( revealViewController )
+    {
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
+}
+
 @end
