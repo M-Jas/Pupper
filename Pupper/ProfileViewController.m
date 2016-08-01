@@ -33,7 +33,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *dogProfileImage;
 
-@property (strong, nonatomic) UIImagePickerController *testpicker;
+@property (strong, nonatomic) UIImagePickerController *picker;
 
 @end
 
@@ -104,6 +104,8 @@ Dog *newDog;
     _saveButton.hidden = NO;
     _takePhotoButton.hidden = NO;
     _uploadPhotoButton.hidden = NO;
+    
+    _picker = [[UIImagePickerController alloc] init];
 
 }
 
@@ -129,34 +131,35 @@ Dog *newDog;
 - (IBAction)takePhotoButtonPress:(id)sender {
 //    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
 //    picker.delegate = self;
-    _testpicker = [[UIImagePickerController alloc] init];
-    _testpicker.delegate = self;
-    _testpicker.allowsEditing = YES;
-    _testpicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    _picker = [[UIImagePickerController alloc] init];
+    _picker.delegate = self;
+    _picker.allowsEditing = YES;
+    _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
-    [self presentViewController:_testpicker animated:YES completion:NULL];
+    [self presentViewController:_picker animated:YES completion:NULL];
 }
 
 - (IBAction)uploadPhotoButtonPress:(id)sender {
 //    UIImagePickerController *picker
-    _testpicker = [[UIImagePickerController alloc] init];
-    _testpicker.delegate = self;
-    _testpicker.allowsEditing = YES;
-    _testpicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    _picker = [[UIImagePickerController alloc] init];
+    _picker.delegate = self;
+    _picker.allowsEditing = YES;
+    _picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentViewController:_testpicker animated:YES completion:NULL];
+    [self presentViewController:_picker animated:YES completion:NULL];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     _dogProfileImage.image = chosenImage;
     
-    [_testpicker dismissViewControllerAnimated:YES completion:NULL];
+    [_picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [_testpicker dismissViewControllerAnimated:YES completion:NULL];
+    [_picker dismissViewControllerAnimated:YES completion:NULL];
 }
+
 
 
 // Send new Dog Info to FireBase***************************************************************************************************
