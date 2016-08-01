@@ -149,8 +149,9 @@ Dog *newDog;
     [self presentViewController:_picker animated:YES completion:NULL];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    NSLog(@"selceted image %@", chosenImage);
     _dogProfileImage.image = chosenImage;
     
     [_picker dismissViewControllerAnimated:YES completion:NULL];
