@@ -10,7 +10,9 @@
 
 @implementation Dog
 
-- (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio userID:(NSString *)userId {
+- (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio userID:(NSString *)userId dogPhotoURL:(NSString *)dogPhotoURL{
+    
+//    - (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio userID:(NSString *)userId dogPhotoURL:(NSString *)dogPhotoURL{
     self = [super init];
     if (self) {
         _dogName = name;
@@ -20,6 +22,7 @@
         _vetPhoneNumber = vetPhoneNum;
         _dogBio = bio;
         _currentUserID = userId;
+        _urlPath = dogPhotoURL;
     }
     return self;
 }

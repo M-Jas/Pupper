@@ -192,9 +192,11 @@ NSMutableArray *upcomingServicesArray;
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Email";
+//        textField.text = @"j@gmail.com";
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Password";
+        textField.text = @"tort";
         textField.secureTextEntry = YES;
     }];
     
@@ -231,10 +233,13 @@ NSMutableArray *upcomingServicesArray;
     [alert addAction:cancel];
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Email";
+//        textField.placeholder = @"Email";
+        textField.text = @"j@gmail.com";
+        
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Password";
+//        textField.placeholder = @"Password";
+        textField.text = @"tort";
         textField.secureTextEntry = YES;
     }];
     

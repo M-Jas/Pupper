@@ -19,9 +19,10 @@
 @property (strong, nonatomic) NSString *dogBio;
 
 @property (strong, nonatomic) NSString *currentUserID;
+@property (strong, nonatomic) NSString *urlPath;
 
 
-- (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio userID:(NSString *)userId;
+- (instancetype)initWithDogName:(NSString *)name age:(NSString*)age breed:(NSString *)breed address:(NSString *)address vetPhoneNub:(NSString *)vetPhoneNum bio:(NSString *)bio userID:(NSString *)userId dogPhotoURL:(NSString *)dogPhotoURL;
 
 
 @end
