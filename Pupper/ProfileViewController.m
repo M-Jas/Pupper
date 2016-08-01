@@ -43,19 +43,7 @@ Dog *newDog;
 
 - (void)viewDidLoad {
     
-        // Alert is camera is not aviliable on device!!!!!!CHANGE THIS LATER
-        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            
-            UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                  message:@"Device has no camera"
-                                                                 delegate:nil
-                                                        cancelButtonTitle:@"OK"
-                                                        otherButtonTitles: nil];
-            
-            [myAlertView show];
-            
-        }
-        [super viewDidLoad];
+    [super viewDidLoad];
  
     [self profileEditingNotSelected];
     _currentUser = [[User alloc]init];
@@ -105,7 +93,12 @@ Dog *newDog;
     _takePhotoButton.hidden = NO;
     _uploadPhotoButton.hidden = NO;
     
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self noCameraAlert];
+    }
+    
     _picker = [[UIImagePickerController alloc] init];
+    
 
 }
 
@@ -129,9 +122,6 @@ Dog *newDog;
 
 // Camera Actions***************************************************************************************************************
 - (IBAction)takePhotoButtonPress:(id)sender {
-//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//    picker.delegate = self;
-//    _picker = [[UIImagePickerController alloc] init];
     _picker.delegate = self;
     _picker.allowsEditing = YES;
     _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -140,8 +130,6 @@ Dog *newDog;
 }
 
 - (IBAction)uploadPhotoButtonPress:(id)sender {
-//    UIImagePickerController *picker
-//    _picker = [[UIImagePickerController alloc] init];
     _picker.delegate = self;
     _picker.allowsEditing = YES;
     _picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -151,7 +139,6 @@ Dog *newDog;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    NSLog(@"selceted image %@", chosenImage);
     _dogProfileImage.image = chosenImage;
     
     [_picker dismissViewControllerAnimated:YES completion:NULL];
@@ -159,6 +146,22 @@ Dog *newDog;
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [_picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)noCameraAlert {
+    UIAlertController * alert =   [UIAlertController
+                                   alertControllerWithTitle:@"Error"
+                                   message:@"Device has no camera"
+                                   preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 
