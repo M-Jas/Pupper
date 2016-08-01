@@ -259,7 +259,6 @@ Dog *newDog;
 }
 
 - (void)imageFromCloudinary {
-    NSLog(@"Hit this&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
     // Create Cloudinary Object
     CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
     
