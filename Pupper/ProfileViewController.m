@@ -50,10 +50,10 @@ Dog *newDog;
  
     [self profileEditingNotSelected];
     [self drawerMethod];
+    [self retriveServicesFromFBDB];
     
     _currentUser = [[User alloc]init];
   
-    [self retriveServicesFromFBDB];
     
 }
 

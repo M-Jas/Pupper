@@ -35,15 +35,8 @@ NSMutableArray *upcomingServicesArray;
     
     [self testingTVMethod];
     [self cloudinarySetUp];
-    
+    [self drawerMethod];
   
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
 
     self.title = @"Puppy Main Page";
 
@@ -249,5 +242,15 @@ NSMutableArray *upcomingServicesArray;
 }
 
 
+
+- (void)drawerMethod{
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if ( revealViewController )
+    {
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
+}
 
 @end

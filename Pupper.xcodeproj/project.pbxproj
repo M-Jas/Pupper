@@ -183,7 +183,6 @@
 				43B17D2F1D380FBE0096556F /* SidebarDemo-Info.plist */,
 				43B17C751D380EA70096556F /* Info.plist */,
 				43B17C721D380EA70096556F /* LaunchScreen.storyboard */,
-				43B17CD51D380FBE0096556F /* Assets.xcassets */,
 				43B17C651D380EA70096556F /* main.m */,
 				43B17D831D3813260096556F /* en.lproj */,
 				43B17DB11D3819960096556F /* Images */,
@@ -257,9 +256,9 @@
 				43B17CF61D380FBE0096556F /* PaymentViewController.m */,
 				43B17CFA1D380FBE0096556F /* PricingViewController.h */,
 				43B17CFB1D380FBE0096556F /* PricingViewController.m */,
-				43B17D301D380FBE0096556F /* SidebarDemo-Prefix.pch */,
 				43B17C7B1D380F230096556F /* ProfileViewController.h */,
 				43B17C7C1D380F230096556F /* ProfileViewController.m */,
+				43B17D301D380FBE0096556F /* SidebarDemo-Prefix.pch */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
