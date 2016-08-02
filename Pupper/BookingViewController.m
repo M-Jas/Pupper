@@ -27,10 +27,6 @@
 
 @end
 
-Firebase *firebase;
-//Service *deleteService;
-//NSString *snapshotValue;
-//NSString *snapshotKey;
 NSString *key;
 
 
@@ -135,24 +131,14 @@ NSString *key;
         //Need to add the array here to keep it from Crashing
         [_currentUser.userServicesArray removeObjectAtIndex: indexPath.row];
         [_upcomingServicesTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
-//        FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
-//        FIRDatabaseReference *serviceRef = [[firebaseRef child:@"services"] childByAutoId];
-        
-        
 
         [self removeServiceFromDB];
     }
 }
 
-//
+// Remove a service from the dd
 - (void)removeServiceFromDB {
-    //Create reference to the firebase database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
-    //Use the reference from above to add a child to that db as a "group"
-//    key = [[firebaseRef child:@"services"] childByAutoId].key;
-    // Key not matching the service key in db
-    NSLog(@"key : %@", key);
-    
     NSDictionary *childUpdates = @{[@"/services/" stringByAppendingString: key]:[NSNull null]};
     
     [firebaseRef updateChildValues: childUpdates];
