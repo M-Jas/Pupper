@@ -28,6 +28,10 @@
 @end
 
 Firebase *firebase;
+//Service *deleteService;
+//NSString *snapshotValue;
+//NSString *snapshotKey;
+
 
 @implementation BookingViewController
 
@@ -130,7 +134,22 @@ Firebase *firebase;
         //Need to add the array here to keep it from Crashing
         [_currentUser.userServicesArray removeObjectAtIndex: indexPath.row];
         [_upcomingServicesTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
+
+        [self removeServiceFromDB];
     }
+}
+//
+- (void)removeServiceFromDB {
+    //Create reference to the firebase database
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    //Use the reference from above to add a child to that db as a "group"
+    NSString *key = [[firebaseRef child:@"services"] childByAutoId].key;
+    // Key not matching the service key in db
+    NSLog(@"key : %@", key);
+    
+    NSDictionary *childUpdates = @{[@"/services/" stringByAppendingString: key]:[NSNull null]};
+    
+    [firebaseRef updateChildValues: childUpdates];
 }
 
 
@@ -166,10 +185,6 @@ Firebase *firebase;
         Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
         // Add services from db to user array to display on pageload
         [_currentUser.userServicesArray addObject:dbServices];
-        
-        for(Service *s in _currentUser.userServicesArray) {
-            NSLog(@" service from DB %@", s.dateOfService);
-        }
         
         [_upcomingServicesTableView reloadData];
         
