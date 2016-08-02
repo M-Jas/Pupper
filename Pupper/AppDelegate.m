@@ -17,8 +17,7 @@
     
     // Change the background color of navigation bar
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:58.0/255.0 green:74.0/255.0 blue:96.0/255.0 alpha:1.0]];
-    
-    
+
     
     // Change the font style of the navigation bar
     NSShadow *shadow = [[NSShadow alloc] init];

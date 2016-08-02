@@ -36,6 +36,8 @@ NSMutableArray *upcomingServicesArray;
     [self testingTVMethod];
     [self cloudinarySetUp];
     [self drawerMethod];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
   
     [self imageDesign];
 
@@ -52,7 +54,7 @@ NSMutableArray *upcomingServicesArray;
     self.mainImage.clipsToBounds = YES;
 
     self.mainImage.layer.borderWidth = 3.0f;
-    self.mainImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.mainImage.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
 }
 
 // Cloudinary setup to pull images from the DB*****************************************************************************************
