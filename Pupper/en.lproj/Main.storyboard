@@ -13,27 +13,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="DEm-hp-goC">
-                                <rect key="frame" x="0.0" y="354" width="320" height="214"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="U73-ZC-97W">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U73-ZC-97W" id="XMK-kj-Hgq">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="2" id="64I-Em-0yf"/>
-                                    <outlet property="delegate" destination="2" id="fA0-UT-rfK"/>
-                                </connections>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kl2-rX-IQw">
-                                <rect key="frame" x="86" y="242" width="148" height="30"/>
+                                <rect key="frame" x="86" y="325" width="148" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Book your Pupper">
                                     <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,8 +24,12 @@
                                     <segue destination="8is-vx-TQ4" kind="push" id="v04-XG-bC1"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="Nmf-QN-ivy">
+                                <rect key="frame" x="60" y="96" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g95-Os-wcT">
-                                <rect key="frame" x="62" y="302" width="47" height="30"/>
+                                <rect key="frame" x="56" y="363" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,7 +39,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="W9Y-Ff-Szs">
-                                <rect key="frame" x="220" y="302" width="48" height="30"/>
+                                <rect key="frame" x="216" y="363" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Signup">
                                     <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,10 +48,6 @@
                                     <action selector="signupNewUserPress:" destination="2" eventType="touchUpInside" id="Bo8-23-Rux"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="Nmf-QN-ivy">
-                                <rect key="frame" x="62" y="94" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.1647058824" green="0.2274509804" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -76,7 +57,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mainDisplayUpcomingServices" destination="DEm-hp-goC" id="P8X-2R-8QV"/>
                         <outlet property="mainImage" destination="Nmf-QN-ivy" id="6L4-o2-oPx"/>
                         <outlet property="sidebarButton" destination="4DU-rm-gHC" id="gCT-AB-0W6"/>
                     </connections>
@@ -288,14 +268,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Dog's Bio" textAlignment="natural" id="3F3-rG-Z1N">
-                                <rect key="frame" x="33" y="432" width="262" height="116"/>
+                                <rect key="frame" x="29" y="425" width="262" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sGi-3G-dTf">
-                                <rect key="frame" x="137" y="530" width="46" height="30"/>
+                                <rect key="frame" x="137" y="538" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -325,7 +305,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YtA-7t-Keo">
-                                <rect key="frame" x="20" y="79" width="200" height="132"/>
+                                <rect key="frame" x="27" y="71" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

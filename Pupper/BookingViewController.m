@@ -179,6 +179,8 @@ NSString *key;
         // Add services from db to user array to display on pageload
         [_currentUser.userServicesArray addObject:dbServices];
         
+        NSLog(@"Array holding services: %@", _currentUser.userServicesArray);
+        
         [_upcomingServicesTableView reloadData];
         
     }];
