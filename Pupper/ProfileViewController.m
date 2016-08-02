@@ -68,6 +68,8 @@ NSString *snapshotKey;
 - (void)imageDesign {
     self.dogProfileImage.layer.cornerRadius = self.dogProfileImage.frame.size.width / 2;
     self.dogProfileImage.clipsToBounds = YES;
+    self.dogProfileImage.layer.borderWidth = 3.0f;
+    self.dogProfileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 // Method to set all textfield to be disabled and save button hidden***************************************************************
