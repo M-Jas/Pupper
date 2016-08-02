@@ -27,10 +27,7 @@
 
 @end
 
-Firebase *firebase;
-//Service *deleteService;
-//NSString *snapshotValue;
-//NSString *snapshotKey;
+NSString *key;
 
 
 @implementation BookingViewController
@@ -138,15 +135,10 @@ Firebase *firebase;
         [self removeServiceFromDB];
     }
 }
-//
+
+// Remove a service from the dd
 - (void)removeServiceFromDB {
-    //Create reference to the firebase database
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
-    //Use the reference from above to add a child to that db as a "group"
-    NSString *key = [[firebaseRef child:@"services"] childByAutoId].key;
-    // Key not matching the service key in db
-    NSLog(@"key : %@", key);
-    
     NSDictionary *childUpdates = @{[@"/services/" stringByAppendingString: key]:[NSNull null]};
     
     [firebaseRef updateChildValues: childUpdates];
@@ -182,6 +174,7 @@ Firebase *firebase;
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
         // Use snapshot to create a new service"
+        key = snapshot.key;
         Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
         // Add services from db to user array to display on pageload
         [_currentUser.userServicesArray addObject:dbServices];
