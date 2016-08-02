@@ -43,10 +43,6 @@
                                     <segue destination="8is-vx-TQ4" kind="push" id="v04-XG-bC1"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="Nmf-QN-ivy">
-                                <rect key="frame" x="40" y="106" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g95-Os-wcT">
                                 <rect key="frame" x="62" y="302" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -67,6 +63,10 @@
                                     <action selector="signupNewUserPress:" destination="2" eventType="touchUpInside" id="Bo8-23-Rux"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="littlePaw.png" id="Nmf-QN-ivy">
+                                <rect key="frame" x="62" y="94" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.1647058824" green="0.2274509804" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -325,7 +325,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YtA-7t-Keo">
-                                <rect key="frame" x="20" y="79" width="181" height="132"/>
+                                <rect key="frame" x="20" y="79" width="200" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

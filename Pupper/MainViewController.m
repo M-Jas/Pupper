@@ -37,8 +37,7 @@ NSMutableArray *upcomingServicesArray;
     [self cloudinarySetUp];
     [self drawerMethod];
   
-
-    self.title = @"Puppy Main Page";
+    [self imageDesign];
 
 }
 
@@ -46,6 +45,11 @@ NSMutableArray *upcomingServicesArray;
 {
     [super didReceiveMemoryWarning];
 
+}
+
+- (void)imageDesign {
+    self.mainImage.layer.cornerRadius = self.mainImage.frame.size.width / 2;
+    self.mainImage.clipsToBounds = YES;
 }
 
 // Cloudinary setup to pull images from the DB*****************************************************************************************
@@ -59,13 +63,12 @@ NSMutableArray *upcomingServicesArray;
     // Create Cloudinary Object
     CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
     
-    // Set cloudinary obj with plist
     [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
     [cloudinary.config setValue:clientId forKey:@"api_key"];
     [cloudinary.config setValue:clientSecret forKey:@"api_secret"];
     
     // String of the image to be shown from db with Clodinary method
-    NSString *urlCloud = [cloudinary url:@"sample.png"];
+    NSString *urlCloud = [cloudinary url:@"michael-jasinski_toycuj.jpg"];
     // Create NSURL
     NSURL *url = [NSURL URLWithString:urlCloud];
     // Set date with the URL
@@ -94,17 +97,17 @@ NSMutableArray *upcomingServicesArray;
 
 
 //Display Delete method for TableView*******************************************************
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewCellEditingStyleDelete;
+//}
 
 //Delete method for Tableview used and Tablevie is adjusted with remaining objects in the array********************************************************
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [upcomingServicesArray removeObjectAtIndex: indexPath.row];
-        [_mainDisplayUpcomingServices deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
-    }
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [upcomingServicesArray removeObjectAtIndex: indexPath.row];
+//        [_mainDisplayUpcomingServices deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
+//    }
+//}
 
 //- (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
 //    BookingViewController *vc = [unwindSegue sourceViewController];
