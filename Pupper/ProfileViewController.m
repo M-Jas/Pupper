@@ -40,7 +40,10 @@
 
 @end
 
-Dog *newDog;
+//Dog *newDog;
+Dog *currentUserDog;
+
+NSString *snapshotKey;
 
 @implementation ProfileViewController
 
@@ -95,6 +98,7 @@ Dog *newDog;
         [self noCameraAlert];
     }
     
+    
     _picker = [[UIImagePickerController alloc] init];
 }
 
@@ -110,9 +114,27 @@ Dog *newDog;
     NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
     NSString *bio = _puppyBio.text;
     
-    newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid dogPhotoURL: _dogPhotoURL];
+    Dog *newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid dogPhotoURL: _dogPhotoURL];
     
-    [self addDogToDB:newDog];
+    //Check to see if the current user has a dog in the database, if so used the update and edit methods
+    if (currentUserDog.currentUserID != nil){
+        [self editDogProfile:[self updateDog:currentUserDog]];
+    } else {
+        [self addDogToDB:newDog];
+    }
+    
+}
+
+-(Dog *)updateDog:(Dog *)userDog{
+    userDog.dogName = _puppyNameTextfield.text;
+    userDog.dogAge = _puppyAgeTextfield.text;
+    userDog.dogBreed =_puppyBreedTextfield.text;
+    //Might not need this to tie the dog to a user
+//    userDog.userPhoneNum =_userPhoneNumberTextfield.text;
+    userDog.dogAddress = _addressTextfield.text;
+    userDog.vetPhoneNumber = _vetPhoneNumberTextfield.text;
+    userDog.dogBio = _puppyBio.text;
+    return userDog;
 }
 
 // Camera Actions***************************************************************************************************************
@@ -184,6 +206,7 @@ Dog *newDog;
                               @"userID": dog.currentUserID,
                               @"photoURL": dog.urlPath
                               };
+    
     [dogRef setValue:dogDict];
 }
 
@@ -200,7 +223,7 @@ Dog *newDog;
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
         // Use snapshot to create a new service"
-        Dog *currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"] dogPhotoURL:snapshot.value[@"photoURL"]];
+        currentUserDog = [[Dog alloc]initWithDogName:snapshot.value[@"name"] age:snapshot.value[@"age"] breed:snapshot.value[@"breed"] address:snapshot.value[@"address"] vetPhoneNub:snapshot.value[@"vet"] bio:snapshot.value[@"bio"] userID:snapshot.value[@"userID"] dogPhotoURL:snapshot.value[@"photoURL"]];
         
         // Set fields with dog info from db
         _puppyNameTextfield.text = currentUserDog.dogName;
@@ -212,16 +235,39 @@ Dog *newDog;
         _puppyBio.text = currentUserDog.dogBio;
         _dogPhotoURL = currentUserDog.urlPath;
         
+        // Send the key to edit method to ref
+        snapshotKey = snapshot.key;
         // Request photo from the cloud
         [self imageFromCloudinary];
-        // Add services from db to user array to display on pageload
-//        [_currentUser.userDogsArray addObject:currentUserDog];
-//        NSLog(@"user dog array: %@", _currentUser.userDogsArray);
         
     }];
     
 }
-
+// Edit dog from Firebase
+- (void)editDogProfile:(Dog*)dog {
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    NSLog(@"REF %@", firebaseRef);
+    
+    NSLog(@"the dog passing in %@", dog.dogName);
+    
+    NSDictionary *updateDogProfile = @{
+                                       @"name": dog.dogName,
+                                       @"age": dog.dogAge,
+                                       @"breed": dog.dogBreed,
+                                       @"address": dog.dogAddress,
+                                       @"vet": dog.vetPhoneNumber,
+                                       @"bio": dog.dogBio,
+                                       @"userID": dog.currentUserID,
+                                       @"photoURL": dog.urlPath
+                                       };
+    
+    
+    
+    NSDictionary *childUpdates = @{[@"/dogs/" stringByAppendingString: snapshotKey]:updateDogProfile};
+    NSLog(@"CHILD UPDTAE %@", childUpdates);
+    [firebaseRef updateChildValues:childUpdates];
+    
+}
 
 //SENDING IMAGE TO CLOUDINARY DB*****************************************************************************************************
 
