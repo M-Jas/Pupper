@@ -56,12 +56,18 @@ NSString *snapshotKey;
     [self retriveServicesFromFBDB];
     
     _currentUser = [[User alloc]init];
+    [self imageDesign];
   
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)imageDesign {
+    self.dogProfileImage.layer.cornerRadius = self.dogProfileImage.frame.size.width / 2;
+    self.dogProfileImage.clipsToBounds = YES;
 }
 
 // Method to set all textfield to be disabled and save button hidden***************************************************************

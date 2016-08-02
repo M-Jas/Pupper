@@ -50,6 +50,9 @@ NSMutableArray *upcomingServicesArray;
 - (void)imageDesign {
     self.mainImage.layer.cornerRadius = self.mainImage.frame.size.width / 2;
     self.mainImage.clipsToBounds = YES;
+
+    self.mainImage.layer.borderWidth = 3.0f;
+    self.mainImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 // Cloudinary setup to pull images from the DB*****************************************************************************************
