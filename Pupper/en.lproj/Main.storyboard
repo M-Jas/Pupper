@@ -56,7 +56,7 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kl2-rX-IQw">
                                 <rect key="frame" x="86" y="504" width="148" height="30"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Book your Pupper">
+                                <state key="normal" title="Book A Pupper">
                                     <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -304,19 +304,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGi-3G-dTf">
-                                <rect key="frame" x="137" y="538" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveProfileButtonPressed:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="oMH-Zl-Roj"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YtA-7t-Keo">
+                                <rect key="frame" x="27" y="71" width="150" height="150"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjZ-en-5Tf">
-                                <rect key="frame" x="222" y="159" width="95" height="29"/>
+                                <rect key="frame" x="200" y="159" width="117" height="29"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
                                 <state key="normal" title="Upload Photo">
@@ -327,7 +319,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-Lk-6d7">
-                                <rect key="frame" x="231" y="105" width="77" height="30"/>
+                                <rect key="frame" x="200" y="105" width="117" height="30"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
                                 <state key="normal" title="Take Photo">
@@ -337,9 +329,17 @@
                                     <action selector="takePhotoButtonPress:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="NsW-gc-DuF"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YtA-7t-Keo">
-                                <rect key="frame" x="27" y="71" width="150" height="150"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGi-3G-dTf">
+                                <rect key="frame" x="102" y="538" width="117" height="30"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveProfileButtonPressed:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="oMH-Zl-Roj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16470588235294117" green="0.22745098039215686" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                     </view>

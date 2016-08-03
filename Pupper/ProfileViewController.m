@@ -100,8 +100,19 @@ NSString *snapshotKey;
     _puppyBio.userInteractionEnabled = YES;
     
     _saveButton.hidden = NO;
+    _saveButton.layer.cornerRadius = 15;
+    _saveButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _saveButton.layer.borderWidth = 2.0f;
+    
     _takePhotoButton.hidden = NO;
+    _takePhotoButton.layer.cornerRadius = 15;
+    _takePhotoButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _takePhotoButton.layer.borderWidth = 2.0f;
+    
     _uploadPhotoButton.hidden = NO;
+    _uploadPhotoButton.layer.cornerRadius = 15;
+    _uploadPhotoButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _uploadPhotoButton.layer.borderWidth = 2.0f;
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [self noCameraAlert];
