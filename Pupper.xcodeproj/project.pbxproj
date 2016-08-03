@@ -14,6 +14,7 @@
 		43AE02621D52693D005AC644 /* road2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02611D52693D005AC644 /* road2.jpeg */; };
 		43AE02641D526991005AC644 /* road5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02631D526991005AC644 /* road5.jpeg */; };
 		43AE02661D526999005AC644 /* road4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02651D526999005AC644 /* road4.jpeg */; };
+		43AE02681D527571005AC644 /* profileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02671D527571005AC644 /* profileIcon.png */; };
 		43B17C661D380EA70096556F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C651D380EA70096556F /* main.m */; };
 		43B17C741D380EA70096556F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B17C721D380EA70096556F /* LaunchScreen.storyboard */; };
 		43B17C7D1D380F230096556F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C7C1D380F230096556F /* ProfileViewController.m */; };
@@ -66,6 +67,7 @@
 		43AE02611D52693D005AC644 /* road2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road2.jpeg; sourceTree = "<group>"; };
 		43AE02631D526991005AC644 /* road5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road5.jpeg; sourceTree = "<group>"; };
 		43AE02651D526999005AC644 /* road4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road4.jpeg; sourceTree = "<group>"; };
+		43AE02671D527571005AC644 /* profileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileIcon.png; sourceTree = "<group>"; };
 		43B17C611D380EA70096556F /* Pupper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B17C651D380EA70096556F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43B17C731D380EA70096556F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				43B17CF31D380FBE0096556F /* nav_bg.png */,
 				43B17CF41D380FBE0096556F /* news.png */,
 				43B17CF71D380FBE0096556F /* photo.png */,
+				43AE02671D527571005AC644 /* profileIcon.png */,
 				43B17D361D380FBE0096556F /* tag_photo.jpg */,
 				43B17D371D380FBE0096556F /* tag.png */,
 				43B17D3A1D380FBE0096556F /* wishlist_photo.jpg */,
@@ -429,6 +432,7 @@
 				43AE02601D526870005AC644 /* road1.jpeg in Resources */,
 				43B17C741D380EA70096556F /* LaunchScreen.storyboard in Resources */,
 				43B17D4D1D380FBE0096556F /* map.png in Resources */,
+				43AE02681D527571005AC644 /* profileIcon.png in Resources */,
 				43AE02641D526991005AC644 /* road5.jpeg in Resources */,
 				43B17D791D380FBE0096556F /* SidebarDemo-Info.plist in Resources */,
 				43B17D8C1D38148F0096556F /* Main.storyboard in Resources */,
