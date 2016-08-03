@@ -12,6 +12,9 @@
 #import "Cloudinary/Cloudinary.h"
 #import "Firebase.h"
 #import "User.h"
+#import "Dog.h"
+#import "AppDelegate.h"
+
 @import Firebase;
 
 
@@ -164,7 +167,56 @@ NSMutableArray *upcomingServicesArray;
                            password:password
                          completion:^(FIRUser *user, NSError *error) {
                              NSLog(@"%@, %@" ,user.description, error);
+                             if (user.description != nil){
+                                 [self dogImageFromFB];
+                             }
                          }];
+}
+
+//    AppDelegate *appDel = (AppDelegate*) [UIApplication sharedApplication].delegate;
+//    NSString *profileURL = appDel.dogURL;
+//    NSLog(@"MAIN APP DEL URL: %@", profileURL);
+
+-(void)dogImageFromFB{
+    //FIREBASE TEST******************************************
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    
+    // Query is going to the service child and looking over the user IDs to find the current users services
+    FIRDatabaseQuery *query = [[[firebaseRef child:@"dogs"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
+    
+    
+    [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
+        // Use snapshot to create a new service"
+        Dog *userDog = [[Dog alloc]init];
+        userDog.urlPath = snapshot.value[@"photoURL"];
+        
+        [self imageFromCloudinary:userDog.urlPath];
+        
+        NSLog(@"USER DOG PATH&&&&&&&&&&& %@", userDog.urlPath);
+    
+    }];
+}
+- (void)imageFromCloudinary:(NSString *)profileURL {
+    
+    Dog *imageOfCurrentUserDog =  [_currentUser.userDogsArray objectAtIndex:0];
+    NSString *testURL = imageOfCurrentUserDog.urlPath;
+    // Create Cloudinary Object
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    
+    // Set cloudinary obj with plist
+    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    
+    // String of the image to be shown from db with Clodinary method
+    NSString *urlCloud = [cloudinary url: profileURL];
+    // Create NSURL
+    NSURL *url = [NSURL URLWithString:urlCloud];
+    // Set date with the URL
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    // Turn the data into an image
+    UIImage *dogImage = [[UIImage alloc] initWithData:data];
+    // Set dog profile pick from db photo
+    _mainImage.image = dogImage;
+    
 }
 
 - (void) createUserAlert {
