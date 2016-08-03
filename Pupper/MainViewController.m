@@ -269,7 +269,7 @@ NSMutableArray *upcomingServicesArray;
     [cloudinary.config setValue:clientSecret forKey:@"api_secret"];
     
     // String of the image to be shown from db with Clodinary method
-    NSString *urlCloud = [cloudinary url:@"michael-jasinski_toycuj.jpg"];
+    NSString *urlCloud = [cloudinary url:@"1_rviwga.jpg"];
     // Create NSURL
     NSURL *url = [NSURL URLWithString:urlCloud];
     // Set date with the URL
