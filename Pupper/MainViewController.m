@@ -246,6 +246,7 @@ NSMutableArray *upcomingServicesArray;
     } else {
         NSLog(@"SIgned OUT");
         [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
+        [self initalCloudinarySetUp];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
