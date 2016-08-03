@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"profile", @"payment", @"price", @"home", @"logout"];
+    _menuItems = @[@"profile", @"payment", @"price", @"home"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +55,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *CellIdentifier = [_menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    cell.contentView.backgroundColor = [UIColor colorWithRed:58.0/255.0 green:74.0/255.0 blue:96.0/255.0 alpha:1.0];
     return cell;
 }
 
@@ -68,7 +68,7 @@
     
     if([segue.identifier isEqualToString:@"profileSegue"]) {
         UINavigationController *navController = segue.destinationViewController;
-        ProfileViewController *profileController = [navController childViewControllers].firstObject;
+//        ProfileViewController *profileController = [navController childViewControllers].firstObject;
         
     }
     

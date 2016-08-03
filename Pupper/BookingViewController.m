@@ -39,6 +39,7 @@ NSString *key;
     [self retrieveServicesFromFBDB];
     [self drawerMethod];
     
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -178,6 +179,8 @@ NSString *key;
         Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
         // Add services from db to user array to display on pageload
         [_currentUser.userServicesArray addObject:dbServices];
+        
+        NSLog(@"Array holding services: %@", _currentUser.userServicesArray);
         
         [_upcomingServicesTableView reloadData];
         

@@ -16,6 +16,7 @@
 #import "Dog.h"
 #import "Cloudinary/Cloudinary.h"
 
+
 @interface ProfileViewController () <CLUploaderDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
@@ -56,12 +57,20 @@ NSString *snapshotKey;
     [self retriveServicesFromFBDB];
     
     _currentUser = [[User alloc]init];
+    [self imageDesign];
   
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)imageDesign {
+    self.dogProfileImage.layer.cornerRadius = self.dogProfileImage.frame.size.width / 2;
+    self.dogProfileImage.clipsToBounds = YES;
+    self.dogProfileImage.layer.borderWidth = 3.0f;
+    self.dogProfileImage.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
 }
 
 // Method to set all textfield to be disabled and save button hidden***************************************************************
@@ -93,6 +102,7 @@ NSString *snapshotKey;
     _saveButton.hidden = NO;
     _takePhotoButton.hidden = NO;
     _uploadPhotoButton.hidden = NO;
+    [self buttonsStyle];
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [self noCameraAlert];
@@ -324,6 +334,8 @@ NSString *snapshotKey;
 
 }
 
+
+// Style and layout features ******************************************************************************************************
 - (void)drawerMethod{
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
@@ -332,6 +344,22 @@ NSString *snapshotKey;
         [self.sidebarButton setAction: @selector( revealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
+}
+
+- (void)buttonsStyle {
+
+    _saveButton.layer.cornerRadius = 15;
+    _saveButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _saveButton.layer.borderWidth = 2.0f;
+    
+    _takePhotoButton.layer.cornerRadius = 15;
+    _takePhotoButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _takePhotoButton.layer.borderWidth = 2.0f;
+    
+    _uploadPhotoButton.layer.cornerRadius = 15;
+    _uploadPhotoButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _uploadPhotoButton.layer.borderWidth = 2.0f;
+    
 }
 
 @end
