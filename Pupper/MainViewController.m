@@ -38,7 +38,7 @@ NSMutableArray *upcomingServicesArray;
     [super viewDidLoad];
     
     [self testingTVMethod];
-    [self cloudinarySetUp];
+    [self initalCloudinarySetUp];
     [self drawerMethod];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
@@ -124,7 +124,7 @@ NSMutableArray *upcomingServicesArray;
 }
 
 - (IBAction)signOutPressed:(id)sender {
-    
+    [self signOutFirebase];
     
 }
 
@@ -235,9 +235,25 @@ NSMutableArray *upcomingServicesArray;
                          }];
 }
 
+- (void) signOutFirebase {
+    FIRAuth *firebaseAuth = [FIRAuth auth];
+    NSError *signOutError;
+    
+    BOOL status = [firebaseAuth signOut:&signOutError];
+    if (!status) {
+        NSLog(@"ERROR Signing Out: %@", signOutError);
+        return;
+    } else {
+        NSLog(@"SIgned OUT");
+        [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 // Cloudinary setup to pull images from the DB*****************************************************************************************
--   (void)cloudinarySetUp {
+-   (void)initalCloudinarySetUp {
     //Setup
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
     NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
@@ -276,14 +292,13 @@ NSMutableArray *upcomingServicesArray;
         Dog *userDog = [[Dog alloc]init];
         userDog.urlPath = snapshot.value[@"photoURL"];
         
-        [self imageFromCloudinary:userDog.urlPath];
+        [self userDogImageFromCloudinary:userDog.urlPath];
         
     }];
 }
-- (void)imageFromCloudinary:(NSString *)profileURL {
-    
-    Dog *imageOfCurrentUserDog =  [_currentUser.userDogsArray objectAtIndex:0];
-    NSString *testURL = imageOfCurrentUserDog.urlPath;
+- (void)userDogImageFromCloudinary:(NSString *)profileURL {
+
+ 
     // Create Cloudinary Object
     CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
     
