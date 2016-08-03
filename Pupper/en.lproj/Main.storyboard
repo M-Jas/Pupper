@@ -303,6 +303,7 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGi-3G-dTf">
                                 <rect key="frame" x="137" y="538" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
