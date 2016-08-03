@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *mainImage;
 @property (strong, nonatomic) UIImage *sample;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *signOutButton;
 
 @end
 
@@ -41,6 +42,7 @@ NSMutableArray *upcomingServicesArray;
     [self drawerMethod];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
+    [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
   
     [self imageDesign];
 
@@ -52,41 +54,7 @@ NSMutableArray *upcomingServicesArray;
 
 }
 
-- (void)imageDesign {
-    self.mainImage.layer.cornerRadius = self.mainImage.frame.size.width / 2;
-    self.mainImage.clipsToBounds = YES;
 
-    self.mainImage.layer.borderWidth = 3.0f;
-    self.mainImage.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
-}
-
-// Cloudinary setup to pull images from the DB*****************************************************************************************
--   (void)cloudinarySetUp {
-    //Setup
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
-    NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-    NSString *clientId = configuration[@"Cloudinary"][@"ClientID"];
-    NSString *clientSecret = configuration[@"Cloudinary"][@"ClientSecret"];
-    
-    // Create Cloudinary Object
-    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
-    
-    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
-    [cloudinary.config setValue:clientId forKey:@"api_key"];
-    [cloudinary.config setValue:clientSecret forKey:@"api_secret"];
-    
-    // String of the image to be shown from db with Clodinary method
-    NSString *urlCloud = [cloudinary url:@"michael-jasinski_toycuj.jpg"];
-    // Create NSURL
-    NSURL *url = [NSURL URLWithString:urlCloud];
-    // Set date with the URL
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    // Turn the data into an image
-    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-    // Set main imageView to picture from the database
-    _mainImage.image = tmpImage;
-
-}
 
 // Tableview size and setup to display information*******************************************************************
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -104,6 +72,8 @@ NSMutableArray *upcomingServicesArray;
 }
 
 
+
+
 //Display Delete method for TableView*******************************************************
 //- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return UITableViewCellEditingStyleDelete;
@@ -119,9 +89,9 @@ NSMutableArray *upcomingServicesArray;
 
 //- (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
 //    BookingViewController *vc = [unwindSegue sourceViewController];
-////    upcomingServicesArray = vc.servicesOnSelectedDate;    
+////    upcomingServicesArray = vc.servicesOnSelectedDate;
 //    NSLog(@"The date you selected %@", upcomingServicesArray);
-//    
+//
 //}
 
 - (IBAction)bookServiceButtonPressed:(id)sender {
@@ -144,7 +114,7 @@ NSMutableArray *upcomingServicesArray;
     return upcomingServicesArray;
 }
 
-//Create new user and Sign in features****************************************************************
+//Create new user and Sign in/out features****************************************************************
 - (IBAction)signupNewUserPress:(id)sender {
     [self createUserAlert];
 }
@@ -153,65 +123,13 @@ NSMutableArray *upcomingServicesArray;
     [self signInUserAlert];
 }
 
--(void)createNewUser:(NSString *)email password:(NSString *)password {
-    [[FIRAuth auth]
-     createUserWithEmail:email
-     password: password
-     completion:^(FIRUser *_Nullable user,
-                  NSError *_Nullable error) {
-     }];
-}
-
-- (void) signInUser:(NSString *)email password:(NSString *)password {
-    [[FIRAuth auth] signInWithEmail:email
-                           password:password
-                         completion:^(FIRUser *user, NSError *error) {
-                             NSLog(@"%@, %@" ,user.description, error);
-                             if (user.description != nil){
-                                 [self dogImageURL];
-                             }
-                         }];
-}
-
--(void)dogImageURL{
-    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+- (IBAction)signOutPressed:(id)sender {
     
-    // Query is going to the service child and looking over the user IDs to find the current users services
-    FIRDatabaseQuery *query = [[[firebaseRef child:@"dogs"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
-    
-    
-    [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
-        // Use snapshot to create a new service"
-        Dog *userDog = [[Dog alloc]init];
-        userDog.urlPath = snapshot.value[@"photoURL"];
-        
-        [self imageFromCloudinary:userDog.urlPath];
-    
-    }];
-}
-- (void)imageFromCloudinary:(NSString *)profileURL {
-    
-    Dog *imageOfCurrentUserDog =  [_currentUser.userDogsArray objectAtIndex:0];
-    NSString *testURL = imageOfCurrentUserDog.urlPath;
-    // Create Cloudinary Object
-    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
-    
-    // Set cloudinary obj with plist
-    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
-    
-    // String of the image to be shown from db with Clodinary method
-    NSString *urlCloud = [cloudinary url: profileURL];
-    // Create NSURL
-    NSURL *url = [NSURL URLWithString:urlCloud];
-    // Set date with the URL
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    // Turn the data into an image
-    UIImage *dogImage = [[UIImage alloc] initWithData:data];
-    // Set dog profile pick from db photo
-    _mainImage.image = dogImage;
     
 }
 
+
+// ALerts *****************************************************************************************************
 - (void) createUserAlert {
     UIAlertController * alert =   [UIAlertController
                                   alertControllerWithTitle:@"Welcome to Pupper"
@@ -250,6 +168,7 @@ NSMutableArray *upcomingServicesArray;
     [self presentViewController:alert animated:YES completion:nil];
 
 }
+
 
 - (void) signInUserAlert {
     NSLog(@"Working");
@@ -294,8 +213,97 @@ NSMutableArray *upcomingServicesArray;
     
 }
 
+// Creat and Sign In/out Methods to Firebase**********************************************************************
+-(void)createNewUser:(NSString *)email password:(NSString *)password {
+    [[FIRAuth auth]
+     createUserWithEmail:email
+     password: password
+     completion:^(FIRUser *_Nullable user,
+                  NSError *_Nullable error) {
+     }];
+}
+
+- (void) signInUser:(NSString *)email password:(NSString *)password {
+    [[FIRAuth auth] signInWithEmail:email
+                           password:password
+                         completion:^(FIRUser *user, NSError *error) {
+                             NSLog(@"%@, %@" ,user.description, error);
+                             if (user.description != nil){
+                                 [self dogImageURL];
+                                 [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:YES];
+                             }
+                         }];
+}
 
 
+// Cloudinary setup to pull images from the DB*****************************************************************************************
+-   (void)cloudinarySetUp {
+    //Setup
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
+    NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString *clientId = configuration[@"Cloudinary"][@"ClientID"];
+    NSString *clientSecret = configuration[@"Cloudinary"][@"ClientSecret"];
+    
+    // Create Cloudinary Object
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    
+    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    [cloudinary.config setValue:clientId forKey:@"api_key"];
+    [cloudinary.config setValue:clientSecret forKey:@"api_secret"];
+    
+    // String of the image to be shown from db with Clodinary method
+    NSString *urlCloud = [cloudinary url:@"michael-jasinski_toycuj.jpg"];
+    // Create NSURL
+    NSURL *url = [NSURL URLWithString:urlCloud];
+    // Set date with the URL
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    // Turn the data into an image
+    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+    // Set main imageView to picture from the database
+    _mainImage.image = tmpImage;
+    
+}
+
+-(void)dogImageURL{
+    FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+    
+    // Query is going to the service child and looking over the user IDs to find the current users services
+    FIRDatabaseQuery *query = [[[firebaseRef child:@"dogs"] queryOrderedByChild:@"userID"]queryEqualToValue:[FIRAuth auth].currentUser.uid];
+    
+    
+    [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
+        // Use snapshot to create a new service"
+        Dog *userDog = [[Dog alloc]init];
+        userDog.urlPath = snapshot.value[@"photoURL"];
+        
+        [self imageFromCloudinary:userDog.urlPath];
+        
+    }];
+}
+- (void)imageFromCloudinary:(NSString *)profileURL {
+    
+    Dog *imageOfCurrentUserDog =  [_currentUser.userDogsArray objectAtIndex:0];
+    NSString *testURL = imageOfCurrentUserDog.urlPath;
+    // Create Cloudinary Object
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
+    
+    // Set cloudinary obj with plist
+    [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    
+    // String of the image to be shown from db with Clodinary method
+    NSString *urlCloud = [cloudinary url: profileURL];
+    // Create NSURL
+    NSURL *url = [NSURL URLWithString:urlCloud];
+    // Set date with the URL
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    // Turn the data into an image
+    UIImage *dogImage = [[UIImage alloc] initWithData:data];
+    // Set dog profile pick from db photo
+    _mainImage.image = dogImage;
+    
+}
+
+// Style and layouts**************************************************************************************************
 - (void)drawerMethod{
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
@@ -305,5 +313,23 @@ NSMutableArray *upcomingServicesArray;
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
 }
+
+-(void) changeBarButtonVisibility:(UIBarButtonItem*) barButtonItem visibility:(BOOL) shouldShow {
+    UIColor *tintColor = shouldShow == NO ? [UIColor clearColor] : nil;
+    [barButtonItem setEnabled:shouldShow];
+    [barButtonItem setTintColor:tintColor];
+    
+}
+
+
+- (void)imageDesign {
+    self.mainImage.layer.cornerRadius = self.mainImage.frame.size.width / 2;
+    self.mainImage.clipsToBounds = YES;
+    
+    self.mainImage.layer.borderWidth = 3.0f;
+    self.mainImage.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+}
+
+
 
 @end

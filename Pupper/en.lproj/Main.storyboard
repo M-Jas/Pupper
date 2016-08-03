@@ -55,10 +55,16 @@
                         <barButtonItem key="leftBarButtonItem" image="littlePaw.png" id="4DU-rm-gHC">
                             <color key="tintColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="u4n-lT-Khv">
+                            <connections>
+                                <action selector="signOutPressed:" destination="2" id="SA7-wu-MOT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mainImage" destination="Nmf-QN-ivy" id="6L4-o2-oPx"/>
                         <outlet property="sidebarButton" destination="4DU-rm-gHC" id="gCT-AB-0W6"/>
+                        <outlet property="signOutButton" destination="u4n-lT-Khv" id="AHl-6d-lV6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>

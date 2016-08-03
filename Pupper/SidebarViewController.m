@@ -68,7 +68,7 @@
     
     if([segue.identifier isEqualToString:@"profileSegue"]) {
         UINavigationController *navController = segue.destinationViewController;
-        ProfileViewController *profileController = [navController childViewControllers].firstObject;
+//        ProfileViewController *profileController = [navController childViewControllers].firstObject;
         
     }
     
