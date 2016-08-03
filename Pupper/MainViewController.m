@@ -13,7 +13,7 @@
 #import "Firebase.h"
 #import "User.h"
 #import "Dog.h"
-#import "AppDelegate.h"
+
 
 @import Firebase;
 
@@ -168,17 +168,12 @@ NSMutableArray *upcomingServicesArray;
                          completion:^(FIRUser *user, NSError *error) {
                              NSLog(@"%@, %@" ,user.description, error);
                              if (user.description != nil){
-                                 [self dogImageFromFB];
+                                 [self dogImageURL];
                              }
                          }];
 }
 
-//    AppDelegate *appDel = (AppDelegate*) [UIApplication sharedApplication].delegate;
-//    NSString *profileURL = appDel.dogURL;
-//    NSLog(@"MAIN APP DEL URL: %@", profileURL);
-
--(void)dogImageFromFB{
-    //FIREBASE TEST******************************************
+-(void)dogImageURL{
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
     
     // Query is going to the service child and looking over the user IDs to find the current users services
@@ -191,8 +186,6 @@ NSMutableArray *upcomingServicesArray;
         userDog.urlPath = snapshot.value[@"photoURL"];
         
         [self imageFromCloudinary:userDog.urlPath];
-        
-        NSLog(@"USER DOG PATH&&&&&&&&&&& %@", userDog.urlPath);
     
     }];
 }

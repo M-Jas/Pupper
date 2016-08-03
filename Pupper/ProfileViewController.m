@@ -15,7 +15,7 @@
 #import "MainViewController.h"
 #import "Dog.h"
 #import "Cloudinary/Cloudinary.h"
-#import "AppDelegate.h"
+
 
 @interface ProfileViewController () <CLUploaderDelegate>
 
@@ -286,17 +286,6 @@ NSString *snapshotKey;
     NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
     
     _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
-    
-    AppDelegate *appDel = (AppDelegate *) [UIApplication sharedApplication].delegate;
-    appDel.dogURL = _dogPhotoURL;
-    
-    NSLog(@"APP DEL VAR: %@", appDel.dogURL);
-    
-//    UINavigationController *sideBarNav = (UINavigationController *)self.revealViewController.rearViewController;
-    
-//    if ([sideBarNav.topViewController isKindOfClass:]) {
-////        MainViewController *mainVC = (MainViewController *)sid.topViewController;
-//    }
 }
 
 // CLUploaderDelegate protocol for receiving unsuccessful
