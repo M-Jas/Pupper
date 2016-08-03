@@ -15,6 +15,18 @@
 		43AE02641D526991005AC644 /* road5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02631D526991005AC644 /* road5.jpeg */; };
 		43AE02661D526999005AC644 /* road4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02651D526999005AC644 /* road4.jpeg */; };
 		43AE02681D527571005AC644 /* profileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02671D527571005AC644 /* profileIcon.png */; };
+		43AE026A1D5283E7005AC644 /* homeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02691D5283E7005AC644 /* homeIcon.png */; };
+		43AE026C1D528417005AC644 /* credit-card-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE026B1D528417005AC644 /* credit-card-3.png */; };
+		43AE026E1D52845A005AC644 /* home2.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE026D1D52845A005AC644 /* home2.png */; };
+		43AE02701D5284CB005AC644 /* home4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE026F1D5284CB005AC644 /* home4.jpeg */; };
+		43AE02731D528585005AC644 /* home6.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02711D528585005AC644 /* home6.png */; };
+		43AE02741D528585005AC644 /* home7.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02721D528585005AC644 /* home7.png */; };
+		43AE02791D528665005AC644 /* price-icon-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02751D528665005AC644 /* price-icon-4.png */; };
+		43AE027A1D528665005AC644 /* price1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02761D528665005AC644 /* price1.jpeg */; };
+		43AE027B1D528665005AC644 /* price2.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02771D528665005AC644 /* price2.png */; };
+		43AE027C1D528665005AC644 /* price3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 43AE02781D528665005AC644 /* price3.jpeg */; };
+		43AE027E1D52876D005AC644 /* home-1-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE027D1D52876D005AC644 /* home-1-64x64.png */; };
+		43AE02801D52877A005AC644 /* money-bag-3-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 43AE027F1D52877A005AC644 /* money-bag-3-64x64.png */; };
 		43B17C661D380EA70096556F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C651D380EA70096556F /* main.m */; };
 		43B17C741D380EA70096556F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B17C721D380EA70096556F /* LaunchScreen.storyboard */; };
 		43B17C7D1D380F230096556F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B17C7C1D380F230096556F /* ProfileViewController.m */; };
@@ -68,6 +80,18 @@
 		43AE02631D526991005AC644 /* road5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road5.jpeg; sourceTree = "<group>"; };
 		43AE02651D526999005AC644 /* road4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road4.jpeg; sourceTree = "<group>"; };
 		43AE02671D527571005AC644 /* profileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileIcon.png; sourceTree = "<group>"; };
+		43AE02691D5283E7005AC644 /* homeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeIcon.png; sourceTree = "<group>"; };
+		43AE026B1D528417005AC644 /* credit-card-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-card-3.png"; sourceTree = "<group>"; };
+		43AE026D1D52845A005AC644 /* home2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home2.png; sourceTree = "<group>"; };
+		43AE026F1D5284CB005AC644 /* home4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home4.jpeg; sourceTree = "<group>"; };
+		43AE02711D528585005AC644 /* home6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home6.png; sourceTree = "<group>"; };
+		43AE02721D528585005AC644 /* home7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home7.png; sourceTree = "<group>"; };
+		43AE02751D528665005AC644 /* price-icon-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "price-icon-4.png"; sourceTree = "<group>"; };
+		43AE02761D528665005AC644 /* price1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = price1.jpeg; sourceTree = "<group>"; };
+		43AE02771D528665005AC644 /* price2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = price2.png; sourceTree = "<group>"; };
+		43AE02781D528665005AC644 /* price3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = price3.jpeg; sourceTree = "<group>"; };
+		43AE027D1D52876D005AC644 /* home-1-64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-1-64x64.png"; sourceTree = "<group>"; };
+		43AE027F1D52877A005AC644 /* money-bag-3-64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-bag-3-64x64.png"; sourceTree = "<group>"; };
 		43B17C611D380EA70096556F /* Pupper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B17C651D380EA70096556F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43B17C731D380EA70096556F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -288,12 +312,24 @@
 			children = (
 				43B17CEE1D380FBE0096556F /* map.png */,
 				43B17CF11D380FBE0096556F /* menu.png */,
+				43AE026B1D528417005AC644 /* credit-card-3.png */,
+				43AE026F1D5284CB005AC644 /* home4.jpeg */,
 				43B17CF21D380FBE0096556F /* menu@2x.png */,
+				43AE02691D5283E7005AC644 /* homeIcon.png */,
+				43AE027D1D52876D005AC644 /* home-1-64x64.png */,
+				43AE02751D528665005AC644 /* price-icon-4.png */,
+				43AE02761D528665005AC644 /* price1.jpeg */,
+				43AE02771D528665005AC644 /* price2.png */,
+				43AE02781D528665005AC644 /* price3.jpeg */,
+				43AE027F1D52877A005AC644 /* money-bag-3-64x64.png */,
+				43AE026D1D52845A005AC644 /* home2.png */,
 				43B17CF31D380FBE0096556F /* nav_bg.png */,
 				43B17CF41D380FBE0096556F /* news.png */,
 				43B17CF71D380FBE0096556F /* photo.png */,
 				43AE02671D527571005AC644 /* profileIcon.png */,
 				43B17D361D380FBE0096556F /* tag_photo.jpg */,
+				43AE02711D528585005AC644 /* home6.png */,
+				43AE02721D528585005AC644 /* home7.png */,
 				43B17D371D380FBE0096556F /* tag.png */,
 				43B17D3A1D380FBE0096556F /* wishlist_photo.jpg */,
 				43B17D3B1D380FBE0096556F /* wishlist.png */,
@@ -407,22 +443,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B17D421D380FBE0096556F /* calendar_photo.jpg in Resources */,
+				43AE027C1D528665005AC644 /* price3.jpeg in Resources */,
+				43AE02701D5284CB005AC644 /* home4.jpeg in Resources */,
 				43AE02621D52693D005AC644 /* road2.jpeg in Resources */,
 				43B17D881D3813260096556F /* InfoPlist.strings in Resources */,
+				43AE02741D528585005AC644 /* home7.png in Resources */,
+				43AE02731D528585005AC644 /* home6.png in Resources */,
 				43B17D7D1D380FBE0096556F /* tag.png in Resources */,
 				43B17D4F1D380FBE0096556F /* menu.png in Resources */,
 				43B17D461D380FBE0096556F /* Default-568h@2x.png in Resources */,
+				43AE02801D52877A005AC644 /* money-bag-3-64x64.png in Resources */,
 				43B17D801D380FBE0096556F /* wishlist.png in Resources */,
 				43B17D501D380FBE0096556F /* menu@2x.png in Resources */,
+				43AE026E1D52845A005AC644 /* home2.png in Resources */,
 				43B17D451D380FBE0096556F /* comments.png in Resources */,
+				43AE026A1D5283E7005AC644 /* homeIcon.png in Resources */,
 				43B17D441D380FBE0096556F /* comments_photo.jpg in Resources */,
+				43AE027A1D528665005AC644 /* price1.jpeg in Resources */,
 				43B17D481D380FBE0096556F /* Default@2x.png in Resources */,
 				43B17D4B1D380FBE0096556F /* littlePaw.png in Resources */,
+				43AE027B1D528665005AC644 /* price2.png in Resources */,
 				430B70E21D4A8DA400C53A1A /* GoogleService-Info.plist in Resources */,
 				43B17D541D380FBE0096556F /* photo.png in Resources */,
 				43AE025C1D5265AE005AC644 /* 1.png in Resources */,
 				43AE02661D526999005AC644 /* road4.jpeg in Resources */,
 				43B17D511D380FBE0096556F /* nav_bg.png in Resources */,
+				43AE026C1D528417005AC644 /* credit-card-3.png in Resources */,
 				43B17D521D380FBE0096556F /* news.png in Resources */,
 				43B17D431D380FBE0096556F /* calendar.png in Resources */,
 				43B17D7C1D380FBE0096556F /* tag_photo.jpg in Resources */,
@@ -431,12 +477,14 @@
 				43B17D7F1D380FBE0096556F /* wishlist_photo.jpg in Resources */,
 				43AE02601D526870005AC644 /* road1.jpeg in Resources */,
 				43B17C741D380EA70096556F /* LaunchScreen.storyboard in Resources */,
+				43AE02791D528665005AC644 /* price-icon-4.png in Resources */,
 				43B17D4D1D380FBE0096556F /* map.png in Resources */,
 				43AE02681D527571005AC644 /* profileIcon.png in Resources */,
 				43AE02641D526991005AC644 /* road5.jpeg in Resources */,
 				43B17D791D380FBE0096556F /* SidebarDemo-Info.plist in Resources */,
 				43B17D8C1D38148F0096556F /* Main.storyboard in Resources */,
 				43B17D471D380FBE0096556F /* Default.png in Resources */,
+				43AE027E1D52876D005AC644 /* home-1-64x64.png in Resources */,
 				43B17D3E1D380FBE0096556F /* LaunchScreen.storyboard in Resources */,
 				43B17D411D380FBE0096556F /* bookmark.png in Resources */,
 				43B17D3D1D380FBE0096556F /* Assets.xcassets in Resources */,

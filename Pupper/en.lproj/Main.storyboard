@@ -118,8 +118,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="bah-AM-A7L">
+                                            <rect key="frame" x="8" y="3" width="38" height="38"/>
+                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neq-3o-bxe">
-                                            <rect key="frame" x="26" y="8" width="144" height="22"/>
+                                            <rect key="frame" x="54" y="11" width="144" height="22"/>
                                             <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="21"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,8 +141,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="credit-card-3.png" translatesAutoresizingMaskIntoConstraints="NO" id="VJP-mr-Xes">
+                                            <rect key="frame" x="8" y="3" width="38" height="38"/>
+                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNL-Fv-aEA">
-                                            <rect key="frame" x="26" y="8" width="144" height="22"/>
+                                            <rect key="frame" x="54" y="11" width="144" height="22"/>
                                             <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="21"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,8 +164,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="money-bag-3-64x64.png" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-DH-no9">
+                                            <rect key="frame" x="8" y="3" width="38" height="38"/>
+                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Pricing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u26-RB-7pc">
-                                            <rect key="frame" x="27" y="8" width="144" height="22"/>
+                                            <rect key="frame" x="54" y="11" width="144" height="22"/>
                                             <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="21"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -179,11 +188,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Home/Main" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOP-br-X22">
-                                            <rect key="frame" x="28" y="8" width="144" height="30"/>
+                                            <rect key="frame" x="54" y="7" width="144" height="30"/>
                                             <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="21"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home-1-64x64.png" translatesAutoresizingMaskIntoConstraints="NO" id="NFE-AQ-v23">
+                                            <rect key="frame" x="8" y="3" width="38" height="38"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="logout"/>
@@ -217,7 +229,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pan-AZ-D0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="-425"/>
+            <point key="canvasLocation" x="-296" y="-416"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Z6-ag-ZQ1">
@@ -570,7 +582,11 @@
     </scenes>
     <resources>
         <image name="1.png" width="1024" height="1024"/>
+        <image name="credit-card-3.png" width="512" height="512"/>
+        <image name="home-1-64x64.png" width="64" height="64"/>
         <image name="littlePaw.png" width="38" height="28"/>
+        <image name="money-bag-3-64x64.png" width="64" height="64"/>
+        <image name="profileIcon.png" width="512" height="512"/>
         <image name="road5.jpeg" width="183" height="275"/>
     </resources>
     <inferredMetricsTieBreakers>

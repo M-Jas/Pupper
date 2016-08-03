@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _menuItems = @[@"profile", @"payment", @"price", @"home", @"logout"];
+    _menuItems = @[@"profile", @"payment", @"price", @"home"];
 }
 
 - (void)didReceiveMemoryWarning
