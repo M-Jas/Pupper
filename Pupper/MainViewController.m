@@ -19,11 +19,16 @@
 
 
 @interface MainViewController ()
+@property (strong, nonatomic) UIImage *sample;
+@property (strong, nonatomic) IBOutlet UIImageView *mainImage;
+
 @property (weak, nonatomic) IBOutlet UITableView *mainDisplayUpcomingServices;
 
-@property (strong, nonatomic) IBOutlet UIImageView *mainImage;
-@property (strong, nonatomic) UIImage *sample;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *signOutButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *signInButton;
+@property (strong, nonatomic) IBOutlet UIButton *bookPupperButton;
+@property (strong, nonatomic) IBOutlet UIButton *signupButton;
 
 @end
 
@@ -40,6 +45,9 @@ NSMutableArray *upcomingServicesArray;
     [self testingTVMethod];
     [self initalCloudinarySetUp];
     [self drawerMethod];
+    [self buttonsStyle];
+    
+    _bookPupperButton.hidden = YES;
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
     [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
@@ -231,6 +239,9 @@ NSMutableArray *upcomingServicesArray;
                              if (user.description != nil){
                                  [self dogImageURL];
                                  [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:YES];
+                                 _bookPupperButton.hidden = NO;
+                                 _signInButton.hidden = YES;
+                                 _signupButton.hidden = YES;
                              }
                          }];
 }
@@ -247,6 +258,9 @@ NSMutableArray *upcomingServicesArray;
         NSLog(@"SIgned OUT");
         [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
         [self initalCloudinarySetUp];
+        _bookPupperButton.hidden = YES;
+        _signInButton.hidden = NO;
+        _signupButton.hidden = NO;
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -347,5 +361,19 @@ NSMutableArray *upcomingServicesArray;
 }
 
 
+- (void)buttonsStyle {
+    _signInButton.layer.cornerRadius = 15;
+    _signInButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _signInButton.layer.borderWidth = 2.0f;
+    
+    _signupButton.layer.cornerRadius = 15;
+    _signupButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _signupButton.layer.borderWidth = 2.0f;
+    
+    _bookPupperButton.layer.cornerRadius = 15;
+    _bookPupperButton.layer.borderColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0].CGColor;
+    _bookPupperButton.layer.borderWidth = 2.0f;
+    
+}
 
 @end

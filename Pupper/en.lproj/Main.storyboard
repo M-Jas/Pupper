@@ -32,7 +32,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g95-Os-wcT">
-                                <rect key="frame" x="58" y="518" width="51" height="29"/>
+                                <rect key="frame" x="37" y="518" width="72" height="29"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
                                 <state key="normal" title="Sign In">
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9Y-Ff-Szs">
-                                <rect key="frame" x="204" y="518" width="50" height="29"/>
+                                <rect key="frame" x="182" y="518" width="72" height="29"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
                                 <state key="normal" title="Signup">
@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kl2-rX-IQw">
-                                <rect key="frame" x="86" y="504" width="148" height="30"/>
+                                <rect key="frame" x="57" y="530" width="207" height="30"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Book A Pupper">
                                     <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,8 +68,8 @@
                         <color key="backgroundColor" red="0.1647058824" green="0.2274509804" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9Ne-nw-giJ" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="8MF-mS-uZz"/>
+                            <constraint firstItem="Kl2-rX-IQw" firstAttribute="top" secondItem="Nmf-QN-ivy" secondAttribute="bottom" constant="39" id="DDY-Eo-rAd"/>
                             <constraint firstItem="ZqY-HD-1lU" firstAttribute="top" secondItem="W9Y-Ff-Szs" secondAttribute="bottom" constant="20" id="IHc-2O-FQ3"/>
-                            <constraint firstItem="Kl2-rX-IQw" firstAttribute="top" secondItem="9Ne-nw-giJ" secondAttribute="bottom" constant="23" id="N7t-o3-5ua"/>
                             <constraint firstItem="Nmf-QN-ivy" firstAttribute="top" secondItem="xwY-t7-Rti" secondAttribute="bottom" constant="227" id="QG0-GY-GvH"/>
                             <constraint firstItem="9Ne-nw-giJ" firstAttribute="centerX" secondItem="Nmf-QN-ivy" secondAttribute="centerX" id="b1c-hW-Np3"/>
                             <constraint firstAttribute="trailing" secondItem="9Ne-nw-giJ" secondAttribute="trailing" id="cbT-aV-p2G"/>
@@ -89,9 +89,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bookPupperButton" destination="Kl2-rX-IQw" id="6Td-a5-2Yu"/>
                         <outlet property="mainImage" destination="Nmf-QN-ivy" id="6L4-o2-oPx"/>
                         <outlet property="sidebarButton" destination="4DU-rm-gHC" id="gCT-AB-0W6"/>
+                        <outlet property="signInButton" destination="g95-Os-wcT" id="L2g-kW-GAd"/>
                         <outlet property="signOutButton" destination="u4n-lT-Khv" id="AHl-6d-lV6"/>
+                        <outlet property="signupButton" destination="W9Y-Ff-Szs" id="NFg-5C-snk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
