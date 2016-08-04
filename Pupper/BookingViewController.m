@@ -39,8 +39,6 @@ NSString *key;
     [self retrieveServicesFromFBDB];
     [self drawerMethod];
     
-    NSLog(@"FRAUTH ID: %@", [FIRAuth auth].currentUser.uid);
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,9 +172,6 @@ NSString *key;
     
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
-        
-        
-        NSLog(@"SNAPSHOT: %@ %%%%%%%%%%%%%%%%%%%%", snapshot);
         // Use snapshot to create a new service"
         key = snapshot.key;
         Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];

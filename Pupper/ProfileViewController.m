@@ -125,8 +125,6 @@ NSString *snapshotKey;
     NSString *name = _puppyNameTextfield.text;
     NSString *age = _puppyAgeTextfield.text;
     NSString *breed =_puppyBreedTextfield.text;
-    //Might not need this to tie the dog to a user
-    NSString *userPhoneNum =_userPhoneNumberTextfield.text;
     NSString *address = _addressTextfield.text;
     NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
     NSString *bio = _puppyBio.text;
@@ -146,8 +144,6 @@ NSString *snapshotKey;
     userDog.dogName = _puppyNameTextfield.text;
     userDog.dogAge = _puppyAgeTextfield.text;
     userDog.dogBreed =_puppyBreedTextfield.text;
-    //Might not need this to tie the dog to a user
-//    userDog.userPhoneNum =_userPhoneNumberTextfield.text;
     userDog.dogAddress = _addressTextfield.text;
     userDog.vetPhoneNumber = _vetPhoneNumberTextfield.text;
     userDog.dogBio = _puppyBio.text;
