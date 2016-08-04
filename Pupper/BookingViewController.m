@@ -110,6 +110,7 @@ NSString *key;
     NSString *newDate = newService.dateOfService;
     NSString *newSelectedService = newService.selectedService;
     
+    cell.textLabel.textColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
     cell.textLabel.text = newDate;
     cell.detailTextLabel.text = newSelectedService;
 //    NSLog(@"details: %@", cell.detailTextLabel.text);
