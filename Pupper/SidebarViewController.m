@@ -23,7 +23,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        
+    
     }
     return self;
 }
@@ -31,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor =[UIColor colorWithRed:58.0/255.0 green:74.0/255.0 blue:96.0/255.0 alpha:1.0];
+
     _menuItems = @[@"profile", @"payment", @"price", @"home"];
 }
 
