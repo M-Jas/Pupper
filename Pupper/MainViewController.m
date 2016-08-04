@@ -41,20 +41,14 @@ NSMutableArray *upcomingServicesArray;
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-    
-    [self testingTVMethod];
+
     [self drawerMethod];
     [self buttonsStyle];
-    
-    
-    
-//    [self initalCloudinarySetUp];
-//    _bookPupperButton.hidden = YES;
+    [self currentUserCheck];
+    [self imageDesign];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
     
-    [self currentUserCheck];
-    [self imageDesign];
 
 }
 
@@ -64,45 +58,6 @@ NSMutableArray *upcomingServicesArray;
 
 }
 
-
-
-// Tableview size and setup to display information*******************************************************************
-//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return [upcomingServicesArray count];
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
-//    NSString *testString = [upcomingServicesArray objectAtIndex:indexPath.row];
-// 
-//    cell.textLabel.text = testString;
-//    
-//    return cell;
-//    
-//}
-
-
-
-
-//Display Delete method for TableView*******************************************************
-//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return UITableViewCellEditingStyleDelete;
-//}
-
-//Delete method for Tableview used and Tablevie is adjusted with remaining objects in the array********************************************************
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        [upcomingServicesArray removeObjectAtIndex: indexPath.row];
-//        [_mainDisplayUpcomingServices deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
-//    }
-//}
-
-//- (IBAction)unwindForBookingSegue:(UIStoryboardSegue *)unwindSegue {
-//    BookingViewController *vc = [unwindSegue sourceViewController];
-////    upcomingServicesArray = vc.servicesOnSelectedDate;
-//    NSLog(@"The date you selected %@", upcomingServicesArray);
-//
-//}
 
 - (IBAction)bookServiceButtonPressed:(id)sender {
 
@@ -114,14 +69,6 @@ NSMutableArray *upcomingServicesArray;
     vc.currentUser = _currentUser;
     NSLog(@"%@", vc.currentUser);
 
-}
-
-
-
-- (NSMutableArray *)testingTVMethod {
-    upcomingServicesArray = [[NSMutableArray alloc] initWithObjects:@"Johnny 5", @"Zero Cool", nil];
-    
-    return upcomingServicesArray;
 }
 
 //Create new user and Sign in/out features****************************************************************
@@ -231,8 +178,6 @@ NSMutableArray *upcomingServicesArray;
         if (user != nil) {
             _currentUser = [[User alloc]init];
             _currentUser.userServicesArray = [[NSMutableArray alloc]init];
-            NSLog(@"Current User %@", _currentUser);
-            NSLog(@"Current User Array: %@", _currentUser.userServicesArray);
             [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:YES];
             _bookPupperButton.hidden = NO;
             _signInButton.hidden = YES;
