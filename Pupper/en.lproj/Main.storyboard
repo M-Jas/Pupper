@@ -67,11 +67,23 @@
                                     <segue destination="8is-vx-TQ4" kind="push" id="v04-XG-bC1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Pupper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9v-Ad-ZZj">
+                                <rect key="frame" x="20" y="149" width="280" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="SWM-QC-7X8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="29"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1647058824" green="0.2274509804" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9Ne-nw-giJ" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="8MF-mS-uZz"/>
+                            <constraint firstItem="c9v-Ad-ZZj" firstAttribute="top" secondItem="xwY-t7-Rti" secondAttribute="bottom" constant="85" id="HMG-oa-b4o"/>
                             <constraint firstItem="W9Y-Ff-Szs" firstAttribute="leading" secondItem="9Ne-nw-giJ" secondAttribute="trailing" constant="-132" id="P1Q-Hp-1eW"/>
+                            <constraint firstItem="c9v-Ad-ZZj" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="4" id="UFA-4N-bVp"/>
+                            <constraint firstItem="c9v-Ad-ZZj" firstAttribute="centerX" secondItem="Nmf-QN-ivy" secondAttribute="centerX" id="Va8-wL-hTL"/>
                             <constraint firstAttribute="trailing" secondItem="9Ne-nw-giJ" secondAttribute="trailing" id="cbT-aV-p2G"/>
                             <constraint firstItem="Nmf-QN-ivy" firstAttribute="centerX" secondItem="Kl2-rX-IQw" secondAttribute="centerX" id="eL1-Mz-7Zh"/>
                             <constraint firstItem="9Ne-nw-giJ" firstAttribute="centerX" secondItem="Kl2-rX-IQw" secondAttribute="centerX" id="fUc-Bq-wYq"/>
@@ -555,7 +567,7 @@
                                 <rect key="frame" x="40" y="296" width="240" height="69"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Cost: $5.00 Duration: 10 min The Pupper Rep will also refill water and play with your puppy for " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ugB-PV-XOM">
@@ -565,7 +577,7 @@
                                     <constraint firstAttribute="height" constant="73" id="pQZ-Lw-nH1"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
