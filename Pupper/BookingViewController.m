@@ -38,6 +38,7 @@ NSString *key;
     [super viewDidLoad];
     [self retrieveServicesFromFBDB];
     [self drawerMethod];
+    [self setTableviewColor];
     
 }
 
@@ -198,5 +199,9 @@ NSString *key;
     }
 }
 
+- (void)setTableviewColor {
+    _upcomingServicesTableView.backgroundColor = [UIColor colorWithRed:58.0/255.0 green:74.0/255.0 blue:96.0/255.0 alpha:1.0];
+    
+}
 
 @end
