@@ -136,8 +136,10 @@ NSString *snapshotKey;
     //Check to see if the current user has a dog in the database, if so used the update and edit methods
     if (currentUserDog.currentUserID != nil){
         [self editDogProfile:[self updateDog:currentUserDog]];
+      
     } else {
         [self addDogToDB:newDog];
+       
     }
     
 }
@@ -149,6 +151,7 @@ NSString *snapshotKey;
     userDog.dogAddress = _addressTextfield.text;
     userDog.vetPhoneNumber = _vetPhoneNumberTextfield.text;
     userDog.dogBio = _dogBioTextField.text;
+    userDog.urlPath = _dogPhotoURL;
     return userDog;
 }
 
@@ -172,6 +175,8 @@ NSString *snapshotKey;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     _dogProfileImage.image = chosenImage;
+    
+    NSLog(@"DOG IMAGE %@", _dogProfileImage.image);
     [self sendImageToCloudinary];
     
     [_picker dismissViewControllerAnimated:YES completion:NULL];
@@ -291,12 +296,14 @@ NSString *snapshotKey;
     NSString* publicId = [result valueForKey:@"public_id"];
     NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
     
-    _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
+//    _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
+    _dogPhotoURL = @"pjydrapy5ycikvbrbwxx.png";
+    NSLog(@"DOG NEW URL %@", _dogPhotoURL);
 }
 
 // CLUploaderDelegate protocol for receiving unsuccessful
-- (void) uploaderError:(NSString*)result code:(int)code context:(id)context {
-    NSLog(@"Upload error: %@, %d", result, code);
+- (void) uploaderError:(NSString*)result code:(long)code context:(id)context {
+    NSLog(@"Upload error: %@, %ld", result, code);
 }
 
 // CLUploaderDelegate protocol for receiving progress of upLoad
@@ -308,14 +315,19 @@ NSString *snapshotKey;
     // Creation of Cloudinary Object
     CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
     //Safe mobile uploading
+//    CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://672498821496356:dw4eU2RLSp1_gmp1H_Y2kYvXKGI@dolhcgb0l"];
     [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
     // Create uploding method to cloudinary
     CLUploader* uploader = [[CLUploader alloc] init:cloudinary delegate:self];
     // Turn the photo into nsdata to return to the db
     NSData *imageData = UIImagePNGRepresentation(_dogProfileImage.image);
     
+    
+    
+    NSLog(@"Sent URL %@", _dogPhotoURL);
+    
     // Upload method to db using the unsigned image preset rm17j02k. The options are how I can change the image as it is sent
-    [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{}];
+    [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{@"sync": @YES}];
     
 }
 
@@ -325,6 +337,8 @@ NSString *snapshotKey;
     
     // Set cloudinary obj with plist
     [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    
+    NSLog(@"FROM CLOUD URL %@", _dogPhotoURL);
     
     // String of the image to be shown from db with Clodinary method
     NSString *urlCloud = [cloudinary url:_dogPhotoURL];
