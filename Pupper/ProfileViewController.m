@@ -38,6 +38,7 @@
 
 @property (strong, nonatomic) NSString *dogPhotoURL;
 
+@property (strong, nonatomic) IBOutlet UITextField *dogBioTextField;
 
 @end
 
@@ -81,12 +82,19 @@ NSString *snapshotKey;
     _userPhoneNumberTextfield.userInteractionEnabled = NO;
     _addressTextfield.userInteractionEnabled = NO;
     _vetPhoneNumberTextfield.userInteractionEnabled = NO;
-    _puppyBio.userInteractionEnabled = NO;
+//    _puppyBio.userInteractionEnabled = NO;
     
+    _dogBioTextField.userInteractionEnabled = NO;
     _saveButton.hidden = YES;
     _takePhotoButton.hidden = YES;
     _uploadPhotoButton.hidden = YES;
     
+}
+
+- (IBAction)dismissKeyboard:(id)sender;
+{
+    [_dogBioTextField becomeFirstResponder];
+    [_dogBioTextField resignFirstResponder];
 }
 
 // Button will activate all textfield and display save button**********************************************************************
@@ -97,7 +105,8 @@ NSString *snapshotKey;
     _userPhoneNumberTextfield.userInteractionEnabled = YES;
     _addressTextfield.userInteractionEnabled = YES;
     _vetPhoneNumberTextfield.userInteractionEnabled = YES;
-    _puppyBio.userInteractionEnabled = YES;
+    _dogBioTextField.userInteractionEnabled = YES;
+    
     
     _saveButton.hidden = NO;
     _takePhotoButton.hidden = NO;
@@ -118,19 +127,19 @@ NSString *snapshotKey;
     NSString *name = _puppyNameTextfield.text;
     NSString *age = _puppyAgeTextfield.text;
     NSString *breed =_puppyBreedTextfield.text;
-    //Might not need this to tie the dog to a user
-    NSString *userPhoneNum =_userPhoneNumberTextfield.text;
     NSString *address = _addressTextfield.text;
     NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
-    NSString *bio = _puppyBio.text;
+    NSString *bio = _dogBioTextField.text;
     
     Dog *newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid dogPhotoURL: _dogPhotoURL];
     
     //Check to see if the current user has a dog in the database, if so used the update and edit methods
     if (currentUserDog.currentUserID != nil){
         [self editDogProfile:[self updateDog:currentUserDog]];
+      
     } else {
         [self addDogToDB:newDog];
+       
     }
     
 }
@@ -139,11 +148,10 @@ NSString *snapshotKey;
     userDog.dogName = _puppyNameTextfield.text;
     userDog.dogAge = _puppyAgeTextfield.text;
     userDog.dogBreed =_puppyBreedTextfield.text;
-    //Might not need this to tie the dog to a user
-//    userDog.userPhoneNum =_userPhoneNumberTextfield.text;
     userDog.dogAddress = _addressTextfield.text;
     userDog.vetPhoneNumber = _vetPhoneNumberTextfield.text;
-    userDog.dogBio = _puppyBio.text;
+    userDog.dogBio = _dogBioTextField.text;
+    userDog.urlPath = _dogPhotoURL;
     return userDog;
 }
 
@@ -167,6 +175,8 @@ NSString *snapshotKey;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     _dogProfileImage.image = chosenImage;
+    
+    NSLog(@"DOG IMAGE %@", _dogProfileImage.image);
     [self sendImageToCloudinary];
     
     [_picker dismissViewControllerAnimated:YES completion:NULL];
@@ -242,7 +252,7 @@ NSString *snapshotKey;
         
         _addressTextfield.text = currentUserDog.dogAddress;
         _vetPhoneNumberTextfield.text = currentUserDog.vetPhoneNumber;
-        _puppyBio.text = currentUserDog.dogBio;
+        _dogBioTextField.text = currentUserDog.dogBio;
         _dogPhotoURL = currentUserDog.urlPath;
         
         // Send the key to edit method to ref
@@ -286,12 +296,14 @@ NSString *snapshotKey;
     NSString* publicId = [result valueForKey:@"public_id"];
     NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
     
-    _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
+//    _dogPhotoURL = [NSString stringWithFormat:@"%@.png", publicId];
+    _dogPhotoURL = @"pjydrapy5ycikvbrbwxx.png";
+    NSLog(@"DOG NEW URL %@", _dogPhotoURL);
 }
 
 // CLUploaderDelegate protocol for receiving unsuccessful
-- (void) uploaderError:(NSString*)result code:(int)code context:(id)context {
-    NSLog(@"Upload error: %@, %d", result, code);
+- (void) uploaderError:(NSString*)result code:(long)code context:(id)context {
+    NSLog(@"Upload error: %@, %ld", result, code);
 }
 
 // CLUploaderDelegate protocol for receiving progress of upLoad
@@ -303,14 +315,19 @@ NSString *snapshotKey;
     // Creation of Cloudinary Object
     CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
     //Safe mobile uploading
+//    CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://672498821496356:dw4eU2RLSp1_gmp1H_Y2kYvXKGI@dolhcgb0l"];
     [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
     // Create uploding method to cloudinary
     CLUploader* uploader = [[CLUploader alloc] init:cloudinary delegate:self];
     // Turn the photo into nsdata to return to the db
     NSData *imageData = UIImagePNGRepresentation(_dogProfileImage.image);
     
+    
+    
+    NSLog(@"Sent URL %@", _dogPhotoURL);
+    
     // Upload method to db using the unsigned image preset rm17j02k. The options are how I can change the image as it is sent
-    [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{}];
+    [uploader unsignedUpload:imageData uploadPreset:@"rm17j02k" options:@{@"sync": @YES}];
     
 }
 
@@ -320,6 +337,8 @@ NSString *snapshotKey;
     
     // Set cloudinary obj with plist
     [cloudinary.config setValue:@"dolhcgb0l" forKey:@"cloud_name"];
+    
+    NSLog(@"FROM CLOUD URL %@", _dogPhotoURL);
     
     // String of the image to be shown from db with Clodinary method
     NSString *urlCloud = [cloudinary url:_dogPhotoURL];

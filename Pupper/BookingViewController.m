@@ -38,7 +38,7 @@ NSString *key;
     [super viewDidLoad];
     [self retrieveServicesFromFBDB];
     [self drawerMethod];
-    
+    [self setTableviewColor];
     
 }
 
@@ -51,7 +51,6 @@ NSString *key;
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
 {
     _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
-    
     [self serviceAlert];
     
 }
@@ -112,6 +111,7 @@ NSString *key;
     NSString *newDate = newService.dateOfService;
     NSString *newSelectedService = newService.selectedService;
     
+    cell.textLabel.textColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
     cell.textLabel.text = newDate;
     cell.detailTextLabel.text = newSelectedService;
 //    NSLog(@"details: %@", cell.detailTextLabel.text);
@@ -137,7 +137,7 @@ NSString *key;
     }
 }
 
-// Remove a service from the dd
+// Remove a service from the dd *************************************************************************
 - (void)removeServiceFromDB {
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
     NSDictionary *childUpdates = @{[@"/services/" stringByAppendingString: key]:[NSNull null]};
@@ -188,6 +188,7 @@ NSString *key;
     
 }
 
+// Style ***************************************************************************************************
 - (void)drawerMethod{
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
@@ -198,5 +199,9 @@ NSString *key;
     }
 }
 
+- (void)setTableviewColor {
+    _upcomingServicesTableView.backgroundColor = [UIColor colorWithRed:58.0/255.0 green:74.0/255.0 blue:96.0/255.0 alpha:1.0];
+    
+}
 
 @end
