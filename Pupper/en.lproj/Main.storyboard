@@ -313,7 +313,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter Dog's Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3F3-rG-Z1N">
-                                <rect key="frame" x="29" y="425" width="262" height="116"/>
+                                <rect key="frame" x="29" y="439" width="262" height="116"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -322,7 +322,7 @@
                                 <rect key="frame" x="27" y="71" width="150" height="150"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjZ-en-5Tf">
-                                <rect key="frame" x="200" y="159" width="117" height="29"/>
+                                <rect key="frame" x="194" y="131" width="117" height="29"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
                                 <state key="normal" title="Upload Photo">
@@ -332,19 +332,8 @@
                                     <action selector="uploadPhotoButtonPress:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="yc8-2h-C3I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-Lk-6d7">
-                                <rect key="frame" x="200" y="105" width="117" height="30"/>
-                                <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
-                                <state key="normal" title="Take Photo">
-                                    <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="takePhotoButtonPress:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="NsW-gc-DuF"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGi-3G-dTf">
-                                <rect key="frame" x="102" y="538" width="117" height="30"/>
+                                <rect key="frame" x="194" y="191" width="117" height="30"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
                                 <state key="normal" title="Save">
@@ -352,6 +341,22 @@
                                 </state>
                                 <connections>
                                     <action selector="saveProfileButtonPressed:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="oMH-Zl-Roj"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dog Bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AeI-Pf-KFB">
+                                <rect key="frame" x="20" y="421" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-Lk-6d7">
+                                <rect key="frame" x="194" y="72" width="117" height="30"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.29019607843137252" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="15"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.76470588240000004" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhotoButtonPress:" destination="0F6-E6-5Jb" eventType="touchUpInside" id="NsW-gc-DuF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -370,6 +375,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressTextfield" destination="EYn-dn-A9i" id="Gbu-TO-fro"/>
+                        <outlet property="dogBioTextField" destination="AeI-Pf-KFB" id="bSL-gs-zr4"/>
                         <outlet property="dogProfileImage" destination="YtA-7t-Keo" id="emK-ZW-GxB"/>
                         <outlet property="puppyAgeTextfield" destination="bh4-bG-aeR" id="1dg-Y0-9jI"/>
                         <outlet property="puppyBio" destination="3F3-rG-Z1N" id="Qn8-FR-WFP"/>

@@ -38,6 +38,7 @@
 
 @property (strong, nonatomic) NSString *dogPhotoURL;
 
+@property (strong, nonatomic) IBOutlet UITextField *dogBioTextField;
 
 @end
 
@@ -81,8 +82,9 @@ NSString *snapshotKey;
     _userPhoneNumberTextfield.userInteractionEnabled = NO;
     _addressTextfield.userInteractionEnabled = NO;
     _vetPhoneNumberTextfield.userInteractionEnabled = NO;
-    _puppyBio.userInteractionEnabled = NO;
+//    _puppyBio.userInteractionEnabled = NO;
     
+    _dogBioTextField.userInteractionEnabled = NO;
     _saveButton.hidden = YES;
     _takePhotoButton.hidden = YES;
     _uploadPhotoButton.hidden = YES;
@@ -91,8 +93,8 @@ NSString *snapshotKey;
 
 - (IBAction)dismissKeyboard:(id)sender;
 {
-    [_puppyBio becomeFirstResponder];
-    [_puppyBio resignFirstResponder];
+    [_dogBioTextField becomeFirstResponder];
+    [_dogBioTextField resignFirstResponder];
 }
 
 // Button will activate all textfield and display save button**********************************************************************
@@ -103,7 +105,7 @@ NSString *snapshotKey;
     _userPhoneNumberTextfield.userInteractionEnabled = YES;
     _addressTextfield.userInteractionEnabled = YES;
     _vetPhoneNumberTextfield.userInteractionEnabled = YES;
-    _puppyBio.userInteractionEnabled = YES;
+    _dogBioTextField.userInteractionEnabled = YES;
     
     
     _saveButton.hidden = NO;
@@ -127,7 +129,7 @@ NSString *snapshotKey;
     NSString *breed =_puppyBreedTextfield.text;
     NSString *address = _addressTextfield.text;
     NSString *vetPhoneNum = _vetPhoneNumberTextfield.text;
-    NSString *bio = _puppyBio.text;
+    NSString *bio = _dogBioTextField.text;
     
     Dog *newDog = [[Dog alloc]initWithDogName:name age:age breed:breed address:address vetPhoneNub:vetPhoneNum bio:bio userID:[FIRAuth auth].currentUser.uid dogPhotoURL: _dogPhotoURL];
     
@@ -146,7 +148,7 @@ NSString *snapshotKey;
     userDog.dogBreed =_puppyBreedTextfield.text;
     userDog.dogAddress = _addressTextfield.text;
     userDog.vetPhoneNumber = _vetPhoneNumberTextfield.text;
-    userDog.dogBio = _puppyBio.text;
+    userDog.dogBio = _dogBioTextField.text;
     return userDog;
 }
 
@@ -245,7 +247,7 @@ NSString *snapshotKey;
         
         _addressTextfield.text = currentUserDog.dogAddress;
         _vetPhoneNumberTextfield.text = currentUserDog.vetPhoneNumber;
-        _puppyBio.text = currentUserDog.dogBio;
+        _dogBioTextField.text = currentUserDog.dogBio;
         _dogPhotoURL = currentUserDog.urlPath;
         
         // Send the key to edit method to ref
