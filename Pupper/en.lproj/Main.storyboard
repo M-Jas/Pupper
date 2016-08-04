@@ -312,12 +312,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter Dog's Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3F3-rG-Z1N">
-                                <rect key="frame" x="29" y="439" width="262" height="116"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                            </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YtA-7t-Keo">
                                 <rect key="frame" x="27" y="71" width="150" height="150"/>
                             </imageView>
@@ -378,7 +372,6 @@
                         <outlet property="dogBioTextField" destination="AeI-Pf-KFB" id="bSL-gs-zr4"/>
                         <outlet property="dogProfileImage" destination="YtA-7t-Keo" id="emK-ZW-GxB"/>
                         <outlet property="puppyAgeTextfield" destination="bh4-bG-aeR" id="1dg-Y0-9jI"/>
-                        <outlet property="puppyBio" destination="3F3-rG-Z1N" id="Qn8-FR-WFP"/>
                         <outlet property="puppyBreedTextfield" destination="1V2-s6-8QO" id="2Du-c3-sra"/>
                         <outlet property="puppyNameTextfield" destination="CcY-gE-pMr" id="7Rj-sL-5EI"/>
                         <outlet property="saveButton" destination="sGi-3G-dTf" id="8O6-QC-k0I"/>
