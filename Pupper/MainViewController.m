@@ -43,15 +43,17 @@ NSMutableArray *upcomingServicesArray;
     [super viewDidLoad];
     
     [self testingTVMethod];
-    [self initalCloudinarySetUp];
     [self drawerMethod];
     [self buttonsStyle];
     
-    _bookPupperButton.hidden = YES;
+    
+    
+//    [self initalCloudinarySetUp];
+//    _bookPupperButton.hidden = YES;
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:239.0/255.0 green:195.0/255.0 blue:45.0/255.0 alpha:1.0];
-    [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
-  
+    
+    [self currentUserCheck];
     [self imageDesign];
 
 }
@@ -65,19 +67,19 @@ NSMutableArray *upcomingServicesArray;
 
 
 // Tableview size and setup to display information*******************************************************************
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [upcomingServicesArray count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
-    NSString *testString = [upcomingServicesArray objectAtIndex:indexPath.row];
- 
-    cell.textLabel.text = testString;
-    
-    return cell;
-    
-}
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return [upcomingServicesArray count];
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell" forIndexPath:indexPath];
+//    NSString *testString = [upcomingServicesArray objectAtIndex:indexPath.row];
+// 
+//    cell.textLabel.text = testString;
+//    
+//    return cell;
+//    
+//}
 
 
 
@@ -221,6 +223,31 @@ NSMutableArray *upcomingServicesArray;
     
 }
 
+
+// Current user vc setup method********************************************************************************
+- (void)currentUserCheck {
+        FIRUser *user = [FIRAuth auth].currentUser;
+    
+        if (user != nil) {
+            _currentUser = [[User alloc]init];
+            _currentUser.userServicesArray = [[NSMutableArray alloc]init];
+            NSLog(@"Current User %@", _currentUser);
+            NSLog(@"Current User Array: %@", _currentUser.userServicesArray);
+            [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:YES];
+            _bookPupperButton.hidden = NO;
+            _signInButton.hidden = YES;
+            _signupButton.hidden = YES;
+            [self dogImageURL];
+        } else {
+            [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
+            _bookPupperButton.hidden = YES;
+            _signInButton.hidden = NO;
+            _signupButton.hidden = NO;
+            [self initalCloudinarySetUp];
+        }
+}
+
+
 // Creat and Sign In/out Methods to Firebase**********************************************************************
 -(void)createNewUser:(NSString *)email password:(NSString *)password {
     [[FIRAuth auth]
@@ -238,10 +265,14 @@ NSMutableArray *upcomingServicesArray;
                              NSLog(@"%@, %@" ,user.description, error);
                              if (user.description != nil){
                                  [self dogImageURL];
-                                 [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:YES];
+//                                 [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:YES];
                                  _bookPupperButton.hidden = NO;
                                  _signInButton.hidden = YES;
                                  _signupButton.hidden = YES;
+                             } else {
+//                                 [self changeBarButtonVisibility:self.navigationItem.rightBarButtonItems[0] visibility:NO];
+                                 _bookPupperButton.hidden = YES;
+//                                 [self initalCloudinarySetUp];
                              }
                          }];
 }
@@ -312,8 +343,6 @@ NSMutableArray *upcomingServicesArray;
     }];
 }
 - (void)userDogImageFromCloudinary:(NSString *)profileURL {
-
- 
     // Create Cloudinary Object
     CLCloudinary *cloudinary = [[CLCloudinary alloc] init];
     

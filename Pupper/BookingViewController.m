@@ -39,6 +39,7 @@ NSString *key;
     [self retrieveServicesFromFBDB];
     [self drawerMethod];
     
+    NSLog(@"FRAUTH ID: %@", [FIRAuth auth].currentUser.uid);
     
 }
 
@@ -51,7 +52,6 @@ NSString *key;
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
 {
     _dateString =[calendar stringFromDate:date format:@"yyyy/MM/dd"];
-    
     [self serviceAlert];
     
 }
@@ -137,7 +137,7 @@ NSString *key;
     }
 }
 
-// Remove a service from the dd
+// Remove a service from the dd *************************************************************************
 - (void)removeServiceFromDB {
     FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
     NSDictionary *childUpdates = @{[@"/services/" stringByAppendingString: key]:[NSNull null]};
@@ -174,6 +174,9 @@ NSString *key;
     
     // FIRDataEventTypeChildAdded event is triggered once for each existing child and then again every time a new child is added to the specified path.
     [query observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * snapshot) {
+        
+        
+        NSLog(@"SNAPSHOT: %@ %%%%%%%%%%%%%%%%%%%%", snapshot);
         // Use snapshot to create a new service"
         key = snapshot.key;
         Service *dbServices = [[Service alloc]initWithService:snapshot.value[@"selectedService"] dateOfService:snapshot.value[@"dateOfService"] priceOfService:snapshot.value[@"costOfService"] userID:snapshot.value[@"userID"]];
@@ -188,6 +191,7 @@ NSString *key;
     
 }
 
+// Style ***************************************************************************************************
 - (void)drawerMethod{
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )

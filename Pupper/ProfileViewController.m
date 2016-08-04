@@ -89,6 +89,12 @@ NSString *snapshotKey;
     
 }
 
+- (IBAction)dismissKeyboard:(id)sender;
+{
+    [_puppyBio becomeFirstResponder];
+    [_puppyBio resignFirstResponder];
+}
+
 // Button will activate all textfield and display save button**********************************************************************
 - (IBAction)editProfileButtonPressed:(id)sender {
     _puppyNameTextfield.userInteractionEnabled = YES;
@@ -98,6 +104,7 @@ NSString *snapshotKey;
     _addressTextfield.userInteractionEnabled = YES;
     _vetPhoneNumberTextfield.userInteractionEnabled = YES;
     _puppyBio.userInteractionEnabled = YES;
+    
     
     _saveButton.hidden = NO;
     _takePhotoButton.hidden = NO;
