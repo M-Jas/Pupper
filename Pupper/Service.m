@@ -17,6 +17,7 @@
         _dateOfService = date;
         _priceOfService = servicePrice;
         _currentUserID = userId;
+        _serviceID = [[NSUUID UUID]UUIDString];
     }
     return self;
 }
